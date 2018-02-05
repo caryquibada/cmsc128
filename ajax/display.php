@@ -9,7 +9,7 @@ if(!mysqli_select_db($connect,'upblibusage')){
 }
 $sql="SELECT * FROM transaction";
 $result=mysqli_query($connect,$sql);
-
+//ID #2
 echo "  
         <thead>
         <tr>
