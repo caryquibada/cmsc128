@@ -15,8 +15,10 @@
         </input>
         </br>
         </form>
-        <div class="col-lg-6"><table class="table table-striped table-hover table-sm" id="tableHolder"></table></div>
-       
+        <div class="col-lg-12">
+        <div class="col-lg-5"><table class="table table-striped table-hover table-sm" id="tableHolder"></table></div>
+       <div class="col-lg-5"><table class="table table-striped table-hover table-sm" id="tableHolder1"></table></div>
+       </div>
        
     </body>
 </html>
@@ -34,14 +36,38 @@
         $('#tableHolder').load('ajax/display.php', function(){
            setTimeout(refreshTable, 3000);
         });
+        $('#tableHolder1').load('ajax/displayTimeOut.php', function(){
+           setTimeout(refreshTable, 3000);
+        });
         
     }
 </script>
-
+<script>
+$(document).ready(function(){
+    
+        $("#tableHolder").on('click','.btnSelect',function(){
+             // get the current row
+             var that=$(this);
+             var data=that.attr('id');
+             var test='test';
+             alert(data);
+             $.ajax({
+                url:'ajax/timeout.php',
+                method:'POST',
+                data:{tranNum:data},
+                success: function(response){
+                    $("#result").html(response);
+                }
+             });
+             
+        });
+        
+    });
+</script>
 
     <script src="js/input.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){
-        $('#tableHolder').DataTable();
+        $('#tableholder').DataTable();
     });
     </script>

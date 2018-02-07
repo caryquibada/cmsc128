@@ -7,7 +7,7 @@ if(!$connect){
 if(!mysqli_select_db($connect,'upblibusage')){
     echo 'Database "lukedb" is not selected';
 }
-$sql="SELECT * FROM transaction WHERE YEAR(time_out)='0000'";
+$sql="SELECT * FROM transaction WHERE YEAR(time_out)!='0000'";
 $result=mysqli_query($connect,$sql);
 //ID #2
 echo "  
@@ -26,7 +26,7 @@ while($row=mysqli_fetch_row($result)){
           <td>$row[0]</td>
           <td>$row[1]</td>
           <td>$row[2]</td>
-          <td><button class=".btnSelect." id=".$row[0]." name=".test.">Time-out</button></td>
+          <td>$row[3]</td>        
           </tr>";
 }
 echo "</tbody>";
