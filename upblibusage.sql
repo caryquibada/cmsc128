@@ -51,7 +51,7 @@ INSERT INTO `student` (`student_number`, `time_remaining`) VALUES
 CREATE TABLE `transaction` (
   `transaction_number` int(10) UNSIGNED ZEROFILL NOT NULL,
   `student_number` varchar(10) NOT NULL,
-  `time_in` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `time_in` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP 
   `time_out` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
