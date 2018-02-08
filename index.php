@@ -36,11 +36,21 @@
         $('#tableHolder').load('ajax/display.php', function(){
            setTimeout(refreshTable, 3000);
         });
-        $('#tableHolder1').load('ajax/displayTimeOut.php', function(){
+       
+    }
+</script>
+<script>
+$(document).ready(function(){
+      refreshTable1();
+     
+    });
+function refreshTable1(){
+    $('#tableHolder1').load('ajax/displayTimeOut.php', function(){
            setTimeout(refreshTable, 3000);
         });
+}
+
         
-    }
 </script>
 <script>
 $(document).ready(function(){
