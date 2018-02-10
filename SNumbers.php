@@ -14,16 +14,18 @@
     
         $sql="SELECT * FROM student";
         $result=mysqli_query($connect,$sql);
-        echo "<table id="."'tableHolder'"." class="."'table'".">
+        echo "<table id="."'tableHolder'"." class="."table table-sm".">
                 <thead>
                     <tr>
                         <th>Student Number</th>
+                        <th>Time Remaining</th>
                     </tr>
                 </thead>
                 <tbody>";
         while($row=mysqli_fetch_row($result)){
             echo "<tr>
                     <td><button type="."'button'"." class="."'btn btn-info btn-lg'"." data-toggle="."'modal'"." data-target="."'#myModal'"." id=".$row[0].">".$row[0]."</button></td>
+                    <td>$row[1]</td>
                 </tr>";
         }
         echo "  </tbody>
@@ -35,10 +37,19 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Modal Header</h4>
                     </div>
                     <div class="modal-body">
-                        <table id="tableHolder1"></table>
+                        <table id="tableHolder1">
+                            <thead>
+                                <tr>
+                                    <th>Transaction Number</th>
+                                    <th>Time-in</th>
+                                    <th>Time-out</th>
+                                </tr>
+                            </thead>
+                            <tbody id="display">
+                            </tbody>
+                        </table>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -55,16 +66,24 @@
     $(document).ready(function(){
         $("#tableHolder").on('click','.btn',function(){
              // get the current row
+             $('#tableHolder1').DataTable();
+             $('#tableHolder1').DataTable().destroy();
              var that=$(this);
              var data=that.attr('id');
-             $('#tableHolder1').load("ajax/students.php",{student:data});
+             $('#display').load("ajax/students.php",{student:data},function(){
+                $('#tableHolder1').DataTable();
+             });
              
         });
         
+        
+        
     });
+    
 </script>
 <script type="text/javascript">
     $(document).ready(function(){
         $('#tableHolder').DataTable();
+        
     });
 </script>

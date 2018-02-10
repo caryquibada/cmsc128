@@ -11,7 +11,7 @@
         <form action="ajax/input.php" method="post" class="ajax">
             <div class="col-lg-12">
                 <div class="input-group">
-                    <input type="text" name="studentNumber" id="sn" class="form-control">
+                    <input type="text" name="studentNumber" id="sn" class="form-control" placeholder="Charging">
                     </input>
 
                     <span class="input-group-btn">
@@ -23,7 +23,7 @@
         <form action="ajax/input.php" method="post" class="ajax">
             <div class="col-lg-12">
                 <div class="input-group">
-                    <input type="text" name="studentNumber" id="sn" class="form-control">
+                    <input type="text" name="studentNumber" id="sn" class="form-control" placeholder="iPad Usage">
                     </input>
 
                     <span class="input-group-btn">
@@ -35,7 +35,7 @@
         <form action="ajax/input.php" method="post" class="ajax">
             <div class="col-lg-12 input-group">
                 <div class="input-group">
-                    <input type="text" name="studentNumber" id="sn" class="form-control">
+                    <input type="text" name="studentNumber" id="sn" class="form-control" placeholder="Yung isa pa di ko maalala">
                     </input>
 
                     <span class="input-group-btn">
@@ -47,7 +47,17 @@
 
         <div class="row"> <!--table for time-in>-->
             <div class="table-responsive col-lg-6">
-                <table class="table table-sm table-striped table-hover " id="tableHolder"></table>
+                <table class="table table-sm table-striped table-hover " id="tableHolder"> 
+                    <thead>
+                        <tr>
+                            <th>Transaction Number</th>
+                            <th>Student Number</th>
+                            <th>Time-in</th>
+                            <th>Time-out</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
             </div>      <!--table for time-out-->
             <div class="table-responsive col-lg-6">
                 <table class="table table-sm table-striped table-hover " id="tableHolder1"></table>
@@ -67,7 +77,7 @@
     });
 
     function refreshTable(){
-        $('#tableHolder').load('ajax/display.php', function(){
+        $('#tableBody').load('ajax/display.php', function(){
            setTimeout(refreshTable, 3000);
         });
        
@@ -90,11 +100,10 @@
 <script>
 $(document).ready(function(){
     
-        $("#tableHolder").on('click','.btnSelect',function(){
+        $("#tableBody").on('click','.btnSelect',function(){
              // get the current row
              var that=$(this);
              var data=that.attr('id');
-             var test='test';
              alert(data);
              $.ajax({
                 url:'ajax/timeout.php',
@@ -111,8 +120,3 @@ $(document).ready(function(){
 </script>
 
     <script src="js/input.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function(){
-        $('#tableholder').DataTable();
-    });
-    </script>
