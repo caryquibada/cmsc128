@@ -1,12 +1,5 @@
 <?php
-$connect = mysqli_connect('localhost','root','');
-
-if(!$connect){
-    echo 'No connection to server';
-}
-if(!mysqli_select_db($connect,'upblibusage')){
-    echo 'Database "lukedb" is not selected';
-}
+include 'conn.php';
 //#1
 if (isset($_POST['studentNumber'])){
     $sn=$_POST['studentNumber'];

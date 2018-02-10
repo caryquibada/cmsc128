@@ -17,7 +17,7 @@ $("form.ajax").on("submit",function(){
         data:data,
         success: function(response){
             console.log(response);
-            $("#sn").val("");
+            $(".form-control").val("");
         }
     });
         return false;;

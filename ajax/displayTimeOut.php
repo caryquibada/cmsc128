@@ -1,13 +1,7 @@
 <?php
-$connect = mysqli_connect('localhost','root','');
+include 'conn.php';
 
-if(!$connect){
-    echo 'No connection to server';
-}
-if(!mysqli_select_db($connect,'upblibusage')){
-    echo 'Database "lukedb" is not selected';
-}
-$sql="SELECT * FROM transaction WHERE YEAR(time_out)!='0000'";
+$sql="SELECT * FROM transaction WHERE YEAR(time_out)!='0000' AND DAY(time_out)=DAY(CURRENT_TIMESTAMP) AND YEAR(time_out)=YEAR(CURRENT_TIMESTAMP) AND MONTH(time_out)=MONTH(CURRENT_TIMESTAMP) ORDER BY time_out DESC";
 $result=mysqli_query($connect,$sql);
 //ID #2
 echo "  

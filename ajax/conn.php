@@ -4,7 +4,7 @@
 	if(!$connect){
 		echo 'No connection to server';
 	}
-	if(!mysqli_select_db($connect,'lukedb')){
+	if(!mysqli_select_db($connect,'upblibusage')){
 		echo 'Database "lukedb" is not selected';
 	}
 ?>

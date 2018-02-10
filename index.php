@@ -9,16 +9,50 @@
     </head>
     <body>
         <form action="ajax/input.php" method="post" class="ajax">
-        <input type="text" name="studentNumber" id="sn">
-        </input>
-        <input type="submit" value="Enter">
-        </input>
-        </br>
+            <div class="col-lg-12">
+                <div class="input-group">
+                    <input type="text" name="studentNumber" id="sn" class="form-control">
+                    </input>
+
+                    <span class="input-group-btn">
+                        <button class="btn btn-secondary" type="submit">Go!</button>
+                    </span>
+                </div>
+            </div>
         </form>
-        <div class="col-lg-12">
-        <div class="col-lg-5"><table class="table table-striped table-hover table-sm" id="tableHolder"></table></div>
-       <div class="col-lg-5"><table class="table table-striped table-hover table-sm" id="tableHolder1"></table></div>
-       </div>
+        <form action="ajax/input.php" method="post" class="ajax">
+            <div class="col-lg-12">
+                <div class="input-group">
+                    <input type="text" name="studentNumber" id="sn" class="form-control">
+                    </input>
+
+                    <span class="input-group-btn">
+                        <button class="btn btn-secondary" type="submit">Go!</button>
+                    </span>
+                </div>
+            </div>
+        </form>
+        <form action="ajax/input.php" method="post" class="ajax">
+            <div class="col-lg-12 input-group">
+                <div class="input-group">
+                    <input type="text" name="studentNumber" id="sn" class="form-control">
+                    </input>
+
+                    <span class="input-group-btn">
+                        <button class="btn btn-secondary" type="submit">Go!</button>
+                    </span>
+                </div>
+            </div>
+        </form>
+
+        <div class="row"> <!--table for time-in>-->
+            <div class="table-responsive col-lg-6">
+                <table class="table table-sm table-striped table-hover " id="tableHolder"></table>
+            </div>      <!--table for time-out-->
+            <div class="table-responsive col-lg-6">
+                <table class="table table-sm table-striped table-hover " id="tableHolder1"></table>
+            </div>
+        </div>
        
     </body>
 </html>
@@ -39,14 +73,15 @@
        
     }
 </script>
+
 <script>
-$(document).ready(function(){
+    $(document).ready(function(){
       refreshTable1();
      
     });
-function refreshTable1(){
-    $('#tableHolder1').load('ajax/displayTimeOut.php', function(){
-           setTimeout(refreshTable, 3000);
+    function refreshTable1(){
+     $('#tableHolder1').load('ajax/displayTimeOut.php', function(){
+           setTimeout(refreshTable1, 3000);
         });
 }
 
