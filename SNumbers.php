@@ -54,7 +54,7 @@
                         return ( is_numeric($number) && is_numeric($significance) ) ? (ceil($number/$significance)*$significance) : false;
                         }
                     }
-                    $timerem=ceiling($timerem,0.005);
+                    $timerem=ceiling($timerem,0.005);   //ID 7
                     echo "$timerem hours</td>
                 </tr>";
         }

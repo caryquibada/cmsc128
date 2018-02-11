@@ -104,6 +104,7 @@
         $('#tableBody').load('ajax/display.php', function(){
            setTimeout(refreshTable, 2500);
         });
+        //ID 2
        
     }
 </script>
@@ -117,6 +118,7 @@
      $('#tableHolder1').load('ajax/displayTimeOut.php', function(){
            setTimeout(refreshTable1, 2500);
         });
+        //ID 3
 }
 
         
@@ -139,7 +141,7 @@ $(document).ready(function(){
              
         });
         
-    });
+    });//ID 1
 </script>
 
     <script src="js/input.js"></script>
