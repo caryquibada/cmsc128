@@ -47,7 +47,15 @@
         while($row=mysqli_fetch_row($result)){
             echo "<tr>
                     <td><button type="."'button'"." class="."'btn btn-link btn-md'"." data-toggle="."'modal'"." data-target="."'#myModal'"." id=".$row[0].">".$row[0]."</button></td>
-                    <td>$row[1]</td>
+                    <td>";
+                    $timerem=$row[1]/3600;
+                    if(!function_exists('ceiling')){
+                        function ceiling($number, $significance = 1){
+                        return ( is_numeric($number) && is_numeric($significance) ) ? (ceil($number/$significance)*$significance) : false;
+                        }
+                    }
+                    $timerem=ceiling($timerem,0.005);
+                    echo "$timerem hours</td>
                 </tr>";
         }
         echo "  </tbody>

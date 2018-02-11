@@ -1,7 +1,7 @@
 <?php
 include 'conn.php';
 //#1
-if (isset($_POST['studentNumber'])){
+if (isset($_POST['studentNumber'])&&!empty($_POST['studentNumber'])){
     $sn=$_POST['studentNumber'];
     $sql="INSERT INTO transaction(student_number) VALUES ('$sn')";
     if(!mysqli_query($connect,$sql)){
