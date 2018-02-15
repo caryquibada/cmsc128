@@ -11,6 +11,7 @@ echo "
         <th>Student Number</th>
         <th>Time-in</th>
         <th>Time-out</th>
+        <th>Time Consumed</th>
         </tr>
         </thead>
         <tbody>";
@@ -20,7 +21,8 @@ while($row=mysqli_fetch_row($result)){
           <td>$row[0]</td>
           <td>$row[1]</td>
           <td>$row[2]</td>
-          <td>$row[3]</td>        
+          <td>$row[3]</td>     
+          <td>$row[4]</td>   
           </tr>";
 }
 echo "</tbody>";
