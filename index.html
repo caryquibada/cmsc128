@@ -102,17 +102,6 @@
         <div class="row"> <!--table for time-in>-->
             <div class="table-responsive col-lg-6">
                 <table class="table table-sm table-striped table-hover " id="tableHolder"> 
-                    <thead>
-                        <tr>
-                            <th>Tag Number</th>
-                            <th>Transaction Number</th>
-                            <th>Student Number</th>
-                            <th>Time-in</th>
-                            <th>Time-out</th>
-                            
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody"></tbody>
                 </table>
             </div>      <!--table for time-out-->
             <div class="table-responsive col-lg-6">
@@ -133,11 +122,13 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
+        
       load();
     });
     function load(){
         setTimeout(function(){
-            $('#tableBody').load('ajax/display.php',function(){
+            $('#tableHolder').load('ajax/display.php',function(){
+                $('#tableHolder').DataTable();
                 $('#tableHolder').DataTable().destroy();
                 $('#tableHolder').DataTable();
         });
@@ -148,13 +139,14 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
+        
       load1();
     });
     function load1(){
         setTimeout(function(){
 
             $('#tableHolder1').load('ajax/displayTimeOut.php',function(){
-                
+                $('#tableHolder1').DataTable();
                 $('#tableHolder1').DataTable().destroy();
                 $('#tableHolder1').DataTable();
         });
@@ -200,7 +192,7 @@ function Alert() {
 <script>
 $(document).ready(function(){
 
-        $("#tableBody").on('click','.btnSelect',function(){
+        $("#tableHolder").on('click','.btnSelect',function(){
              // get the current row
              var that=$(this);
              var data=that.attr('id');
