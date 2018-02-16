@@ -4,11 +4,13 @@
     <title>UPB Library</title>
     <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
     <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-   <link rel="stylesheet" type="text/css" href="css/jquery.dataTables_themeroller.css">
-    <link rel="stylesheet" type="text/css" href="css/mdb.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables_themeroller.css">
+    <link rel="stylesheet" type="text/css" href="js/mdb.min.css">
     <link rel="stylesheet" href="sweetalert2.min.css">
-
+    <script src="js/mdb.min.js"></script>
+   <script src="js/jquery.min.js"></script>
+    <script defer src="js/fa.js"></script>
 
     </head>
     <body>
@@ -39,6 +41,8 @@
                 <thead>
                     <tr>
                         <th>Student Number</th>
+                        <th>Name</th>
+                        <th>Degree Program</th>
                         <th>Time Remaining</th>
                     </tr>
                 </thead>
@@ -46,8 +50,10 @@
         while($row=mysqli_fetch_row($result)){
             echo "<tr>
                     <td><button type="."'button'"." class="."'btn btn-unique btn-md'"." data-toggle="."'modal'"." data-target="."'#myModal'"." id=".$row[0].">".$row[0]."</button></td>
+                    <td>$row[1]</td>
+                    <td>$row[2]</td>
                     <td>";
-                    $timerem=$row[1]/3600;
+                    $timerem=$row[5]/3600;
                     if(!function_exists('ceiling')){
                         function ceiling($number, $significance = 1){
                         return ( is_numeric($number) && is_numeric($significance) ) ? (ceil($number/$significance)*$significance) : false;
@@ -89,9 +95,6 @@
     </body>
 </html>
 <script src="sweetalert2.all.js"></script>
-<script src="js/jquery.min.js"></script>
-<script src="js/mdb.min.js"></script>
-<script defer src="js/fa.js"></script>
 <script src="js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 <script src="js/jquery.dataTables.min.js"></script>
