@@ -24,6 +24,9 @@
             <li class="nav-item active">
                 <a class="nav-link" href="SNumbers.php" style="color:white;"> Students <span class="sr-only">(current)</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="report.php" style="color:white;"> Report <span class="sr-only">(current)</span></a>
+            </li>
         </ul>
         <span class="navbar-text">
             Navbar text with an inline element

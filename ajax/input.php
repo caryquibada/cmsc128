@@ -4,8 +4,9 @@ include 'conn.php';
 if (isset($_POST['studentNumber'])&&!empty($_POST['studentNumber'])){
     $sn=$_POST['studentNumber'];
     $tagno=$_POST['tagnumber'];
+    $type=$_POST['type'];
     echo $tagno;
-    $sql="INSERT INTO transaction(student_number,tag_no) VALUES ('$sn','$tagno')";
+    $sql="INSERT INTO transaction(student_number,tag_no,type) VALUES ('$sn','$tagno','$type')";
     if(!mysqli_query($connect,$sql)){
         echo "Error";
     }
