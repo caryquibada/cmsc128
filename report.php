@@ -11,6 +11,8 @@
     <script src="js/mdb.min.js"></script>
    <script src="js/jquery.min.js"></script>
     <script defer src="js/fa.js"></script>
+    <link rel="stylesheet" href="material/material.min.css">
+<script src="material/material.min.js"></script>
 
     </head>
     <body>
@@ -103,7 +105,6 @@
         load();
       });
     function load(){
-            $('#tableHolder').DataTable();
             var data={};
              var from=$("#fromtime");
              var to=$("#totime");
@@ -111,11 +112,15 @@
              data["from"]=from.val();
              data["to"]=to.val();
              data["per"]=per.val();
+             
              setTimeout(function(){
                 $('#tableHolder').load("ajax/displayTimeOut.php",data,function(){
-                    $('#tableHolder').DataTable().fnDraw();
+                    $('#tableHolder').DataTable().destroy();
+                    $('#tableHolder').DataTable();
+                    $('#tableHolder').DataTable().css();
              });
              }, 500);
+
              
              
         }

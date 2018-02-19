@@ -23,7 +23,7 @@ while($row=mysqli_fetch_row($result)){
             <td>$row[1]</td>
             <td>$row[2]</td>
             
-            <td><button class="."'btnSelect'"." id='".$row[6]." ".$row[0]."' name="."'test'"." onclick="."'Alert1();load();'".">Time-out</button></td>
+            <td><button class="."'btnSelect btn btn-unique'"." id='".$row[6]." ".$row[0]."' name="."'test'"." onclick="."'Alert1();load();'".">Time-out</button></td>
           </tr>";
     
 }
