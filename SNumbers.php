@@ -36,6 +36,9 @@
     </div>
     </nav>
     <br/><br/>
+    <div>
+        <button class='btn btn-unique btn-md' data-toggle='modal' data-target='#myModal2'>New Student</button>
+    </div>
         <div class="container">
         <?php
         include 'ajax/conn.php';
@@ -68,7 +71,9 @@
                     $timerem=ceiling($timerem,0.005);   //ID 7
                     echo "$timerem hours</td>
                     <td><button type='button' class='btn btn-unique btn-md' data-toggle='modal' data-target='#myModal1' id=".$row[0].">UPDATE</button>
+                    <button type='button' class='btn btn-unique btn-md' onclick='delete11();' id=".$row[0].">DELETE</button>
                     <button type='button' class='btn btn-unique btn-md' onclick='reset1();' id=".$row[0].">RESET</button>
+                    
                     </td>
                 </tr>";
         }
@@ -124,6 +129,37 @@
                 </div>
             </div>    
         </div>
+        <div class="modal fade" id="myModal2" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <b>New Student</b>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="ajax/newstudent.php" method="post" class="ajax1">
+                            <label>Student Number:</label>
+                                <input type="text" name="sn"></input>
+                            <label>Name:</label>
+                                <input type="text" name="name"></input>
+                            <label>Academic Program:</label>
+                                <input type="text" name="ap"></input>
+                            <label>Tuition Discount:</label>
+                                <input type="text" name="td"></input>
+                            <label>Tuition Bracket:</label>
+                                <input type="text" name="tb"></input>
+                            
+                    </div>
+                    <div class="modal-footer">
+                    <button type="submit" class="btn btn-unique" id="test" onclick="success();">SUBMIT</button>
+                        </form>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="delete">
+        </div>
         <div id="reset1">
 
         </div>
@@ -157,6 +193,34 @@
         });
     }
     
+</script>
+<script type="text/javascript">
+    function delete11(){
+        swal({
+  title: 'Are you sure you want to delete?',
+  text: "You won't be able to revert this!",
+  type: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, DELETE!'
+}).then((result) => {
+  if (result.value) {
+    swal(
+      'DELETE Complete',
+      'Reloading page, please wait',
+      'success'
+    )
+    var that=$(this);
+    var data=that.attr('id');
+    $('#delete').load("ajax/delete.php",{student:data},function(){
+        location.reload();        
+    });
+    }
+    })   
+        
+    }
+
 </script>
 <script>
     $(document).ready(function(){
@@ -204,6 +268,18 @@
     })   
     } 
  
+</script>
+<script>
+    function success(){
+        swal(
+            'Student Entered!',
+            'Please wait, the page is reloading',
+            'success'
+        )
+        setTimeout(function(){
+            location.reload();
+        }, 1000);
+    }
 </script>
 <script>
    function reset1(){
