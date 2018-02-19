@@ -71,8 +71,9 @@
                     $timerem=ceiling($timerem,0.005);   //ID 7
                     echo "$timerem hours</td>
                     <td><button type='button' class='btn btn-unique btn-md' data-toggle='modal' data-target='#myModal1' id=".$row[0].">UPDATE</button>
-                    <button type='button' class='btn btn-unique btn-md' onclick='delete11();' id=".$row[0].">DELETE</button>
-                    <button type='button' class='btn btn-unique btn-md' onclick='reset1();' id=".$row[0].">RESET</button>
+                    <input type='hidden' value=$row[0] class='hideme'/>
+                    <button type='button' class='btn btn-unique btn-md delete' id=".$row[0].">DELETE</button>
+                    <button type='button' class='btn btn-unique btn-md reset' id=".$row[0].">RESET</button>
                     
                     </td>
                 </tr>";
@@ -195,7 +196,7 @@
     
 </script>
 <script type="text/javascript">
-    function delete11(){
+   $('#tableHolder').on('click','.delete', function(){
         swal({
   title: 'Are you sure you want to delete?',
   text: "You won't be able to revert this!",
@@ -212,6 +213,7 @@
       'success'
     )
     var that=$(this);
+    
     var data=that.attr('id');
     $('#delete').load("ajax/delete.php",{student:data},function(){
         location.reload();        
@@ -219,7 +221,7 @@
     }
     })   
         
-    }
+    });
 
 </script>
 <script>
@@ -282,7 +284,7 @@
     }
 </script>
 <script>
-   function reset1(){
+   $('#tableHolder').on('click','.reset',function(){
         swal({
   title: 'Are you sure you want to reset this students time remaining?',
   text: "You won't be able to revert this!",
@@ -302,10 +304,10 @@
     var data=that.attr('id');
     $('#reset1').load("ajax/resetstudent.php",{student:data},function(){
         location.reload();        
-        });
+    });
     }
-    })   
-    }
+    })
+    });
 </script>
 <script>
     $("form.ajax1").on("submit",function(){
