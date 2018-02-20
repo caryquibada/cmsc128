@@ -89,7 +89,7 @@
     </form>
     <button id="report" onclick="load();" class="btn btn-unique">GENERATE</button>
     <div class="table-responsive col-lg-12">
-                <table class="table table-lg table-bordered table-hover " id="tableHolder"> 
+                <table class="table table-lg table-bordered table-hover " id="tableHolder" > 
                 </table>
             </div>
     </body>

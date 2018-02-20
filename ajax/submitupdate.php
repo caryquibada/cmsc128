@@ -6,5 +6,10 @@ $td=$_POST['td'];
 $ap=$_POST['ap'];
 $sn=$_POST['sn'];
 $sql="UPDATE student set name='$name',acad_prog='$ap',tuition_bracket='$tb',tuition_discount='$td' WHERE student_number='$sn' ";
-mysqli_query($connect,$sql);
+if(mysqli_query($connect,$sql)){
+    echo "success";
+}else{
+    echo $sql;
+}
+
 ?>

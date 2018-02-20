@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 16, 2018 at 01:55 PM
+-- Generation Time: Feb 20, 2018 at 12:30 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -31,9 +31,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `student` (
   `student_number` varchar(10) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `Acad Prog` varchar(10) NOT NULL,
-  `Tuition Discount` varchar(10) NOT NULL,
-  `Tuituion Bracket` varchar(5) NOT NULL,
+  `Acad_Prog` varchar(10) NOT NULL,
+  `Tuition_Discount` varchar(10) NOT NULL,
+  `Tuition_Bracket` varchar(5) NOT NULL,
   `time_remaining` mediumint(5) UNSIGNED NOT NULL DEFAULT '72000'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -41,8 +41,8 @@ CREATE TABLE `student` (
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`student_number`, `name`, `Acad Prog`, `Tuition Discount`, `Tuituion Bracket`, `time_remaining`) VALUES
-('0430-20854', 'DANGAWEN , Cecile', 'MM', '', 'A', 72000),
+INSERT INTO `student` (`student_number`, `name`, `Acad_Prog`, `Tuition_Discount`, `Tuition_Bracket`, `time_remaining`) VALUES
+('0430-20854', 'DANGAWEN , Cecile', 'MM', 'test', 'A', 72000),
 ('1310-20865', 'MANUEL , Fara Martia', 'CRGG', '', 'A', 72000),
 ('1979-10807', 'CORPUS , Elaine', 'MM', '', 'A', 72000),
 ('1984-36308', 'CASTRO-RIVERA , Hope', 'MASDS', '', 'A', 72000),
@@ -806,7 +806,7 @@ INSERT INTO `student` (`student_number`, `name`, `Acad Prog`, `Tuition Discount`
 ('2013-65897', 'MEAMO , Benjamin George III', 'BACOM', 'FDS', 'E', 72000),
 ('2013-65905', 'GANDEZA , Neylan Lei', 'BSCS', 'PD60', 'C', 72000),
 ('2013-66311', 'BANTOLA , Dianne Marie', 'BSBIO', 'PD40', 'B', 72000);
-INSERT INTO `student` (`student_number`, `name`, `Acad Prog`, `Tuition Discount`, `Tuituion Bracket`, `time_remaining`) VALUES
+INSERT INTO `student` (`student_number`, `name`, `Acad_Prog`, `Tuition_Discount`, `Tuition_Bracket`, `time_remaining`) VALUES
 ('2013-66313', 'BELEN , Allanah Jeune', 'BSBIO', 'PD40', 'B', 72000),
 ('2013-66347', 'PEREZ , Renzo', 'BSPHY', 'PD80', 'D', 72000),
 ('2013-66352', 'REBOLLIDO , Frances Ysabelle', 'BSMAT', 'PD60', 'C', 72000),
@@ -1527,7 +1527,7 @@ INSERT INTO `student` (`student_number`, `name`, `Acad Prog`, `Tuition Discount`
 ('2015-03093', 'REYES , Lorenz Coleen', 'BASS', 'ND', 'A', 72000),
 ('2015-03147', 'ARCILLAS , Patricia', 'BACOM', '', 'A', 72000),
 ('2015-03187', 'VALENCIA , Vanessa Anne', 'BASS', 'PD60', 'C', 72000),
-('2015-03196', 'QUIBADA , Cary', 'BSCS', 'PD60', 'C', 72000),
+('2015-03196', 'QUIBADA , Cary', 'BSCS', 'PD60', 'C', 71965),
 ('2015-03204', 'SAN JUAN , Clarisse Joy', 'BSME', 'FD', 'E', 72000),
 ('2015-03232', 'CALAGUIN , Ivan Dale', 'BSBIO', '', 'A', 72000),
 ('2015-03233', 'JUGAL , Jari Onnard', 'BSPHY', '', 'A', 72000),
@@ -1561,7 +1561,7 @@ INSERT INTO `student` (`student_number`, `name`, `Acad Prog`, `Tuition Discount`
 ('2015-03653', 'FERNANDEZ , Veejay Andre', 'BSPHY', 'FD', 'E', 72000),
 ('2015-03654', 'FABRICANTE , Cherish Ivy', 'BSMAT', 'PD40', 'B', 72000),
 ('2015-03658', 'MUNDA CRUZ , Jhemar', 'BASS', 'FDS', 'E', 72000);
-INSERT INTO `student` (`student_number`, `name`, `Acad Prog`, `Tuition Discount`, `Tuituion Bracket`, `time_remaining`) VALUES
+INSERT INTO `student` (`student_number`, `name`, `Acad_Prog`, `Tuition_Discount`, `Tuition_Bracket`, `time_remaining`) VALUES
 ('2015-03659', 'ALBERTO , Angelika Nicole', 'BACOM', 'PD60', 'C', 72000),
 ('2015-03660', 'BALATAYO , Catherine', 'BASS', 'FDS', 'E', 72000),
 ('2015-03661', 'BAUTISTA , Danica Rose', 'BSMAT', 'PD40', 'B', 72000),
@@ -2021,7 +2021,8 @@ INSERT INTO `student` (`student_number`, `name`, `Acad Prog`, `Tuition Discount`
 ('2016-35034', 'GARCIA , Shirlyne Gay', 'MCARE', '', 'A', 72000),
 ('2016-35035', 'PANG-AG , Lourriecel', 'BSBIO', '', 'A', 72000),
 ('2016-35051', 'MORFE , Sergio Josh', 'BACOM', 'PD60', 'C', 72000),
-('2016-35098', 'GARCIA , Ronnel John', 'MSMAT', '', 'A', 72000);
+('2016-35098', 'GARCIA , Ronnel John', 'MSMAT', '', 'A', 72000),
+('2017-00001', 'TEST, Test T.', 'BSTS', 'Test', 't', 72000);
 
 -- --------------------------------------------------------
 
@@ -2066,6 +2067,9 @@ ALTER TABLE `transaction`
 --
 -- AUTO_INCREMENT for table `transaction`
 --
+ALTER TABLE `transaction`
+  MODIFY `transaction_number` int(10) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

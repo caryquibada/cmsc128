@@ -149,11 +149,11 @@
                                 <input type="text" name="td"></input>
                             <label>Tuition Bracket:</label>
                                 <input type="text" name="tb"></input>
-                            
+                                <button type="submit" class="btn btn-unique" id="test" onclick="success();">SUBMIT</button>
+                        </form>
                     </div>
                     <div class="modal-footer">
-                    <button type="submit" class="btn btn-unique" id="test" onclick="success();">SUBMIT</button>
-                        </form>
+                    
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>

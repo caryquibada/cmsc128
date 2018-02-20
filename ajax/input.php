@@ -8,6 +8,7 @@ if (isset($_POST['studentNumber'])&&!empty($_POST['studentNumber'])){
     echo $tagno;
     $sql="INSERT INTO transaction(student_number,tag_no,type) VALUES ('$sn','$tagno','$type')";
     if(!mysqli_query($connect,$sql)){
+        echo $sql;
         echo "Error";
     }
     $query="SELECT * FROM student";
