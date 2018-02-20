@@ -73,10 +73,10 @@
                             <option value="20">20</option>
                         </select>
                         <div class="input-group">
-                            <input type="text" name="studentNumber" id="charging" class="form-control sn" placeholder="Charging" pattern="[1-2](0|9)([1-9]{2,2})-[0-9]{5,5}">
+                            <input type="text" name="studentNumber" id="charging1" class="form-control sn" placeholder="Charging" pattern="[1-2](0|9)([1-9]{2,2})-[0-9]{5,5}">
                             </input>
                             <span class="input-group-btn">
-                                <button class="btn btn-unique" type="submit">Go!</button>
+                                <button class="btn btn-danger" type="submit">Go!</button>
                             </span>
                         </div>
                         
@@ -131,10 +131,10 @@
                             <option value="40">40</option>
                         </select>
                         <div class="input-group">
-                            <input type="text" name="studentNumber" id="charging" class="form-control sn" placeholder="Computer Usage" pattern="[1-2](0|9)([1-9]{2,2})-[0-9]{5,5}">
+                            <input type="text" name="studentNumber" id="charging2" class="form-control sn" placeholder="Computer Usage" pattern="[1-2](0|9)([1-9]{2,2})-[0-9]{5,5}">
                             </input>
                             <span class="input-group-btn">
-                                <button class="btn btn-unique" type="submit">Go!</button>
+                                <button class="btn btn-danger" type="submit">Go!</button>
                             </span>
                         </div>
                         
@@ -163,10 +163,10 @@
                             <option value="10">10</option>
                         </select>
                         <div class="input-group">
-                            <input type="text" name="studentNumber" id="charging" class="form-control sn" placeholder="iPad Usage" pattern="[1-2](0|9)([1-9]{2,2})-[0-9]{5,5}">
+                            <input type="text" name="studentNumber" id="charging3" class="form-control sn" placeholder="iPad Usage" pattern="[1-2](0|9)([1-9]{2,2})-[0-9]{5,5}">
                             </input>
                             <span class="input-group-btn">
-                                <button class="btn btn-unique" type="submit">Go!</button>
+                                <button class="btn btn-danger" type="submit">Go!</button>
                             </span>
                         </div>
                         
@@ -191,10 +191,10 @@
                             <option value="10">10</option>
                         </select>
                         <div class="input-group">
-                            <input type="text" name="studentNumber" id="charging" class="form-control sn" placeholder="E-Resources" pattern="[1-2](0|9)([1-9]{2,2})-[0-9]{5,5}">
+                            <input type="text" name="studentNumber" id="charging4" class="form-control sn" placeholder="E-Resources" pattern="[1-2](0|9)([1-9]{2,2})-[0-9]{5,5}">
                             </input>
                             <span class="input-group-btn">
-                                <button class="btn btn-unique" type="submit">Go!</button>
+                                <button class="btn btn-danger" type="submit">Go!</button>
                             </span>
                         </div>
                         
@@ -235,8 +235,8 @@
 </script>
 <script>
 function Alert() {
-    if($("#charging").val()===""){
-    
+    if($("#charging1").val()===""&&$("#charging2").val()===""&&$("#charging3").val()===""&&$("#charging4").val()===""){
+
     }else{
         
         swal({
@@ -309,7 +309,6 @@ $(document).ready(function(){
         type:type,
         data:data,
         success: function(response){
-            console.log(response);
             $(".form-control").val("");
         }
     });

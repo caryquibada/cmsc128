@@ -96,6 +96,8 @@
                             <thead>
                                 <tr>
                                     <th>Transaction Number</th>
+                                    <th>Tag Number</th>
+                                    <th>Type</th>
                                     <th>Time-in</th>
                                     <th>Time-out</th>
                                 </tr>
@@ -121,10 +123,11 @@
                             <div id="update">
                                 
                             </div>
-                            <button type="submit" class="btn btn-unique" id="test">UPDATE</button>
-                        </form>
+                            
                     </div>
                     <div class="modal-footer">
+                    <button type="submit" class="btn btn-unique" id="test">UPDATE</button>
+                        </form>
                         <button type="button" class="btn btn-unique" data-dismiss="modal" onclick="location.reload();" >Close</button>
                     </div>
                 </div>
@@ -149,11 +152,11 @@
                                 <input type="text" name="td"></input>
                             <label>Tuition Bracket:</label>
                                 <input type="text" name="tb"></input>
-                                <button type="submit" class="btn btn-unique" id="test" onclick="success();">SUBMIT</button>
-                        </form>
+                               
                     </div>
                     <div class="modal-footer">
-                    
+                    <button type="submit" class="btn btn-unique" id="test" onclick="success();">SUBMIT</button>
+                        </form>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
