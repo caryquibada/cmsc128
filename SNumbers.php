@@ -39,7 +39,6 @@
     <div>
         <button class='btn btn-unique btn-md' data-toggle='modal' data-target='#myModal2'>New Student</button>
     </div>
-        <div class="container">
         <?php
         include 'ajax/conn.php';
     
@@ -51,6 +50,8 @@
                         <th>Student Number</th>
                         <th>Name</th>
                         <th>Degree Program</th>
+                        <th>Tuition Discount</th>
+                        <th>Tuition Bracket</th>
                         <th>Time Remaining</th>
                         <th>Actions</th>
                     </tr>
@@ -61,6 +62,8 @@
                     <td><button type="."'button'"." class="."'btn btn-unique btn-md'"." data-toggle="."'modal'"." data-target="."'#myModal'"." id=".$row[0].">".$row[0]."</button></td>
                     <td>$row[1]</td>
                     <td>$row[2]</td>
+                    <td>$row[3]</td>
+                    <td>$row[4]</td>
                     <td>";
                     $timerem=$row[5]/3600;
                     if(!function_exists('ceiling')){
@@ -81,7 +84,6 @@
         echo "  </tbody>
             </table>";
         ?>
-        </div>
         <div class="row" id="reset">
             <button id="resetall" data-toggle="confirmation" class="btn btn-unique" onclick="resetall();">RESET ALL</button>
         </div>

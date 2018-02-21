@@ -6,17 +6,13 @@
     <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables_themeroller.css">
-   <link rel="stylesheet" type="text/css" href="css/mdb.min.css">
    <link rel="stylesheet" href="sweetalert2.css">
-   <link rel="stylesheet" href="material/material.min.css">
    <script src="sweetalert2.all.js"></script>
 <script src="js/jquery.min.js"></script>
-<script src="js/mdb.min.js"></script>
 <script defer src="js/fa.js"></script>
 <script src="js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 <script src="js/jquery.dataTables.min.js"></script>
-<script src="material/material.min.js"></script>
 
 
 
@@ -206,20 +202,62 @@
     <br/>
         <br/>
         <div class="container"> <!--table for time-in>-->
-            <div class="table-responsive col-lg-12">
-                <table class="table" id="tableHolder"> 
-                </table>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-controls="home">Computer Usage</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Power Usage</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#messages" role="tab" aria-controls="messages">iPad Usage</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#settings" role="tab" aria-controls="settings">E-Resources</a>
+                </li>
+              </ul>
+              
+            <div class="tab-content">
+                <div class="tab-pane" id="home" role="tabpanel">
+                    <div class="table-responsive col-lg-12">
+                        <table class="table" id="tableHolder1"> 
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane active" id="profile" role="tabpanel">
+                    <div class="table-responsive col-lg-12">
+                        <table class="table" id="tableHolder"> 
+                        </table>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="messages" role="tabpanel">
+                    <div class="table-responsive col-lg-12">
+                        <table class="table" id="tableHolder2"> 
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane" id="settings" role="tabpanel">
+                    <div class="table-responsive col-lg-12">
+                        <table class="table" id="tableHolder3"> 
+                        </table>
+                    </div>
+                </div>
             </div>
+
         </div>
        
     </body>
 </html>
 
-
+<script>
+    $(function () {
+      $('#myTab a:first').tab('show')
+    })
+  </script>
 
 <script type="text/javascript">
     $(document).ready(function(){
-        
       load();
     });
     function load(){
@@ -228,6 +266,27 @@
                 $('#tableHolder').DataTable();
                 $('#tableHolder').DataTable().destroy();
                 $('#tableHolder').DataTable();
+        });
+        },500);
+        setTimeout(function(){
+            $('#tableHolder1').load('ajax/displaycomputer.php',function(){
+                $('#tableHolder1').DataTable();
+                $('#tableHolder1').DataTable().destroy();
+                $('#tableHolder1').DataTable();
+        });
+        },500);
+        setTimeout(function(){
+            $('#tableHolder2').load('ajax/displayeresources.php',function(){
+                $('#tableHolder2').DataTable();
+                $('#tableHolder2').DataTable().destroy();
+                $('#tableHolder2').DataTable();
+        });
+        },500);
+        setTimeout(function(){
+            $('#tableHolder3').load('ajax/displayipadusage.php',function(){
+                $('#tableHolder3').DataTable();
+                $('#tableHolder3').DataTable().destroy();
+                $('#tableHolder3').DataTable();
         });
         },500);
         
@@ -272,6 +331,48 @@ function Alert() {
 $(document).ready(function(){
 
         $("#tableHolder").on('click','.btnSelect',function(){
+             // get the current row
+             var that=$(this);
+             var data=that.attr('id');
+             $.ajax({
+                url:'ajax/timeout.php',
+                method:'POST',
+                data:{tranNum:data},
+                success: function(response){
+                    $("#result").html(response);
+                }
+             });
+             
+        });
+        $("#tableHolder1").on('click','.btnSelect',function(){
+             // get the current row
+             var that=$(this);
+             var data=that.attr('id');
+             $.ajax({
+                url:'ajax/timeout.php',
+                method:'POST',
+                data:{tranNum:data},
+                success: function(response){
+                    $("#result").html(response);
+                }
+             });
+             
+        });
+        $("#tableHolder2").on('click','.btnSelect',function(){
+             // get the current row
+             var that=$(this);
+             var data=that.attr('id');
+             $.ajax({
+                url:'ajax/timeout.php',
+                method:'POST',
+                data:{tranNum:data},
+                success: function(response){
+                    $("#result").html(response);
+                }
+             });
+             
+        });
+        $("#tableHolder3").on('click','.btnSelect',function(){
              // get the current row
              var that=$(this);
              var data=that.attr('id');
