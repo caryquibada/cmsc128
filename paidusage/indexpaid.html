@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>UPB Library</title>
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+   <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
+   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.5/css/mdb.min.css">
+   <link rel="stylesheet" href="sweetalert2.css">
+   <link rel="stylesheet" href="material/material.min.css">
+   <script src="sweetalert2.all.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/mdb.min.js"></script>
+<script defer src="js/fa.js"></script>
+<script src="js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script src="js/jquery.dataTables.min.js"></script>
+<script src="material/material.min.js"></script>
+
+
+
+    </head>
+    <body>
+    <nav class="navbar navbar-toggleable-md navbar-light" style="background-color: #8E1538;">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#" style="color:#FFFFFF;"><img src="uplogo.png" width="60" height="60" alt="">  UPB Library</img></a>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="SNumbers.php" style="color:white;"> Students <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                    <a class="nav-link" href="report.php" style="color:white;"> Report <span class="sr-only">(current)</span></a>
+                </li>
+        </ul>
+        <span class="navbar-text">
+            Navbar text with an inline element
+        </span>
+    </div>
+    </nav>
+    <br/>
+   
+    <div class="col-sm-12">
+        <div class="row">
+            <div class="col-sm-6">
+                <form action="ajax/inputpayment.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
+                    <div class="form-inline well">
+                        <label>Tag  </label>
+                        <input type="hidden" name="type" value="Power_Usage"></input>
+                        <select class="custom-select" name="tagnumber" form="chargingform" id="chargingselect">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                        </select>
+                        <div class="input-group">
+                            <input type="text" name="studentNumber" id="charging" class="form-control sn" placeholder="Charging" pattern="[1-2](0|9)([1-9]{2,2})-[0-9]{5,5}">
+                            </input>
+                            <span class="input-group-btn">
+                                <button class="btn btn-unique" type="submit">Go!</button>
+                            </span>
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-6">
+                <form action="ajax/inputpayment.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
+                    <div class="form-inline well">
+                        <label>Tag  </label>
+                        <input type="hidden" name="type" value="Computer_Usage"></input>
+                        <select class="custom-select" name="tagnumber" form="chargingform" id="chargingselect">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                            <option value="32">32</option>
+                            <option value="33">33</option>
+                            <option value="34">34</option>
+                            <option value="35">35</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                        </select>
+                        <div class="input-group">
+                            <input type="text" name="studentNumber" id="charging" class="form-control sn" placeholder="Computer Usage" pattern="[1-2](0|9)([1-9]{2,2})-[0-9]{5,5}">
+                            </input>
+                            <span class="input-group-btn">
+                                <button class="btn btn-unique" type="submit">Go!</button>
+                            </span>
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<div class="col-sm-12">
+        <div class="row">
+            <div class="col-sm-6">
+                <form action="ajax/inputpayment.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
+                    <div class="form-inline well">
+                        <label>Tag  </label>
+                        <input type="hidden" name="type" value="iPad_Usage"></input>
+                        <select class="custom-select" name="tagnumber" form="chargingform" id="chargingselect">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                        <div class="input-group">
+                            <input type="text" name="studentNumber" id="charging" class="form-control sn" placeholder="iPad Usage" pattern="[1-2](0|9)([1-9]{2,2})-[0-9]{5,5}">
+                            </input>
+                            <span class="input-group-btn">
+                                <button class="btn btn-unique" type="submit">Go!</button>
+                            </span>
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-6">
+                <form action="ajax/inputpayment.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
+                    <div class="form-inline well">
+                        <label>Tag  </label>
+                        <input type="hidden" name="type" value="E-Resources"></input>
+                        <select class="custom-select" name="tagnumber" form="chargingform" id="chargingselect">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                        <div class="input-group">
+                            <input type="text" name="studentNumber" id="charging" class="form-control sn" placeholder="E-Resources" pattern="[1-2](0|9)([1-9]{2,2})-[0-9]{5,5}">
+                            </input>
+                            <span class="input-group-btn">
+                                <button class="btn btn-unique" type="submit">Go!</button>
+                            </span>
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br/>
+        <br/>
+        <div class="container"> <!--table for time-in>-->
+            <div class="table-responsive col-lg-12">
+                <table class="table" id="tableHolder"> 
+                </table>
+            </div>
+        </div>
+       
+    </body>
+</html>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        
+      load();
+    });
+    function load(){
+        setTimeout(function(){
+            $('#tableHolder').load('ajax/displaypayment.php',function(){
+                $('#tableHolder').DataTable();
+                $('#tableHolder').DataTable().destroy();
+                $('#tableHolder').DataTable();
+        });
+        },500);
+        
+    }
+</script>
+<script>
+function Alert() {
+    if($("#charging").val()===""){
+    
+    }else{
+        
+        swal({
+            position: 'top-end',
+            title: 'Timing in',
+            showConfirmButton: false,
+            timer: 500,
+            onOpen: function onOpen() {
+                swal.showLoading();
+          }
+        })
+    
+    }
+}
+    
+    function Alert1() {
+        swal({
+            position: 'top-end',
+            title: 'Timing out',
+            text: 'Please Wait',
+            timer: 500,
+            onOpen: function onOpen() {
+                swal.showLoading();
+          }
+        
+        });
+        }
+        
+     
+    </script>
+
+<script>
+$(document).ready(function(){
+
+        $("#tableHolder").on('click','.btnSelect',function(){
+             // get the current row
+             var that=$(this);
+             var data=that.attr('id');
+             $.ajax({
+                url:'ajax/timeout.php',
+                method:'POST',
+                data:{tranNum:data},
+                success: function(response){
+                    $("#result").html(response);
+                }
+             });
+             
+        });
+        
+    });//ID 1
+</script>
+
+    <script>
+    $("form.ajax1").on("submit",function(){
+    var that= $(this),
+        url=that.attr('action'),
+        type=that.attr('method'),
+        data={};
+        
+    that.find('[name]').each(function(index, value) {
+        var that=$(this),
+            name=that.attr('name'),
+            value=that.val();
+            data[name]=value;
+    });
+            
+            
+    $.ajax({
+        url:url,
+        type:type,
+        data:data,
+        success: function(response){
+            console.log(response);
+            $(".form-control").val("");
+        }
+    });
+        return false;;
+});</script>
