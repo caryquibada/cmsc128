@@ -5,17 +5,37 @@
     <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
     <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-   <link rel="stylesheet" type="text/css" href="css/jquery.dataTables_themeroller.css">
-   <link rel="stylesheet" href="sweetalert2.css">
-   <script src="sweetalert2.all.js"></script>
-<script src="js/jquery.min.js"></script>
-<script defer src="js/fa.js"></script>
-<script src="js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-<script src="js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables_themeroller.css">
+    <link rel="stylesheet" href="sweetalert2.css">
 
+    <script src="sweetalert2.all.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script defer src="js/fa.js"></script>
+    <script src="js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
 
+    <style>
+    .nav-pills>li.nav-item>a.active, .nav-pills>li.nav-item>a.hover, .nav-pills>li.active>a:focus{
+background-color:#8E1538;
+color:#FFFFFF;
+}
+.nav-pills>li.nav-item>a{
+    color:grey;
+}
+.btn-danger,.btn-danger:active{
+    background-color:#8E1538;
+    outline:#8E1538;
+}
+.btn-danger:hover{
+    background-color:white;
+    color:grey;
+}
+.btn{
+    border: 0;
+}
 
+    </style>
     </head>
     <body>
     <nav class="navbar navbar-toggleable-md navbar-light" style="background-color: #8E1538;">
@@ -32,14 +52,112 @@
                     <a class="nav-link" href="report.php" style="color:white;"> Report <span class="sr-only">(current)</span></a>
                 </li>
         </ul>
-        <span class="navbar-text">
-            Navbar text with an inline element
-        </span>
     </div>
     </nav>
     <br/>
    
     <div class="col-sm-12">
+        <div class="row">
+                <div class="col-sm-6">
+                    <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
+                        <div class="form-inline well">
+                            <label>Tag  </label>
+                            <input type="hidden" name="type" value="Computer_Usage"></input>
+                           <select class="custom-select" name="tagnumber" form="chargingform" id="chargingselect">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="24">24</option>
+                                    <option value="25">25</option>
+                                    <option value="26">26</option>
+                                    <option value="27">27</option>
+                                    <option value="28">28</option>
+                                    <option value="29">29</option>
+                                    <option value="30">30</option>
+                                    <option value="31">31</option>
+                                    <option value="32">32</option>
+                                    <option value="33">33</option>
+                                    <option value="34">34</option>
+                                    <option value="35">35</option>
+                                    <option value="36">36</option>
+                                    <option value="37">37</option>
+                                    <option value="38">38</option>
+                                    <option value="39">39</option>
+                                    <option value="40">40</option>
+                            </select>
+                            <div class="input-group">
+                                <input type="text" name="studentNumber" id="charging2" class="form-control sn" placeholder="Computer Usage" pattern="[1-2](0|9)([1-9]{2,2})-[0-9]{5,5}">
+                                </input>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-danger" type="submit">Go!</button>
+                                </span>
+                            </div>
+                            
+                        </div>
+                    </form>
+                </div>
+            <div class="col-sm-6">
+                <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
+                    <div class="form-inline well">
+                        <label>Tag  </label>
+                        <input type="hidden" name="type" value="iPad_Usage"></input>
+                        <select class="custom-select" name="tagnumber" form="chargingform" id="chargingselect">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                        </select>
+                        <div class="input-group">
+                            <input type="text" name="studentNumber" id="charging1" class="form-control sn" placeholder="iPad_Usage" pattern="[1-2](0|9)([1-9]{2,2})-[0-9]{5,5}">
+                            </input>
+                            <span class="input-group-btn">
+                                <button class="btn btn-danger" type="submit">Go!</button>
+                            </span>
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+<div class="col-sm-12">
         <div class="row">
             <div class="col-sm-6">
                 <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
@@ -57,109 +175,9 @@
                             <option value="8">8</option>
                             <option value="9">9</option>
                             <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
                         </select>
                         <div class="input-group">
-                            <input type="text" name="studentNumber" id="charging1" class="form-control sn" placeholder="Charging" pattern="[1-2](0|9)([1-9]{2,2})-[0-9]{5,5}">
-                            </input>
-                            <span class="input-group-btn">
-                                <button class="btn btn-danger" type="submit">Go!</button>
-                            </span>
-                        </div>
-                        
-                    </div>
-                </form>
-            </div>
-            <div class="col-sm-6">
-                <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
-                    <div class="form-inline well">
-                        <label>Tag  </label>
-                        <input type="hidden" name="type" value="Computer_Usage"></input>
-                        <select class="custom-select" name="tagnumber" form="chargingform" id="chargingselect">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
-                            <option value="21">21</option>
-                            <option value="22">22</option>
-                            <option value="23">23</option>
-                            <option value="24">24</option>
-                            <option value="25">25</option>
-                            <option value="26">26</option>
-                            <option value="27">27</option>
-                            <option value="28">28</option>
-                            <option value="29">29</option>
-                            <option value="30">30</option>
-                            <option value="31">31</option>
-                            <option value="32">32</option>
-                            <option value="33">33</option>
-                            <option value="34">34</option>
-                            <option value="35">35</option>
-                            <option value="36">36</option>
-                            <option value="37">37</option>
-                            <option value="38">38</option>
-                            <option value="39">39</option>
-                            <option value="40">40</option>
-                        </select>
-                        <div class="input-group">
-                            <input type="text" name="studentNumber" id="charging2" class="form-control sn" placeholder="Computer Usage" pattern="[1-2](0|9)([1-9]{2,2})-[0-9]{5,5}">
-                            </input>
-                            <span class="input-group-btn">
-                                <button class="btn btn-danger" type="submit">Go!</button>
-                            </span>
-                        </div>
-                        
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-<div class="col-sm-12">
-        <div class="row">
-            <div class="col-sm-6">
-                <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
-                    <div class="form-inline well">
-                        <label>Tag  </label>
-                        <input type="hidden" name="type" value="iPad_Usage"></input>
-                        <select class="custom-select" name="tagnumber" form="chargingform" id="chargingselect">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                        </select>
-                        <div class="input-group">
-                            <input type="text" name="studentNumber" id="charging3" class="form-control sn" placeholder="iPad Usage" pattern="[1-2](0|9)([1-9]{2,2})-[0-9]{5,5}">
+                            <input type="text" name="studentNumber" id="charging3" class="form-control sn" placeholder="Charging" pattern="[1-2](0|9)([1-9]{2,2})-[0-9]{5,5}">
                             </input>
                             <span class="input-group-btn">
                                 <button class="btn btn-danger" type="submit">Go!</button>
@@ -201,8 +219,8 @@
     </div>
     <br/>
         <br/>
-        <div class="container"> <!--table for time-in>-->
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
+ <!--table for time-in>-->
+            <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
                 <li class="nav-item">
                   <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-controls="home">Computer Usage</a>
                 </li>
@@ -219,33 +237,32 @@
               
             <div class="tab-content">
                 <div class="tab-pane" id="home" role="tabpanel">
-                    <div class="table-responsive col-lg-12">
+                    <div class="table-responsive col-lg-12"><br/>
                         <table class="table" id="tableHolder1"> 
                         </table>
                     </div>
                 </div>
                 <div class="tab-pane active" id="profile" role="tabpanel">
-                    <div class="table-responsive col-lg-12">
+                    <div class="table-responsive col-lg-12"><br/>
                         <table class="table" id="tableHolder"> 
                         </table>
                     </div>
                 </div>
 
                 <div class="tab-pane" id="messages" role="tabpanel">
-                    <div class="table-responsive col-lg-12">
+                    <div class="table-responsive col-lg-12"><br/>
                         <table class="table" id="tableHolder2"> 
                         </table>
                     </div>
                 </div>
                 <div class="tab-pane" id="settings" role="tabpanel">
-                    <div class="table-responsive col-lg-12">
+                    <div class="table-responsive col-lg-12"><br/>
                         <table class="table" id="tableHolder3"> 
                         </table>
                     </div>
                 </div>
             </div>
 
-        </div>
        
     </body>
 </html>
@@ -276,14 +293,14 @@
         });
         },500);
         setTimeout(function(){
-            $('#tableHolder2').load('ajax/displayeresources.php',function(){
+            $('#tableHolder2').load('ajax/displayipadusage.php',function(){
                 $('#tableHolder2').DataTable();
                 $('#tableHolder2').DataTable().destroy();
                 $('#tableHolder2').DataTable();
         });
         },500);
         setTimeout(function(){
-            $('#tableHolder3').load('ajax/displayipadusage.php',function(){
+            $('#tableHolder3').load('ajax/displayeresources.php',function(){
                 $('#tableHolder3').DataTable();
                 $('#tableHolder3').DataTable().destroy();
                 $('#tableHolder3').DataTable();

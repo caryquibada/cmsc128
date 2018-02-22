@@ -30,9 +30,6 @@
                 <a class="nav-link" href="report.php" style="color:white;"> Report <span class="sr-only">(current)</span></a>
             </li>
         </ul>
-        <span class="navbar-text">
-            Navbar text with an inline element
-        </span>
     </div>
     </nav>
     <br/>
