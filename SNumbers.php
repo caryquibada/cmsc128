@@ -232,6 +232,7 @@
              var that=$(this);
              var data=that.attr('id');
              $('#update').load("ajax/update.php",{student:data},function(){
+                 
              });
              
         });

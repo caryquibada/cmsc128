@@ -106,7 +106,7 @@ color:#FFFFFF;
                                     <option value="40">40</option>
                             </select>
                             <div class="input-group">
-                                <input type="text" name="studentNumber" id="charging2" class="form-control sn" placeholder="Computer Usage" pattern="[1-2](0|9)([1-9]{2,2})-[0-9]{5,5}">
+                                <input type="text" name="studentNumber" id="charging2" class="form-control sn" placeholder="Computer Usage" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
                                 </input>
                                 <span class="input-group-btn">
                                     <button class="btn btn-danger" type="submit">Go!</button>
@@ -144,7 +144,7 @@ color:#FFFFFF;
                             <option value="20">20</option>
                         </select>
                         <div class="input-group">
-                            <input type="text" name="studentNumber" id="charging1" class="form-control sn" placeholder="iPad_Usage" pattern="[1-2](0|9)([1-9]{2,2})-[0-9]{5,5}">
+                            <input type="text" name="studentNumber" id="charging1" class="form-control sn" placeholder="iPad_Usage" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
                             </input>
                             <span class="input-group-btn">
                                 <button class="btn btn-danger" type="submit">Go!</button>
@@ -177,7 +177,7 @@ color:#FFFFFF;
                             <option value="10">10</option>
                         </select>
                         <div class="input-group">
-                            <input type="text" name="studentNumber" id="charging3" class="form-control sn" placeholder="Charging" pattern="[1-2](0|9)([1-9]{2,2})-[0-9]{5,5}">
+                            <input type="text" name="studentNumber" id="charging3" class="form-control sn" placeholder="Charging" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
                             </input>
                             <span class="input-group-btn">
                                 <button class="btn btn-danger" type="submit">Go!</button>
@@ -205,7 +205,7 @@ color:#FFFFFF;
                             <option value="10">10</option>
                         </select>
                         <div class="input-group">
-                            <input type="text" name="studentNumber" id="charging4" class="form-control sn" placeholder="E-Resources" pattern="[1-2](0|9)([1-9]{2,2})-[0-9]{5,5}">
+                            <input type="text" name="studentNumber" id="charging4" class="form-control sn" placeholder="E-Resources" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
                             </input>
                             <span class="input-group-btn">
                                 <button class="btn btn-danger" type="submit">Go!</button>
@@ -222,7 +222,7 @@ color:#FFFFFF;
  <!--table for time-in>-->
             <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
                 <li class="nav-item">
-                  <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-controls="home">Computer Usage</a>
+                  <a class="nav-link" data-toggle="tab" href="#home" role="tab" aria-controls="home">Computer Usage</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Power Usage</a>
@@ -242,7 +242,7 @@ color:#FFFFFF;
                         </table>
                     </div>
                 </div>
-                <div class="tab-pane active" id="profile" role="tabpanel">
+                <div class="tab-pane active in" id="profile" role="tabpanel">
                     <div class="table-responsive col-lg-12"><br/>
                         <table class="table" id="tableHolder"> 
                         </table>
@@ -280,7 +280,6 @@ color:#FFFFFF;
     function load(){
         setTimeout(function(){
             $('#tableHolder').load('ajax/display.php',function(){
-                $('#tableHolder').DataTable();
                 $('#tableHolder').DataTable().destroy();
                 $('#tableHolder').DataTable();
         });
@@ -343,7 +342,6 @@ function Alert() {
         
      
     </script>
-
 <script>
 $(document).ready(function(){
 
@@ -408,7 +406,16 @@ $(document).ready(function(){
 </script>
 
     <script>
+
     $("form.ajax1").on("submit",function(){
+        var snvalue=$(".sn").val();
+        alert(snvalue.length);
+        if(snvalue.length===9){
+            first=snvalue.slice(0,4);
+            second=snvalue.slice(4,9);
+            $(".sn").val(first+"-"+second);
+            alert($(".sn").val());
+        }
     var that= $(this),
         url=that.attr('action'),
         type=that.attr('method'),
