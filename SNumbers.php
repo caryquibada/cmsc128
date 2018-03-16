@@ -289,27 +289,27 @@
 <script>
    $('#tableHolder').on('click','.reset',function(){
         swal({
-  title: 'Are you sure you want to reset this students time remaining?',
-  text: "You won't be able to revert this!",
-  type: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, RESET!'
-}).then((result) => {
-  if (result.value) {
-    swal(
-      'Reset Complete',
-      'Reloading page, please wait',
-      'success'
-    )
-    var that=$(this);
-    var data=that.attr('id');
-    $('#reset1').load("ajax/resetstudent.php",{student:data},function(){
-        location.reload();        
-    });
-    }
-    })
+            title: 'Are you sure you want to reset this students time remaining?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, RESET!'
+        }).then((result) => {
+            if (result.value) {
+                swal(
+                    'Reset Complete',
+                    'Reloading page, please wait',
+                'success'
+                )
+                var that=$(this);
+                var data=that.attr('id');
+                $('#reset1').load("ajax/resetstudent.php",{student:data},function(){
+                    location.reload();        
+                });
+            }
+        })
     });
 </script>
 <script>

@@ -344,20 +344,18 @@ function Alert() {
     </script>
 <script>
 $(document).ready(function(){
-
-        $("#tableHolder").on('click','.btnSelect',function(){
-             // get the current row
-             var that=$(this);
-             var data=that.attr('id');
+        $("#tableHolder1").on('change','.custom-select',function(){
+            var that=$(this);
+            var data=that.attr('id');
+            var tag=that.val();
              $.ajax({
-                url:'ajax/timeout.php',
+                url:'ajax/updatetag.php',
                 method:'POST',
-                data:{tranNum:data},
+                data:{'tranNum':data, 'tag':tag},
                 success: function(response){
                     $("#result").html(response);
                 }
              });
-             
         });
         $("#tableHolder1").on('click','.btnSelect',function(){
              // get the current row
@@ -373,6 +371,22 @@ $(document).ready(function(){
              });
              
         });
+
+        $("#tableHolder").on('click','.btnSelect',function(){
+             // get the current row
+             var that=$(this);
+             var data=that.attr('id');
+             $.ajax({
+                url:'ajax/timeout.php',
+                method:'POST',
+                data:{tranNum:data},
+                success: function(response){
+                    $("#result").html(response);
+                }
+             });
+             
+        });
+
         $("#tableHolder2").on('click','.btnSelect',function(){
              // get the current row
              var that=$(this);
@@ -408,13 +422,11 @@ $(document).ready(function(){
     <script>
 
     $("form.ajax1").on("submit",function(){
-        var snvalue=$(".sn").val();
-        alert(snvalue.length);
+        var snvalue=$("#charging1").val()+$("#charging2").val()+$("#charging3").val()+$("#charging4").val();
         if(snvalue.length===9){
             first=snvalue.slice(0,4);
             second=snvalue.slice(4,9);
             $(".sn").val(first+"-"+second);
-            alert($(".sn").val());
         }
     var that= $(this),
         url=that.attr('action'),
