@@ -1,12 +1,11 @@
 <?php
 include 'conn.php';
 
-$sql="SELECT * FROM transaction WHERE YEAR(time_in)=YEAR(CURRENT_TIMESTAMP) AND MONTH(time_in)=MONTH(CURRENT_TIMESTAMP) AND DAY(time_in)=DAY(CURRENT_TIMESTAMP) AND YEAR(time_out)='0000' AND Type='Power_Usage'ORDER BY time_in DESC";
+$sql="SELECT * FROM transaction WHERE YEAR(time_out)='0000' AND Type='Power_Usage'ORDER BY time_in DESC";
 $result=mysqli_query($connect,$sql);
 //ID #2
 echo "<thead>
 <tr>
-    <th>Type</th>
     <th>Tag Number</th>
     <th>Name</th>
     <th>Student Number</th>
@@ -33,7 +32,6 @@ while($row=mysqli_fetch_row($result)){
     $timerem=ceiling($timerem,0.005);   //ID 7
     if($timerem>1){
     echo "<tr>
-            <td>$row[6]</td>
             <td>$row[5]</td>
             <td>$name</td>
             <td>$row[1]</td>
@@ -46,7 +44,6 @@ while($row=mysqli_fetch_row($result)){
           </tr>";
     }else{
         echo "<tr class='"."table-danger"."'>
-        <td>$row[6]</td>
         <td>$row[5]</td>
         <td>$name</td>
         <td>$row[1]</td>

@@ -1,7 +1,7 @@
 <?php
 include 'conn.php';
 
-$sql="SELECT * FROM transaction WHERE YEAR(time_in)=YEAR(CURRENT_TIMESTAMP) AND MONTH(time_in)=MONTH(CURRENT_TIMESTAMP) AND DAY(time_in)=DAY(CURRENT_TIMESTAMP) AND YEAR(time_out)='0000' AND Type='iPad_Usage' ORDER BY time_in DESC";
+$sql="SELECT * FROM transaction WHERE YEAR(time_out)='0000' AND Type='iPad_Usage' ORDER BY time_in DESC";
 $result=mysqli_query($connect,$sql);
 //ID #2
 echo "<thead>

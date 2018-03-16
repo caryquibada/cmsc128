@@ -1,7 +1,7 @@
 <?php
 include 'conn.php';
 $choices= array("0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40");
-$sql="SELECT * FROM transaction WHERE YEAR(time_in)=YEAR(CURRENT_TIMESTAMP) AND MONTH(time_in)=MONTH(CURRENT_TIMESTAMP) AND DAY(time_in)=DAY(CURRENT_TIMESTAMP) AND YEAR(time_out)='0000' AND Type='Computer_Usage' ORDER BY time_in DESC";
+$sql="SELECT * FROM transaction WHERE YEAR(time_out)='0000' AND Type='Computer_Usage' ORDER BY time_in DESC";
 $result=mysqli_query($connect,$sql);
 //ID #2
 echo "<thead>

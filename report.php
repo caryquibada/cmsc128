@@ -9,10 +9,20 @@
     <link rel="stylesheet" type="text/css" href="js/mdb.min.css">
     <link rel="stylesheet" href="sweetalert2.min.css">
     <script src="js/mdb.min.js"></script>
-   <script src="js/jquery.min.js"></script>
     <script defer src="js/fa.js"></script>
     <link rel="stylesheet" href="material/material.min.css">
-<script src="material/material.min.js"></script>
+    <script src="material/material.min.js"></script>
+
+    <script src="js/jquery-1.12.4.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/dataTables.buttons.min.js"></script>
+    <script src="js/buttons.flash.min.js"></script>
+    <script src="js/jszip.min.js"></script>
+    <script src="js/pdfmake.min.js"></script>
+    <script src="js/vfs_fonts.js"></script>
+    <script src="js/buttons.html5.min.js"></script>
+    <script src="js/buttons.print.min.js"></script>
+
 
     </head>
     <body>
@@ -44,47 +54,61 @@
         
             <label>To:</label>
             <div class="col-sm-4">
-            
                 <input type="text" id="totime" placeholder="YEAR-MONTH-DAY HOUR:MINUTE:SECOND"></input>
             </div>
+            <label>By:</label>
+            <label class="custom-control custom-radio"><input type="radio" name="by" value="none" onchange="location.reload();">None</label>
+            <label class="custom-control custom-radio"><input type="radio" name="by" value="course" onchange="location.reload();">Course</label>
         </div>
     </div>
     <br/>
     <div class="col-sm-12">
-        <div class="row">
-            <label>Per:</label>
-            <div class="col-sm-2">
-                <select class="custom-select" id="per">
-                    <option></option>
-                    <option value="hour">Hour</option>
-                    <option value="day">Day</option>
-                    <option value="week">Week</option>
-                    <option value="month">Month</option>
-                </select>
+    <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#home" role="tab" aria-controls="home">Hour</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Day</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#messages" role="tab" aria-controls="messages">Week</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#settings" role="tab" aria-controls="settings">Month</a>
+                </li>
+              </ul>
+              
+            <div class="tab-content">
+                <div class="tab-pane active in" id="home" role="tabpanel">
+                    <div class="table-responsive col-lg-12"><br/>
+                        <table class="table" id="tablePerHour"> 
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane" id="profile" role="tabpanel">
+                    <div class="table-responsive col-lg-12"><br/>
+                        <table class="table" id="tablePerDay"> 
+                        </table>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="messages" role="tabpanel">
+                    <div class="table-responsive col-lg-12"><br/>
+                        <table class="table" id="tablePerWeek"> 
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane" id="settings" role="tabpanel">
+                    <div class="table-responsive col-lg-12"><br/>
+                        <table class="table" id="tablePerMonth"> 
+                        </table>
+                    </div>
+                </div>
             </div>
-            <label>By:</label>
-            <div class="col-sm-2">
-                <select class="custom-select">
-                    <option>College</option>
-                    <option>Course</option>
-                </select>
-            </div>
-            <label>OR by highest amount of users per:</label>
-            <div class="col-sm-2">
-                <select class="custom-select">
-                    <option>Hour</option>
-                    <option>Day</option>
-                    <option>Week</option>
-                    <option>Month</option>
-                </select>
-            </div>
-            
-            
-        </div>
         
     </div>
     </form>
-    <button id="report" onclick="load();" class="btn btn-unique">GENERATE</button>
+    <button id="report" onclick="load()" class="btn btn-unique">GENERATE</button>
     <div class="table-responsive col-lg-12">
                 <table class="table table-lg table-bordered table-hover " id="tableHolder" > 
                 </table>
@@ -94,32 +118,63 @@
 <script src="sweetalert2.all.js"></script>
 <script src="js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-<script src="js/jquery.dataTables.min.js"></script>
+
 
 <script>
-    $(document).ready(function(){
-        
-        load();
-      });
     function load(){
             var data={};
              var from=$("#fromtime");
              var to=$("#totime");
-             var per=$("#per");
+             var by=$('input[name=by]:checked');
+             data["by"]=by.val();
              data["from"]=from.val();
              data["to"]=to.val();
-             data["per"]=per.val();
-             
-             setTimeout(function(){
-                $('#tableHolder').load("ajax/displayTimeOut.php",data,function(){
-                    $('#tableHolder').DataTable().destroy();
-                    $('#tableHolder').DataTable();
-                    $('#tableHolder').DataTable().css();
-             });
-             }, 500);
 
-             
-             
+            $('#tablePerHour').load("ajax/perhour.php",data,function(){
+                $('#tablePerHour').DataTable();
+                $('#tablePerHour').DataTable().destroy();
+                $('#tablePerHour').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+
+            });
+            $('#tablePerDay').load("ajax/perday.php",data,function(){
+                $('#tablePerDay').DataTable();
+                $('#tablePerDay').DataTable().destroy();
+                $('#tablePerDay').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+
+            });
+            $('#tablePerWeek').load("ajax/perweek.php",data,function(){
+                $('#tablePerWeek').DataTable();
+                $('#tablePerWeek').DataTable().destroy();
+                $('#tablePerWeek').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+
+            });
+            $('#tablePerMonth').load("ajax/permonth.php",data,function(){
+                $('#tablePerMonth').DataTable();
+                $('#tablePerMonth').DataTable().destroy();
+                $('#tablePerMonth').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+                
+
+            });
         }
     
 </script>
