@@ -1,6 +1,7 @@
 <?php
 include 'conn.php';
 //#1
+echo "test";
 if (isset($_POST['studentNumber'])&&!empty($_POST['studentNumber'])){
     $sn=$_POST['studentNumber'];
     $tagno=$_POST['tagnumber'];
@@ -16,6 +17,7 @@ if (isset($_POST['studentNumber'])&&!empty($_POST['studentNumber'])){
             $checker=1;
         }
     }
+
     if($checker==0){
         $studentquery="INSERT INTO student(student_number) VALUES ('$sn')";
         if(!mysqli_query($connect,$studentquery)){

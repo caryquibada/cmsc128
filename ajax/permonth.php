@@ -22,6 +22,7 @@ echo "<tr>
       <td>$row[1]</td>     
       <td>$row[2]</td>    
       </tr>";
-}
-echo "</tbody>";
+    }
+    echo "</tbody>";
+    
 ?>

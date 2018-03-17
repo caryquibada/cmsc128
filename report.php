@@ -56,9 +56,6 @@
             <div class="col-sm-4">
                 <input type="text" id="totime" placeholder="YEAR-MONTH-DAY HOUR:MINUTE:SECOND"></input>
             </div>
-            <label>By:</label>
-            <label class="custom-control custom-radio"><input type="radio" name="by" value="none" onchange="location.reload();">None</label>
-            <label class="custom-control custom-radio"><input type="radio" name="by" value="course" onchange="location.reload();">Course</label>
         </div>
     </div>
     <br/>
@@ -76,12 +73,22 @@
                 <li class="nav-item">
                   <a class="nav-link" data-toggle="tab" href="#settings" role="tab" aria-controls="settings">Month</a>
                 </li>
+                <br/>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#course" role="tab" aria-controls="settings">Course</a>
+                </li>
               </ul>
               
             <div class="tab-content">
                 <div class="tab-pane active in" id="home" role="tabpanel">
                     <div class="table-responsive col-lg-12"><br/>
                         <table class="table" id="tablePerHour"> 
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane active in" id="course" role="tabpanel">
+                    <div class="table-responsive col-lg-12"><br/>
+                        <table class="table" id="tableCourse"> 
                         </table>
                     </div>
                 </div>
@@ -167,6 +174,18 @@
                 $('#tablePerMonth').DataTable();
                 $('#tablePerMonth').DataTable().destroy();
                 $('#tablePerMonth').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+                
+
+            });
+            $('#tableCourse').load("ajax/bycourse.php",data,function(){
+                $('#tableCourse').DataTable();
+                $('#tableCourse').DataTable().destroy();
+                $('#tableCourse').DataTable({
                     dom: 'Bfrtip',
                     buttons: [
                         'copy', 'csv', 'excel', 'pdf', 'print'

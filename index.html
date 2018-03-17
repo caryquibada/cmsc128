@@ -63,48 +63,8 @@ color:#FFFFFF;
                         <div class="form-inline well">
                             <label>Tag  </label>
                             <input type="hidden" name="type" value="Computer_Usage"></input>
-                           <select class="custom-select" name="tagnumber" form="chargingform" id="chargingselect">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                    <option value="13">13</option>
-                                    <option value="14">14</option>
-                                    <option value="15">15</option>
-                                    <option value="16">16</option>
-                                    <option value="17">17</option>
-                                    <option value="18">18</option>
-                                    <option value="19">19</option>
-                                    <option value="20">20</option>
-                                    <option value="21">21</option>
-                                    <option value="22">22</option>
-                                    <option value="23">23</option>
-                                    <option value="24">24</option>
-                                    <option value="25">25</option>
-                                    <option value="26">26</option>
-                                    <option value="27">27</option>
-                                    <option value="28">28</option>
-                                    <option value="29">29</option>
-                                    <option value="30">30</option>
-                                    <option value="31">31</option>
-                                    <option value="32">32</option>
-                                    <option value="33">33</option>
-                                    <option value="34">34</option>
-                                    <option value="35">35</option>
-                                    <option value="36">36</option>
-                                    <option value="37">37</option>
-                                    <option value="38">38</option>
-                                    <option value="39">39</option>
-                                    <option value="40">40</option>
-                            </select>
+                           
+                            <div id="tagsComputer"></div>
                             <div class="input-group">
                                 <input type="text" name="studentNumber" id="charging2" class="form-control sn" placeholder="Computer Usage" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
                                 </input>
@@ -121,28 +81,7 @@ color:#FFFFFF;
                     <div class="form-inline well">
                         <label>Tag  </label>
                         <input type="hidden" name="type" value="iPad_Usage"></input>
-                        <select class="custom-select" name="tagnumber" form="chargingform" id="chargingselect">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
-                        </select>
+                        <div id="inputsiPad"></div>
                         <div class="input-group">
                             <input type="text" name="studentNumber" id="charging1" class="form-control sn" placeholder="iPad_Usage" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
                             </input>
@@ -164,18 +103,7 @@ color:#FFFFFF;
                     <div class="form-inline well">
                         <label>Tag  </label>
                         <input type="hidden" name="type" value="Power_Usage"></input>
-                        <select class="custom-select" name="tagnumber" form="chargingform" id="chargingselect">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                        </select>
+                        <div id="inputsCharging"></div>
                         <div class="input-group">
                             <input type="text" name="studentNumber" id="charging3" class="form-control sn" placeholder="Charging" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
                             </input>
@@ -192,18 +120,7 @@ color:#FFFFFF;
                     <div class="form-inline well">
                         <label>Tag  </label>
                         <input type="hidden" name="type" value="E-Resources"></input>
-                        <select class="custom-select" name="tagnumber" form="chargingform" id="chargingselect">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                        </select>
+                        <div id="inputsEResources"></div>
                         <div class="input-group">
                             <input type="text" name="studentNumber" id="charging4" class="form-control sn" placeholder="E-Resources" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
                             </input>
@@ -278,6 +195,24 @@ color:#FFFFFF;
       load();
     });
     function load(){
+
+        setTimeout(function(){
+            $('#tagsComputer').load('ajax/inputs.php',function(){
+        });
+        },500);
+        setTimeout(function(){
+            $('#inputsCharging').load('ajax/inputsCharging.php',function(){
+        });
+        },500);
+        setTimeout(function(){
+            $('#inputsEResources').load('ajax/inputsEresource.php',function(){
+        });
+        },500);
+        setTimeout(function(){
+            $('#inputsiPad').load('ajax/inputsiPad.php',function(){
+        });
+        },500);
+
         setTimeout(function(){
             $('#tableHolder').load('ajax/display.php',function(){
                 $('#tableHolder').DataTable().destroy();
