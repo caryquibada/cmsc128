@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="sweetalert2.min.css">
     <script src="js/mdb.min.js"></script>
     <script defer src="js/fa.js"></script>
-    <link rel="stylesheet" href="material/material.min.css">
-    <script src="material/material.min.js"></script>
 
     <script src="js/jquery-1.12.4.js"></script>
     <script src="js/jquery.dataTables.min.js"></script>
@@ -22,8 +20,37 @@
     <script src="js/vfs_fonts.js"></script>
     <script src="js/buttons.html5.min.js"></script>
     <script src="js/buttons.print.min.js"></script>
+    <style>
+        #wrapper ul {
+  text-align: center;
+}
 
+#wrapper ul li {
+  display: inline-block;
+  float: none;
+}
+    </style>
+    <style>
+    .nav-pills>li.nav-item>a.active, .nav-pills>li.nav-item>a.hover, .nav-pills>li.active>a:focus{
+background-color:#8E1538;
+color:#FFFFFF;
+}
+.nav-pills>li.nav-item>a{
+    color:grey;
+}
+.btn-danger,.btn-danger:active{
+    background-color:#8E1538;
+    outline:#8E1538;
+}
+.btn-danger:hover{
+    background-color:white;
+    color:grey;
+}
+.btn{
+    border: 0;
+}
 
+    </style>
     </head>
     <body>
     <nav class="navbar navbar-toggleable-md navbar-light" style="background-color: #8E1538;">
@@ -60,7 +87,7 @@
     </div>
     <br/>
     <div class="col-sm-12">
-    <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
+        <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
                 <li class="nav-item">
                   <a class="nav-link" data-toggle="tab" href="#home" role="tab" aria-controls="home">Hour</a>
                 </li>
@@ -73,7 +100,7 @@
                 <li class="nav-item">
                   <a class="nav-link" data-toggle="tab" href="#settings" role="tab" aria-controls="settings">Month</a>
                 </li>
-                <br/>
+                <br>
                 <li class="nav-item">
                   <a class="nav-link" data-toggle="tab" href="#course" role="tab" aria-controls="settings">Course</a>
                 </li>

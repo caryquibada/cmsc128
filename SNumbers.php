@@ -83,6 +83,7 @@
         ?>
         <div class="row" id="reset">
             <button id="resetall" data-toggle="confirmation" class="btn btn-unique" onclick="resetall();">RESET ALL</button>
+            <button class="btn btn-unique" onclick="help();">NEW STUDENT INSERTION HELP</button>
         </div>
         <div class="modal fade" id="myModal" role="dialog">
             <div class="modal-dialog modal-lg">
@@ -337,3 +338,14 @@
     });
         return false;;
 });</script>
+<script>
+    function help(){
+        swal({
+            imageUrl: 'cmschelp.jpg',
+            width: '1366px',
+            imageWidth: 1366,
+            imageHeight: 10752,
+            imageAlt: 'A tall image'
+        })
+    }
+</script>
