@@ -240,7 +240,7 @@ function Alert() {
         
         swal({
             position: 'top-end',
-            title: 'Timing in',
+            title: 'Processing',
             showConfirmButton: false,
             timer: 500,
             onOpen: function onOpen() {
@@ -254,7 +254,7 @@ function Alert() {
     function Alert1() {
         swal({
             position: 'top-end',
-            title: 'Timing out',
+            title: 'Processing',
             text: 'Please Wait',
             timer: 500,
             onOpen: function onOpen() {
@@ -277,13 +277,13 @@ $(document).ready(function(){
             if(document.getElementById('confirm').checked){
 
                 swal({
-                    title: 'Time out '+name+'?',
+                    title: 'Complete Payment?',
                     text: "You won't be able to revert this!",
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, timeout!'
+                    confirmButtonText: 'Yes!'
                 }).then((result) => {
                     if (result.value) {
                         var that=$(this);
@@ -298,8 +298,8 @@ $(document).ready(function(){
                         });
                         Alert1();
                         swal(
-                            'Timed out',
-                            'User has been timed out.',
+                            'Process finished',
+                            'Transaction Complete.',
                             'success'
                         )
                         load();
@@ -379,13 +379,13 @@ $(document).ready(function(){
             if(document.getElementById('confirm').checked){
 
                 swal({
-                    title: 'Time out '+name+'?',
+                    title: 'Complete Payment?',
                     text: "You won't be able to revert this!",
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, timeout!'
+                    confirmButtonText: 'Yes!'
                 }).then((result) => {
                     if (result.value) {
                         var that=$(this);
@@ -400,8 +400,8 @@ $(document).ready(function(){
                         });
                         Alert1();
                         swal(
-                            'Timed out',
-                            'User has been timed out.',
+                            'Transaction Complete',
+                            'Payment Complete',
                             'success'
                         )
                         load();
