@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>UPB Library</title>
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables_themeroller.css">
+    <link rel="stylesheet" href="sweetalert2.css">
+
+    <script src="sweetalert2.all.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script defer src="js/fa.js"></script>
+    <script src="js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+
+    <style>
+    .nav-pills>li.nav-item>a.active, .nav-pills>li.nav-item>a.hover, .nav-pills>li.active>a:focus{
+background-color:#8E1538;
+color:#FFFFFF;
+}
+.nav-pills>li.nav-item>a{
+    color:grey;
+}
+.btn-danger,.btn-danger:active{
+    background-color:#8E1538;
+    outline:#8E1538;
+}
+.btn-danger:hover{
+    background-color:white;
+    color:grey;
+}
+.btn{
+    border: 0;
+}
+
+    </style>
+    </head>
+    <body>
+    <nav class="navbar navbar-toggleable-md navbar-light" style="background-color: #8E1538;">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#" style="color:#FFFFFF;"><img src="uplogo.png" width="60" height="60" alt="">  UPB Library</img></a>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="SNumbers.php" style="color:white;"> Students <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                    <a class="nav-link" href="report.php" style="color:white;"> Report <span class="sr-only">(current)</span></a>
+                </li>
+        </ul>
+    </div>
+    </nav>
+    <br/>
+   
+    <div class="col-sm-12">
+        <div class="row">
+                <div class="col-sm-6">
+                    <form action="ajax/inputPaid.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
+                        <div class="form-inline well">
+                            <input type="hidden" name="type" value="Printing"></input>
+                            <label>Copies : </label>
+                           <input type="number" name="Copies" id="copiesPrinting" class="form-control col-sm-2"></input>
+                            <div class="input-group">
+                                <input type="text" name="studentNumber" id="printing" class="form-control sn" placeholder="Printing" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
+                                </input>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-danger" type="submit">Go!</button>
+                                </span>
+                            </div>
+                            
+                        </div>
+                    </form>
+                </div>
+            <div class="col-sm-6">
+                <form action="ajax/inputPaid.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
+                    <div class="form-inline well">
+                        <input type="hidden" name="type" value="Scanning"></input>
+                        <label>Copies : </label>
+                        <input type="number" name="Copies" id="copiesScanning" class="form-control col-sm-2"></input>
+                        <div class="input-group">
+                            <input type="text" name="studentNumber" id="scanning" class="form-control sn" placeholder="Scanning" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
+                            </input>
+                            <span class="input-group-btn">
+                                <button class="btn btn-danger" type="submit">Go!</button>
+                            </span>
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+<div class="col-sm-12">
+        <div class="row">
+            
+        </div>
+    </div>
+    <br/>
+        <br/>
+ <!--table for time-in>-->
+            <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#home" role="tab" aria-controls="home">Printing/Scanning</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Power Usage</a>
+                </li>
+              </ul>
+              
+            <div class="tab-content">
+
+                <div class="tab-pane active in" id="profile" role="tabpanel">
+                    <div class="table-responsive col-lg-12"><br/>
+                        <table class="table" id="tableHolder"> 
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <label class="custom-control custom-checkbox">
+                    <input type="checkbox" id="confirm" class="custom-control-input">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Confirm on timeouts</span>
+                  </label>
+            </div>
+       
+    </body>
+</html>
+
+<script>
+    $(function () {
+      $('#myTab a:first').tab('show')
+    })
+  </script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+      load();
+    });
+    function load(){
+
+
+        setTimeout(function(){
+            $('#tableHolder').load('ajax/displayPaid.php',function(){
+                $('#tableHolder').DataTable().destroy();
+                $('#tableHolder').DataTable();
+        });
+        },500);
+        
+    }
+</script>
+<script>
+function Alert() {
+    if($("#charging1").val()===""&&$("#charging2").val()===""&&$("#charging3").val()===""&&$("#charging4").val()===""){
+
+    }else{
+        
+        swal({
+            position: 'top-end',
+            title: 'Timing in',
+            showConfirmButton: false,
+            timer: 500,
+            onOpen: function onOpen() {
+                swal.showLoading();
+          }
+        })
+    
+    }
+}
+    
+    function Alert1() {
+        swal({
+            position: 'top-end',
+            title: 'Timing out',
+            text: 'Please Wait',
+            timer: 500,
+            onOpen: function onOpen() {
+                swal.showLoading();
+          }
+        
+        });
+        }
+        
+     
+    </script>
+<script>
+$(document).ready(function(){
+       
+        $("#tableHolder").on('click','.btnSelect',function(){
+                var that=$(this);
+                var tn=that.attr('id');
+                alert(tn);
+                var id="#"+tn;
+                var orNumber=$("tbody").find(id).val();
+            if(document.getElementById('confirm').checked){
+
+                swal({
+                    title: 'Time out '+name+'?',
+                    text: "You won't be able to revert this!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, timeout!'
+                }).then((result) => {
+                    if (result.value) {
+                        var that=$(this);
+                        var data=that.attr('id');
+                        $.ajax({
+                            url:'ajax/pay.php',
+                            method:'POST',
+                            data:{tranNum:tn , orNumber:orNumber},
+                            success: function(response){
+                                $("#result").html(response);
+                            }
+                        });
+                        Alert1();
+                        swal(
+                            'Timed out',
+                            'User has been timed out.',
+                            'success'
+                        )
+                        load();
+                    }
+                })
+            }else{
+                var that=$(this);
+                var data=that.attr('id');
+                Alert1();
+                $.ajax({
+                    url:'ajax/pay.php',
+                    method:'POST',
+                    data:{tranNum:tn , orNumber:orNumber},
+                    success: function(response){
+                        $("#result").html(response);
+                    }
+                });
+                load();
+            }
+        });
+});
+
+</script>
+
+    <script>
+
+    $("form.ajax1").on("submit",function(){
+        var snvalue=$("#scanning").val()+$("#printing").val();
+        if(snvalue.length===9){
+            first=snvalue.slice(0,4);
+            second=snvalue.slice(4,9);
+            $(".sn").val(first+"-"+second);
+        }
+    var that= $(this),
+        url=that.attr('action'),
+        type=that.attr('method'),
+        data={};
+        
+    that.find('[name]').each(function(index, value) {
+        var that=$(this),
+            name=that.attr('name'),
+            value=that.val();
+            data[name]=value;
+    });
+            
+            
+    $.ajax({
+        url:url,
+        type:type,
+        data:data,
+        success: function(response){
+            $(".form-control").val("");
+        }
+    });
+        return false;;
+});</script>

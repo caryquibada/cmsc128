@@ -287,7 +287,7 @@ function Alert() {
 $(document).ready(function(){
         $("#tableHolder1").on('change','.custom-select',function(){
             var that=$(this);
-            var data=that.attr('id');
+            var data=that.attr('name');
             var tag=that.val();
              $.ajax({
                 url:'ajax/updatetag.php',
@@ -295,8 +295,10 @@ $(document).ready(function(){
                 data:{'tranNum':data, 'tag':tag},
                 success: function(response){
                     $("#result").html(response);
+                    
                 }
              });
+             load();
         });
         $("#tableHolder1").on('click','.btnSelect',function(){
              // get the current row
