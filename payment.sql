@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2018 at 05:40 AM
+-- Generation Time: Mar 19, 2018 at 11:36 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -37,7 +37,8 @@ CREATE TABLE `payment` (
   `or_number` varchar(10) NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_paid` datetime NOT NULL,
-  `transaction_number` int(10) UNSIGNED ZEROFILL NOT NULL
+  `transaction_number` int(10) UNSIGNED ZEROFILL NOT NULL,
+  `tag` varchar(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

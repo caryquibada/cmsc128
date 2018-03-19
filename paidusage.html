@@ -82,7 +82,7 @@ color:#FFFFFF;
                 <form action="ajax/inputPaid.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
                     <div class="form-inline well">
                         <input type="hidden" name="type" value="Scanning"></input>
-                        <label>Copies : </label>
+                        <label><pre class="tab">Copies :</pre></label>
                         <input type="number" name="Copies" id="copiesScanning" class="form-control col-sm-2"></input>
                         <div class="input-group">
                             <input type="text" name="studentNumber" id="scanning" class="form-control sn" placeholder="Scanning" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
@@ -98,6 +98,69 @@ color:#FFFFFF;
 
         </div>
     </div>
+    <div class="col-sm-12">
+        <div class="row">
+            <div class="col-sm-6">
+                <form action="ajax/inputPaid.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
+                    <div class="form-inline well">
+                        <label><pre class="tab">Tag        :</pre></label>
+                        <select name="tag" class="custom-select">
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                            <option value="32">32</option>
+                            <option value="33">33</option>
+                            <option value="34">34</option>
+                            <option value="35">35</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+
+                        </select>
+                        <input type="hidden" name="type" value="Computer_Usage"></input>
+                        <div class="input-group">
+                            <input type="text" name="studentNumber" id="computer" class="form-control sn" placeholder="Computer Usage" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
+                            </input>
+                            <span class="input-group-btn">
+                                <button class="btn btn-danger" type="submit">Go!</button>
+                            </span>
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 <div class="col-sm-12">
         <div class="row">
             
@@ -111,15 +174,21 @@ color:#FFFFFF;
                   <a class="nav-link" data-toggle="tab" href="#home" role="tab" aria-controls="home">Printing/Scanning</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Power Usage</a>
+                  <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Computer</a>
                 </li>
               </ul>
               
             <div class="tab-content">
 
-                <div class="tab-pane active in" id="profile" role="tabpanel">
+                <div class="tab-pane active in" id="home" role="tabpanel">
                     <div class="table-responsive col-lg-12"><br/>
                         <table class="table" id="tableHolder"> 
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane" id="profile" role="tabpanel">
+                    <div class="table-responsive col-lg-12"><br/>
+                        <table class="table" id="tableHolder1"> 
                         </table>
                     </div>
                 </div>
@@ -152,6 +221,12 @@ color:#FFFFFF;
             $('#tableHolder').load('ajax/displayPaid.php',function(){
                 $('#tableHolder').DataTable().destroy();
                 $('#tableHolder').DataTable();
+        });
+        },500);
+        setTimeout(function(){
+            $('#tableHolder1').load('ajax/displaypaidcomputer.php',function(){
+                $('#tableHolder1').DataTable().destroy();
+                $('#tableHolder1').DataTable();
         });
         },500);
         
@@ -197,7 +272,6 @@ $(document).ready(function(){
         $("#tableHolder").on('click','.btnSelect',function(){
                 var that=$(this);
                 var tn=that.attr('id');
-                alert(tn);
                 var id="#"+tn;
                 var orNumber=$("tbody").find(id).val();
             if(document.getElementById('confirm').checked){
@@ -246,6 +320,108 @@ $(document).ready(function(){
                 load();
             }
         });
+        $("#tableHolder1").on('click','.btnSelect',function(){
+                var that=$(this);
+                var tn=that.attr('id');
+                var id="#"+tn;
+                var orNumber=$("tbody").find(id).val();
+            if(document.getElementById('confirm').checked){
+
+                swal({
+                    title: 'Time out '+name+'?',
+                    text: "You won't be able to revert this!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, timeout!'
+                }).then((result) => {
+                    if (result.value) {
+                        var that=$(this);
+                        var data=that.attr('id');
+                        $.ajax({
+                            url:'ajax/timeoutpaidcomputer.php',
+                            method:'POST',
+                            data:{tranNum:tn},
+                            success: function(response){
+                                $("#result").html(response);
+                            }
+                        });
+                        Alert1();
+                        swal(
+                            'Timed out',
+                            'User has been timed out.',
+                            'success'
+                        )
+                        load();
+                    }
+                })
+            }else{
+                var that=$(this);
+                var data=that.attr('id');
+                Alert1();
+                $.ajax({
+                    url:'ajax/timeoutpaidcomputer.php',
+                    method:'POST',
+                    data:{tranNum:tn},
+                    success: function(response){
+                        $("#result").html(response);
+                    }
+                });
+                load();
+            }
+        });
+        $("#tableHolder1").on('click','.OR',function(){
+                var that=$(this);
+                var tn=that.attr('name');
+                var classwhere='.'+tn;
+                var or=$('tr').find(classwhere).val();
+            if(document.getElementById('confirm').checked){
+
+                swal({
+                    title: 'Time out '+name+'?',
+                    text: "You won't be able to revert this!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, timeout!'
+                }).then((result) => {
+                    if (result.value) {
+                        var that=$(this);
+                        var data=that.attr('id');
+                        $.ajax({
+                            url:'ajax/paycomputer.php',
+                            method:'POST',
+                            data:{tranNum:tn , orNumber:or},
+                            success: function(response){
+                                $("#result").html(response);
+                            }
+                        });
+                        Alert1();
+                        swal(
+                            'Timed out',
+                            'User has been timed out.',
+                            'success'
+                        )
+                        load();
+                    }
+                })
+            }else{
+                var that=$(this);
+                var data=that.attr('id');
+                Alert1();
+                $.ajax({
+                    url:'ajax/paycomputer.php',
+                    method:'POST',
+                    data:{tranNum:tn , orNumber:or},
+                    success: function(response){
+                        $("#result").html(response);
+                    }
+                });
+                load();
+            }
+        });
 });
 
 </script>
@@ -253,7 +429,7 @@ $(document).ready(function(){
     <script>
 
     $("form.ajax1").on("submit",function(){
-        var snvalue=$("#scanning").val()+$("#printing").val();
+    var snvalue=$("#scanning").val()+$("#printing").val()+$("#computer").val();
         if(snvalue.length===9){
             first=snvalue.slice(0,4);
             second=snvalue.slice(4,9);
