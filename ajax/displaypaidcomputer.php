@@ -50,7 +50,7 @@
                                 </tr>";
                             }else{
                                 echo "
-                                <td>$row[6]</td>
+                                <td>$row[5]</td>
                                 <td>PAID</td>
                                 </tr>";
                             }
