@@ -65,8 +65,8 @@ color:#FFFFFF;
                     <form action="ajax/inputPaid.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
                         <div class="form-inline well">
                             <input type="hidden" name="type" value="Printing"></input>
-                            <label>Copies : </label>
-                           <input type="number" name="Copies" id="copiesPrinting" class="form-control col-sm-2"></input>
+                            <label><pre class="tab">Copies:</pre></label>
+                           <input type="number" min="1" name="Copies" id="copiesPrinting" class="form-control col-sm-2"></input>
                             <div class="input-group">
                                 <input type="text" name="studentNumber" id="printing" class="form-control sn" placeholder="Printing" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
                                 </input>
@@ -83,7 +83,7 @@ color:#FFFFFF;
                     <div class="form-inline well">
                         <input type="hidden" name="type" value="Scanning"></input>
                         <label><pre class="tab">Copies :</pre></label>
-                        <input type="number" name="Copies" id="copiesScanning" class="form-control col-sm-2"></input>
+                        <input type="number" min="1" name="Copies" id="copiesScanning" class="form-control col-sm-2"></input>
                         <div class="input-group">
                             <input type="text" name="studentNumber" id="scanning" class="form-control sn" placeholder="Scanning" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
                             </input>
@@ -220,13 +220,17 @@ color:#FFFFFF;
         setTimeout(function(){
             $('#tableHolder').load('ajax/displayPaid.php',function(){
                 $('#tableHolder').DataTable().destroy();
-                $('#tableHolder').DataTable();
+                $('#tableHolder').DataTable({
+                    "order": [[ 0, "desc" ]]
+                });
         });
         },500);
         setTimeout(function(){
             $('#tableHolder1').load('ajax/displaypaidcomputer.php',function(){
                 $('#tableHolder1').DataTable().destroy();
-                $('#tableHolder1').DataTable();
+                $('#tableHolder1').DataTable({
+                    "order": [[ 0, "desc" ]]
+                });
         });
         },500);
         
