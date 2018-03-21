@@ -2,7 +2,7 @@
 
 include 'conn.php';
 
-$sql="SELECT * FROM payment WHERE month(date)=month(CURRENT_TIMESTAMP) OR status='UNPAID'";
+$sql="SELECT * FROM payment WHERE month(date)=month(CURRENT_TIMESTAMP) OR status='UNPAID' ORDER BY date";
 $result=mysqli_query($connect,$sql);
 
 echo "<thead>

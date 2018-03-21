@@ -108,6 +108,9 @@ color:#FFFFFF;
                 <li class="nav-item">
                   <a class="nav-link" data-toggle="tab" href="#course" role="tab" aria-controls="settings">Course</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#college" role="tab" aria-controls="settings">College</a>
+                </li>
               </ul>
               
             <div class="tab-content">
@@ -117,7 +120,7 @@ color:#FFFFFF;
                         </table>
                     </div>
                 </div>
-                <div class="tab-pane active in" id="course" role="tabpanel">
+                <div class="tab-pane" id="course" role="tabpanel">
                     <div class="table-responsive col-lg-12"><br/>
                         <table class="table" id="tableCourse"> 
                         </table>
@@ -139,6 +142,12 @@ color:#FFFFFF;
                 <div class="tab-pane" id="settings" role="tabpanel">
                     <div class="table-responsive col-lg-12"><br/>
                         <table class="table" id="tablePerMonth"> 
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane" id="college" role="tabpanel">
+                    <div class="table-responsive col-lg-12"><br/>
+                        <table class="table" id="tablePerCollege"> 
                         </table>
                     </div>
                 </div>
@@ -217,6 +226,18 @@ color:#FFFFFF;
                 $('#tableCourse').DataTable();
                 $('#tableCourse').DataTable().destroy();
                 $('#tableCourse').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+                
+
+            });
+            $('#tablePerCollege').load("ajax/bycollege.php",data,function(){
+                $('#tablePerCollege').DataTable();
+                $('#tablePerCollege').DataTable().destroy();
+                $('#tablePerCollege').DataTable({
                     dom: 'Bfrtip',
                     buttons: [
                         'copy', 'csv', 'excel', 'pdf', 'print'
