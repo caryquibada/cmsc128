@@ -109,7 +109,10 @@ color:#FFFFFF;
                   <a class="nav-link" data-toggle="tab" href="#course" role="tab" aria-controls="settings">Course</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" href="#college" role="tab" aria-controls="settings">College</a>
+                  <a class="nav-link" data-toggle="tab" href="#paidservices" role="tab" aria-controls="settings">Paid Services</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#paidcomputer" role="tab" aria-controls="settings">Paid Computer Usage</a>
                 </li>
               </ul>
               
@@ -145,9 +148,15 @@ color:#FFFFFF;
                         </table>
                     </div>
                 </div>
-                <div class="tab-pane" id="college" role="tabpanel">
+                <div class="tab-pane" id="paidservices" role="tabpanel">
                     <div class="table-responsive col-lg-12"><br/>
-                        <table class="table" id="tablePerCollege"> 
+                        <table class="table" id="tablePaidServices"> 
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane" id="paidcomputer" role="tabpanel">
+                    <div class="table-responsive col-lg-12"><br/>
+                        <table class="table" id="tablePaidComputerUsage"> 
                         </table>
                     </div>
                 </div>
@@ -231,20 +240,26 @@ color:#FFFFFF;
                         'copy', 'csv', 'excel', 'pdf', 'print'
                     ]
                 });
-                
-
             });
-            $('#tablePerCollege').load("ajax/bycollege.php",data,function(){
-                $('#tablePerCollege').DataTable();
-                $('#tablePerCollege').DataTable().destroy();
-                $('#tablePerCollege').DataTable({
+            $('#tablePaidServices').load("ajax/paidservices.php",data,function(){
+                $('#tablePaidServices').DataTable();
+                $('#tablePaidServices').DataTable().destroy();
+                $('#tablePaidServices').DataTable({
                     dom: 'Bfrtip',
                     buttons: [
                         'copy', 'csv', 'excel', 'pdf', 'print'
                     ]
                 });
-                
-
+            });
+            $('#tablePaidComputerUsage').load("ajax/paidcomputerusage.php",data,function(){
+                $('#tablePaidComputerUsage').DataTable();
+                $('#tablePaidComputerUsage').DataTable().destroy();
+                $('#tablePaidComputerUsage').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
             });
         }
     
