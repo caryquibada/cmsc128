@@ -20,8 +20,9 @@
     <script src="js/vfs_fonts.js"></script>
     <script src="js/buttons.html5.min.js"></script>
     <script src="js/buttons.print.min.js"></script>
+  
     <style>
-        #wrapper ul {
+    #wrapper ul {
   text-align: center;
 }
 
@@ -29,8 +30,6 @@
   display: inline-block;
   float: none;
 }
-    </style>
-    <style>
     .nav-pills>li.nav-item>a.active, .nav-pills>li.nav-item>a.hover, .nav-pills>li.active>a:focus{
 background-color:#8E1538;
 color:#FFFFFF;
@@ -104,7 +103,7 @@ color:#FFFFFF;
                 <li class="nav-item">
                   <a class="nav-link" data-toggle="tab" href="#settings" role="tab" aria-controls="settings">Month</a>
                 </li>
-                <br>
+                <br/>
                 <li class="nav-item">
                   <a class="nav-link" data-toggle="tab" href="#course" role="tab" aria-controls="settings">Course</a>
                 </li>
@@ -116,6 +115,12 @@ color:#FFFFFF;
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" data-toggle="tab" href="#paidcomputer" role="tab" aria-controls="settings">Paid Computer Usage</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#peak" role="tab" aria-controls="settings">Peak Hours</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#lean" role="tab" aria-controls="settings">Lean Hours</a>
                 </li>
               </ul>
               
@@ -169,6 +174,18 @@ color:#FFFFFF;
                         </table>
                     </div>
                 </div>
+                <div class="tab-pane" id="peak" role="tabpanel">
+                    <div class="table-responsive col-lg-12"><br/>
+                        <table class="table" id="tablePeak"> 
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane" id="lean" role="tabpanel">
+                    <div class="table-responsive col-lg-12"><br/>
+                        <table class="table" id="tableLean"> 
+                        </table>
+                    </div>
+                </div>
             </div>
         
     </div>
@@ -199,6 +216,7 @@ color:#FFFFFF;
                 $('#tablePerHour').DataTable();
                 $('#tablePerHour').DataTable().destroy();
                 $('#tablePerHour').DataTable({
+                    "pageLength": 50,
                     dom: 'Bfrtip',
                     buttons: [
                         'copy', 'csv', 'excel', 'pdf', 'print'
@@ -210,6 +228,7 @@ color:#FFFFFF;
                 $('#tablePerDay').DataTable();
                 $('#tablePerDay').DataTable().destroy();
                 $('#tablePerDay').DataTable({
+                    "pageLength": 50,
                     dom: 'Bfrtip',
                     buttons: [
                         'copy', 'csv', 'excel', 'pdf', 'print'
@@ -221,6 +240,7 @@ color:#FFFFFF;
                 $('#tablePerWeek').DataTable();
                 $('#tablePerWeek').DataTable().destroy();
                 $('#tablePerWeek').DataTable({
+                    "pageLength": 50,
                     dom: 'Bfrtip',
                     buttons: [
                         'copy', 'csv', 'excel', 'pdf', 'print'
@@ -232,6 +252,7 @@ color:#FFFFFF;
                 $('#tablePerMonth').DataTable();
                 $('#tablePerMonth').DataTable().destroy();
                 $('#tablePerMonth').DataTable({
+                    "pageLength": 50,
                     dom: 'Bfrtip',
                     buttons: [
                         'copy', 'csv', 'excel', 'pdf', 'print'
@@ -244,6 +265,7 @@ color:#FFFFFF;
                 $('#tableCourse').DataTable();
                 $('#tableCourse').DataTable().destroy();
                 $('#tableCourse').DataTable({
+                    "pageLength": 50,
                     dom: 'Bfrtip',
                     buttons: [
                         'copy', 'csv', 'excel', 'pdf', 'print'
@@ -254,6 +276,7 @@ color:#FFFFFF;
                 $('#tablePaidServices').DataTable();
                 $('#tablePaidServices').DataTable().destroy();
                 $('#tablePaidServices').DataTable({
+                    "pageLength": 50,
                     dom: 'Bfrtip',
                     buttons: [
                         'copy', 'csv', 'excel', 'pdf', 'print'
@@ -264,6 +287,7 @@ color:#FFFFFF;
                 $('#tablePaidComputerUsage').DataTable();
                 $('#tablePaidComputerUsage').DataTable().destroy();
                 $('#tablePaidComputerUsage').DataTable({
+                    "pageLength": 50,
                     dom: 'Bfrtip',
                     buttons: [
                         'copy', 'csv', 'excel', 'pdf', 'print'
@@ -274,6 +298,29 @@ color:#FFFFFF;
                 $('#tablePerCollege').DataTable();
                 $('#tablePerCollege').DataTable().destroy();
                 $('#tablePerCollege').DataTable({
+                    "pageLength": 50,
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+            });
+            $('#tablePeak').load("ajax/peakhours.php",data,function(){
+                $('#tablePeak').DataTable();
+                $('#tablePeak').DataTable().destroy();
+                $('#tablePeak').DataTable({
+                    "pageLength": 50,
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+            });
+            $('#tableLean').load("ajax/leanhours.php",data,function(){
+                $('#tableLean').DataTable();
+                $('#tableLean').DataTable().destroy();
+                $('#tableLean').DataTable({
+                    "pageLength": 50,
                     dom: 'Bfrtip',
                     buttons: [
                         'copy', 'csv', 'excel', 'pdf', 'print'
