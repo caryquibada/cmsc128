@@ -28,7 +28,7 @@
                 $timeoutyear=mysqli_fetch_row(mysqli_query($connect,"SELECT YEAR(date_paid) from payment where transaction_number='$row[8]'"));
                 $timediff=mysqli_fetch_row(mysqli_query($connect,"SELECT TIMESTAMPDIFF(minute,'$row[6]','$row[7]')"));
                 if($timeoutyear[0]==0000){
-                    echo "<td><button class='btnSelect btn btn-group' id='$row[8]'>Time-out</button></td>
+                    echo "<td><button class='btnSelect btn btn-group btn-primary' id='$row[8]'>Time-out</button></td>
                         <td>UNPAID</td>
                         <td>NOT TIMED OUT</td>
                         <td>NOT TIMED OUT</td>
@@ -40,13 +40,13 @@
                     $time=$time+1;
                     $time=floatval($time*5.00);
                     mysqli_query($connect,"UPDATE payment SET amount_due=$time where transaction_number='$row[8]'");
-                    echo "<td>$row[7]</td>
+                    echo "<td>$time</td>
                             <td>$row[2]</td>";
 
                             if($row[4]=='UNPAID'){
                                 echo "
                                 <td><input type='text' class='$row[8]'></input></td>
-                                <td><button class='btn btn-group OR' name='$row[8]'>UNPAID</button></td>
+                                <td><button class='btn btn-group btn-primary OR' name='$row[8]'>UNPAID</button></td>
                                 </tr>";
                             }else{
                                 echo "

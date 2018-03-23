@@ -39,7 +39,7 @@ while($row=mysqli_fetch_row($result)){
         }
         
         if($row[4]=="UNPAID"){
-            echo "<td><button id='$row[8]' class='btnSelect btn btn-unique'>$row[4]</button></td>
+            echo "<td><button id='$row[8]' class='btnSelect btn btn-primary'>$row[4]</button></td>
                     <td>UNPAID</td>";
         }else{
             echo "<td>PAID</td>
