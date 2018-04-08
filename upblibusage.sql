@@ -2034,7 +2034,7 @@ CREATE TABLE `transaction` (
   `transaction_number` int(10) UNSIGNED ZEROFILL NOT NULL,
   `student_number` varchar(10) NOT NULL,
   `time_in` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `time_out` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `time_out` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `time_consumed` varchar(20) NOT NULL,
   `tag_no` varchar(2) NOT NULL,
   `type` varchar(50) NOT NULL

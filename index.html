@@ -16,12 +16,12 @@
     <script src="js/jquery.dataTables.min.js"></script>
 
     <style>
-    .nav-pills>li.nav-item>a.active, .nav-pills>li.nav-item>a.hover, .nav-pills>li.active>a:focus{
-background-color:#8E1538;
-color:#FFFFFF;
+    .nav-tabs>li.nav-item>a.active, .nav-tabs>li.nav-item>a.hover, .nav-pills>li.active>a:focus{
+        color:#8E1538;
 }
-.nav-pills>li.nav-item>a{
-    color:grey;
+.nav-tabs>li.nav-item>a{
+    background-color:white;
+    color:#4286f4;
 }
 .btn-danger,.btn-danger:active{
     background-color:#8E1538;
@@ -140,7 +140,7 @@ color:#FFFFFF;
     <br/>
         <br/>
  <!--table for time-in>-->
-            <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
+            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
                 <li class="nav-item">
                   <a class="nav-link" data-toggle="tab" href="#home" role="tab" aria-controls="home">Computer Usage</a>
                 </li>
@@ -156,26 +156,26 @@ color:#FFFFFF;
               </ul>
               
             <div class="tab-content">
-                <div class="tab-pane" id="home" role="tabpanel">
+                <div class="tab-pane fade" id="home" role="tabpanel">
                     <div class="table-responsive col-lg-12"><br/>
                         <table class="table" id="tableHolder1"> 
                         </table>
                     </div>
                 </div>
-                <div class="tab-pane active in" id="profile" role="tabpanel">
+                <div class="tab-pane fade active in" id="profile" role="tabpanel">
                     <div class="table-responsive col-lg-12"><br/>
                         <table class="table" id="tableHolder"> 
                         </table>
                     </div>
                 </div>
 
-                <div class="tab-pane" id="messages" role="tabpanel">
+                <div class="tab-pane fade" id="messages" role="tabpanel">
                     <div class="table-responsive col-lg-12"><br/>
                         <table class="table" id="tableHolder2"> 
                         </table>
                     </div>
                 </div>
-                <div class="tab-pane" id="settings" role="tabpanel">
+                <div class="tab-pane fade" id="settings" role="tabpanel">
                     <div class="table-responsive col-lg-12"><br/>
                         <table class="table" id="tableHolder3"> 
                         </table>
