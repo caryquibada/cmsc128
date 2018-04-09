@@ -8,10 +8,12 @@
     <link rel="stylesheet" type="text/css" href="css/jquery.dataTables_themeroller.css">
     <link rel="stylesheet" type="text/css" href="js/mdb.min.css">
     <link rel="stylesheet" href="sweetalert2.min.css">
-    <script src="js/mdb.min.js"></script>
+    <link rel="stylesheet" href="material/material.min.css">
+    <script src="sweetalert2.all.js"></script>
+    <script src="js/jquery.min.js"></script>
     <script defer src="js/fa.js"></script>
-
-    <script src="js/jquery-1.12.4.js"></script>
+    <script src="js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script src="js/jquery.dataTables.min.js"></script>
     <script src="js/dataTables.buttons.min.js"></script>
     <script src="js/buttons.flash.min.js"></script>
@@ -20,7 +22,6 @@
     <script src="js/vfs_fonts.js"></script>
     <script src="js/buttons.html5.min.js"></script>
     <script src="js/buttons.print.min.js"></script>
-  
     <style>
     #wrapper ul {
   text-align: center;
@@ -191,16 +192,35 @@ color:#FFFFFF;
     </div>
     </form>
     <button id="report" onclick="load()" class="btn btn-unique">GENERATE</button>
-    <div class="table-responsive col-lg-12">
-                <table class="table table-lg table-bordered table-hover " id="tableHolder" > 
-                </table>
-            </div>
+    
+    <button id="delete" class="btn btn-unique">DELETE 1 YEAR</button>
     </body>
 </html>
-<script src="sweetalert2.all.js"></script>
-<script src="js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-
+<script type="text/javascript">
+    $('#delete').on('click',function(){
+        swal({
+  title: 'Are you sure you want to delete entries in a years interval? Print entries before doing so.',
+  text: "You won't be able to revert this!",
+  type: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, DELETE!'
+}).then((result) => {
+  if (result.value) {
+    swal(
+      'Reset Complete',
+      'Reloading page, please wait',
+      'success'
+    )
+    $('#delete').load("ajax/deleteyear.php",function(){
+        location.reload();
+    });
+    }
+    })   
+    }); 
+ 
+</script>
 
 <script>
     function load(){
@@ -331,3 +351,4 @@ color:#FFFFFF;
     
 </script>
 
+    

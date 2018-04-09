@@ -58,100 +58,95 @@
     </div>
     </nav>
     <br/>
-   
-    <div class="col-sm-12">
-        <div class="row">
-                <div class="col-sm-6">
-                    <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
-                        <div class="form-inline well">
-                            <label>Tag  </label>
-                            <input type="hidden" name="type" value="Computer_Usage"></input>
+        <div class="offset-sm-4" id="computerinput" >
+            <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
+                <div class="form-inline well">
+                    <label>Tag  </label>
+                    <input type="hidden" name="type" value="Computer_Usage"></input>
                            
-                            <div id="tagsComputer"></div>
-                            <div class="input-group">
-                                <input type="text" name="studentNumber" id="charging2" class="form-control sn" placeholder="Computer Usage" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
-                                </input>
-                                <span class="input-group-btn">
-                                    <button class="btn btn-danger" type="submit">Go!</button>
-                                </span>
-                            </div>
-                            
+                    <div id="tagsComputer"></div>
+                        <div class="input-group-lg">
+                            <input type="text" name="studentNumber" id="charging2" class="form-control sn" placeholder="Computer Usage" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
+                            </input>
                         </div>
-                    </form>
+                            <span class="input-group-btn">
+                                <button class="btn btn-danger btn-lg" type="submit">Go!</button>
+                            </span>
+                    
+                            
                 </div>
-            <div class="col-sm-6">
+            </form>
+        </div>
+            <div class="offset-sm-4" id="ipadinput" hidden>
                 <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
                     <div class="form-inline well">
                         <label>Tag  </label>
                         <input type="hidden" name="type" value="iPad_Usage"></input>
                         <div id="inputsiPad"></div>
-                        <div class="input-group">
-                            <input type="text" name="studentNumber" id="charging1" class="form-control sn" placeholder="iPad_Usage" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
+                        <div class="input-group-lg">
+                            <input type="text" name="studentNumber" id="charging1" class="form-control sn" placeholder="iPad Usage" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
                             </input>
-                            <span class="input-group-btn">
-                                <button class="btn btn-danger" type="submit">Go!</button>
-                            </span>
                         </div>
+                            <span class="input-group-btn">
+                                <button class="btn btn-danger btn-lg" type="submit">Go!</button>
+                            </span>
+                        
                         
                     </div>
                 </form>
             </div>
 
-        </div>
-    </div>
-<div class="col-sm-12">
-        <div class="row">
-            <div class="col-sm-6">
+            <div class="offset-sm-4" id="charginginput" hidden>
                 <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
                     <div class="form-inline well">
                         <label>Tag  </label>
                         <input type="hidden" name="type" value="Power_Usage"></input>
                         <div id="inputsCharging"></div>
-                        <div class="input-group">
+                        <div class="input-group-lg">
                             <input type="text" name="studentNumber" id="charging3" class="form-control sn" placeholder="Charging" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
                             </input>
-                            <span class="input-group-btn">
-                                <button class="btn btn-danger" type="submit">Go!</button>
-                            </span>
                         </div>
+                            <span class="input-group-btn">
+                                <button class="btn btn-danger btn-lg" type="submit">Go!</button>
+                            </span>
+                        
                         
                     </div>
                 </form>
             </div>
-            <div class="col-sm-6">
+            <div class="offset-sm-4" id="eresourceinput" hidden>
                 <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
                     <div class="form-inline well">
                         <label>Tag  </label>
                         <input type="hidden" name="type" value="E-Resources"></input>
                         <div id="inputsEResources"></div>
-                        <div class="input-group">
+                        <div class="input-group-lg">
                             <input type="text" name="studentNumber" id="charging4" class="form-control sn" placeholder="E-Resources" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
                             </input>
-                            <span class="input-group-btn">
-                                <button class="btn btn-danger" type="submit">Go!</button>
-                            </span>
                         </div>
+                            <span class="input-group-btn">
+                                <button class="btn btn-danger btn-lg" type="submit">Go!</button>
+                            </span>
+                        
                         
                     </div>
                 </form>
             </div>
-        </div>
-    </div>
     <br/>
         <br/>
  <!--table for time-in>-->
             <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
                 <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" href="#home" role="tab" aria-controls="home">Computer Usage</a>
+                  <a class="nav-link" onclick="showComputer()" data-toggle="tab" href="#home" role="tab" aria-controls="home">Computer Usage</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Power Usage</a>
+                  <a class="nav-link" onclick="showCharging()" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Power Usage</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" href="#messages" role="tab" aria-controls="messages">iPad Usage</a>
+                  <a class="nav-link" onclick="showiPad()" data-toggle="tab" href="#messages" role="tab" aria-controls="messages">iPad Usage</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" href="#settings" role="tab" aria-controls="settings">E-Resources</a>
+                  <a class="nav-link" onclick="showeResource()" data-toggle="tab" href="#settings" role="tab" aria-controls="settings">E-Resources</a>
                 </li>
               </ul>
               
@@ -197,8 +192,33 @@
     $(function () {
       $('#myTab a:first').tab('show')
     })
-  </script>
-
+</script>
+<script>
+    function showComputer(){
+        document.getElementById('computerinput').hidden=false;
+        document.getElementById('ipadinput').hidden=true;
+        document.getElementById('charginginput').hidden=true;
+        document.getElementById('eresourceinput').hidden=true;
+    }
+    function showiPad(){
+        document.getElementById('computerinput').hidden=true;
+        document.getElementById('ipadinput').hidden=false;
+        document.getElementById('charginginput').hidden=true;
+        document.getElementById('eresourceinput').hidden=true;
+    }
+    function showCharging(){
+        document.getElementById('computerinput').hidden=true;
+        document.getElementById('ipadinput').hidden=true;
+        document.getElementById('charginginput').hidden=false;
+        document.getElementById('eresourceinput').hidden=true;
+    }
+    function showeResource(){
+        document.getElementById('computerinput').hidden=true;
+        document.getElementById('ipadinput').hidden=true;
+        document.getElementById('charginginput').hidden=true;
+        document.getElementById('eresourceinput').hidden=false;
+    }
+</script>
 <script type="text/javascript">
     $(document).ready(function(){
       load();
