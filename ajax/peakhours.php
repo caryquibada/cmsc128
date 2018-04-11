@@ -59,8 +59,9 @@ echo "<thead>
     </thead>
     <tbody>";
     $index=0;
+    
 while($index<sizeof($max[0])){
-    echo "<tr><td>".$max[0][$index]."</td>
+    echo "<tr><td>".$monthName = date('F', mktime(0, 0, 0, $max[0][$index], 10))."</td>
             <td>".$max[1][$index]."</td>
             <td>".$max[2][$index]."</td>
             <td>".$max[3][$index]."</td>

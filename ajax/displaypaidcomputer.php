@@ -24,7 +24,9 @@
                 $name=mysqli_fetch_row($nameresult);
             echo "<td>$name[0]</td>
                     <td>$row[0]</td>
-                    <td>$row[6]</td>";
+                    <td>";
+        echo date( "h:i:s A F d, Y", strtotime($row[6]));
+        echo "</td>";
                 $timeoutyear=mysqli_fetch_row(mysqli_query($connect,"SELECT YEAR(date_paid) from payment where transaction_number='$row[8]'"));
                 $timediff=mysqli_fetch_row(mysqli_query($connect,"SELECT TIMESTAMPDIFF(minute,'$row[6]','$row[7]')"));
                 if($timeoutyear[0]==0000){
@@ -41,7 +43,9 @@
                     $time=floatval($time*5.00);
                     mysqli_query($connect,"UPDATE payment SET amount_due=$time where transaction_number='$row[8]'");
                     echo "<td>$time</td>
-                            <td>$row[2]</td>";
+                    <td>";
+                    echo date( "h:i:s A F d, Y", strtotime($row[2]));
+                    echo "</td>";
 
                             if($row[4]=='UNPAID'){
                                 echo "

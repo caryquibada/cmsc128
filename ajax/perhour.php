@@ -20,7 +20,7 @@
 
     while($row=mysqli_fetch_row($result)){
     echo "<tr>
-            <td>$row[0]</td>
+            <td>".$monthName = date('F', mktime(0, 0, 0, $row[0], 10))."</td>
             <td>$row[1]</td>     
             <td>$row[2]</td>   
             <td>$row[3]</td> 

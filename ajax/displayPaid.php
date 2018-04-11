@@ -43,7 +43,9 @@ while($row=mysqli_fetch_row($result)){
                     <td>UNPAID</td>";
         }else{
             echo "<td>PAID</td>
-                    <td>$row[7]</td>";
+            <td>";
+            echo date( "h:i:s A F d, Y", strtotime($row[7]));
+            echo "</td>";
         }
             echo "</tr>";
 }

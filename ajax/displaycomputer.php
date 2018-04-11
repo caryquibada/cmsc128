@@ -35,7 +35,9 @@ while($row=mysqli_fetch_row($result)){
         }
         echo "</select></td></div><td>$name</td>
         <td>$row[1]</td>
-        <td>$row[2]</td>
+        <td>";
+        echo date( "h:i:s A F d, Y", strtotime($row[2]));
+        echo "</td>
         
         <td><button class="."'btnSelect btn btn-unique'"." id='".$row[6]." ".$row[0]."' name='".$row[1]."'>Time-out</button></td>
       </tr>";

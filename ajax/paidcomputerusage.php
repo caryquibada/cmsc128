@@ -32,8 +32,12 @@
                   <td>$row[2]</td>     
                   <td>$row[4]</td> 
                   <td>$row[5]</td>     
-                  <td>$row[6]</td> 
-                  <td>$row[7]</td> 
+                  <td>";
+        echo date( "h:i:s A F d, Y", strtotime($row[6]));
+        echo "</td>
+        <td>";
+        echo date( "h:i:s A F d, Y", strtotime($row[7]));
+        echo "</td>
                   </tr>";
                 }
                 echo "</tbody>";
