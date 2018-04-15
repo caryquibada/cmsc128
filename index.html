@@ -177,12 +177,8 @@
                     </div>
                 </div>
             </div>
-            <div class="">
-                <label class="custom-control custom-checkbox">
-                    <input type="checkbox" id="confirm" class="custom-control-input">
-                    <span class="custom-control-indicator"></span>
-                    <span class="custom-control-description">Confirm on timeouts</span>
-                  </label>
+            <div id="settingloader">
+                
             </div>
        
     </body>
@@ -224,7 +220,14 @@
       load();
     });
     function load(){
-
+        setTimeout(function(){
+            $('#settingloader').load('ajax/loadsetting.php',function(){
+        });
+        },500);
+        setTimeout(function(){
+            $('#tagsComputer').load('ajax/inputs.php',function(){
+        });
+        },500);
         setTimeout(function(){
             $('#tagsComputer').load('ajax/inputs.php',function(){
         });
@@ -325,7 +328,7 @@ $(document).ready(function(){
         });
         $("#tableHolder1").on('click','.btnSelect',function(){
              // get the current row
-            if(document.getElementById('confirm').checked){
+            if($('#confirm').val()==1){
                 var that=$(this);
                 var name=that.attr('name');
                 swal({
@@ -375,7 +378,7 @@ $(document).ready(function(){
 
         $("#tableHolder").on('click','.btnSelect',function(){
              // get the current row
-            if(document.getElementById('confirm').checked){
+            if($('#confirm').val()==1){
                 var that=$(this);
                 var name=that.attr('name');
                 swal({
@@ -427,7 +430,7 @@ $(document).ready(function(){
              // get the current row
             var that=$(this);
             var name=that.attr('name');
-            if(document.getElementById('confirm').checked){
+            if($('#confirm').val()==1){
                 swal({
                     title: 'Time out '+name+'?',
                     text: "You won't be able to revert this!",
@@ -476,7 +479,7 @@ $(document).ready(function(){
              // get the current row
             var that=$(this);
             var name=that.attr('name');
-            if(document.getElementById('confirm').checked){
+            if($('#confirm').val()==1){
                 swal({
                     title: 'Time out '+name+'?',
                     text: "You won't be able to revert this!",
