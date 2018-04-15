@@ -64,6 +64,9 @@ color:#FFFFFF;
             <li class="nav-item">
                 <a class="nav-link" href="paidusage.html" style="color:white;"> Paid Services <span class="sr-only">(current)</span></a>
             </li>
+			<li class="nav-item">
+                <a class="nav-link" href="outsiders.html" style="color:white;"> Visitor Services <span class="sr-only">(current)</span></a>
+            </li>		
             <li class="nav-item">
                 <a class="nav-link" href="SNumbers.php" style="color:white;"> Students <span class="sr-only">(current)</span></a>
             </li>

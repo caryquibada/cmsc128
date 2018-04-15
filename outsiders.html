@@ -50,7 +50,7 @@
             </li>
 			<li class="nav-item">
                 <a class="nav-link" href="outsiders.html" style="color:white;"> Visitor Services <span class="sr-only">(current)</span></a>
-            </li>		
+            </li>			
             <li class="nav-item">
                 <a class="nav-link" href="SNumbers.php" style="color:white;"> Students <span class="sr-only">(current)</span></a>
             </li>
@@ -64,9 +64,9 @@
         <div class="offset-sm-4" id="computerinput" >
             <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
                 <div class="form-inline well">
-                    <label><h4>Tag  :</h4></label>
+            <!--    <label><h4>Tag  :</h4></label>
                     <input type="hidden" name="type" value="Computer_Usage"></input>
-                           
+                     
                     <div id="tagsComputer"></div>
                         <div class="input-group-lg">
                             <input type="text" name="studentNumber" id="charging2" class="form-control sn" placeholder="Computer Usage" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
@@ -76,7 +76,55 @@
                                 <button class="btn btn-danger btn-lg" type="submit">Go!</button>
                             </span>
                     
-                            
+
+             -->               
+			 <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal">New visitor time-in</button>
+			 
+			 <div id="myModal" class="modal fade" role="dialog">
+			<div class="modal-dialog modal-lg">
+			<!-- Modal content-->
+					<div class="modal-content">
+					  <div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Input information</h4>
+					  </div>
+					  <div class="modal-body">
+					<!--	<label><h4>Tag  :</h4></label> -->
+                    <input type="hidden" name="type" value="Computer_Usage"></input>
+                     
+                    <div id="tagsComputer"></div>
+                    
+						<div class="input-group-lg">
+    <!--IEDIT TO    -->                             <input type="text" name="studentNumber" id="charging2" class="form-control sn" placeholder="Name" >
+                            </input>
+                        </div>
+						<div class="input-group-lg">
+    <!--IEDIT TO    -->                             <input type="text" name="studentNumber" id="charging2" class="form-control sn" placeholder="Occupation" >
+                            </input>
+                        </div>
+						<div class="input-group-lg">
+    <!--IEDIT TO    -->                             <input type="text" name="studentNumber" id="charging2" class="form-control sn" placeholder="Organization" >
+                            </input>
+                        </div>
+						<div class="input-group-lg">
+    <!--IEDIT TO    -->                             <input type="text" name="studentNumber" id="charging2" class="form-control sn" placeholder="Alumni?" >
+                            </input>
+                        </div>
+						
+						
+                            <span class="input-group-btn">
+                                <button class="btn btn-danger btn-lg" type="submit">Go!</button>
+                            </span>
+					  </div>
+					  <div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					  </div>
+					</div>
+
+				  </div>
+				</div>
+			 
+			 
                 </div>
             </form>
         </div>
@@ -91,7 +139,7 @@
                             </input>
                         </div>
                             <span class="input-group-btn">
-                                <button class="btn btn-danger btn-lg" type="submit">Go!</button>
+                                <button class="btn btn-danger btn-lg" type="submit">	</button>
                             </span>
                         
                         
@@ -180,8 +228,12 @@
                     </div>
                 </div>
             </div>
-            <div id="settingloader">
-                
+            <div class="">
+                <label class="custom-control custom-checkbox">
+                    <input type="checkbox" id="confirm" class="custom-control-input">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Confirm on timeouts</span>
+                  </label>
             </div>
        
     </body>
@@ -223,14 +275,7 @@
       load();
     });
     function load(){
-        setTimeout(function(){
-            $('#settingloader').load('ajax/loadsetting.php',function(){
-        });
-        },500);
-        setTimeout(function(){
-            $('#tagsComputer').load('ajax/inputs.php',function(){
-        });
-        },500);
+
         setTimeout(function(){
             $('#tagsComputer').load('ajax/inputs.php',function(){
         });
@@ -331,7 +376,7 @@ $(document).ready(function(){
         });
         $("#tableHolder1").on('click','.btnSelect',function(){
              // get the current row
-            if($('#confirm').val()==1){
+            if(document.getElementById('confirm').checked){
                 var that=$(this);
                 var name=that.attr('name');
                 swal({
@@ -381,7 +426,7 @@ $(document).ready(function(){
 
         $("#tableHolder").on('click','.btnSelect',function(){
              // get the current row
-            if($('#confirm').val()==1){
+            if(document.getElementById('confirm').checked){
                 var that=$(this);
                 var name=that.attr('name');
                 swal({
@@ -433,7 +478,7 @@ $(document).ready(function(){
              // get the current row
             var that=$(this);
             var name=that.attr('name');
-            if($('#confirm').val()==1){
+            if(document.getElementById('confirm').checked){
                 swal({
                     title: 'Time out '+name+'?',
                     text: "You won't be able to revert this!",
@@ -482,7 +527,7 @@ $(document).ready(function(){
              // get the current row
             var that=$(this);
             var name=that.attr('name');
-            if($('#confirm').val()==1){
+            if(document.getElementById('confirm').checked){
                 swal({
                     title: 'Time out '+name+'?',
                     text: "You won't be able to revert this!",
