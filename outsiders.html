@@ -16,12 +16,12 @@
     <script src="js/jquery.dataTables.min.js"></script>
 
     <style>
-    .nav-tabs>li.nav-item>a.active, .nav-tabs>li.nav-item>a.hover, .nav-pills>li.active>a:focus{
-        color:#8E1538;
+    .nav-pills>li.nav-item>a.active, .nav-pills>li.nav-item>a.hover, .nav-pills>li.active>a:focus{
+background-color:#8E1538;
+color:#FFFFFF;
 }
-.nav-tabs>li.nav-item>a{
-    background-color:white;
-    color:#4286f4;
+.nav-pills>li.nav-item>a{
+    color:grey;
 }
 .btn-danger,.btn-danger:active{
     background-color:#8E1538;
@@ -42,17 +42,17 @@
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#" style="color:#FFFFFF;"><img src="uplogo.png" width="60" height="60" alt="">  UPB Library</img></a>
+        <a class="navbar-brand" href="index.html" style="color:#FFFFFF;"><img src="uplogo.png" width="60" height="60" alt="">  UPB Library</img></a>
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="paidusage.html" style="color:white;"> Paid Services <span class="sr-only">(current)</span></a>
             </li>
 			<li class="nav-item">
                 <a class="nav-link" href="outsiders.html" style="color:white;"> Visitor Services <span class="sr-only">(current)</span></a>
-            </li>			
+            </li>				
             <li class="nav-item">
-                <a class="nav-link" href="SNumbers.php" style="color:white;"> Students <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="SNumbers.php" style="color:white;"> Students  <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                     <a class="nav-link" href="report.php" style="color:white;"> Report <span class="sr-only">(current)</span></a>
@@ -61,169 +61,100 @@
     </div>
     </nav>
     <br/>
-        <div class="offset-sm-4" id="computerinput" >
-            <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
-                <div class="form-inline well">
-            <!--    <label><h4>Tag  :</h4></label>
-                    <input type="hidden" name="type" value="Computer_Usage"></input>
-                     
-                    <div id="tagsComputer"></div>
-                        <div class="input-group-lg">
-                            <input type="text" name="studentNumber" id="charging2" class="form-control sn" placeholder="Computer Usage" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
-                            </input>
-                        </div>
-                            <span class="input-group-btn">
-                                <button class="btn btn-danger btn-lg" type="submit">Go!</button>
-                            </span>
-                    
+   
+    
+    <div class="col-sm-12">
+        <div class="row">
+            <div class="col-sm-12">
+                <form action="ajax/inputPaidVis.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
+                    <div class="form-inline well">
+                        <label><pre class="tab">Tag        :</pre></label>
+                        <select name="tag" class="custom-select">
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                            <option value="32">32</option>
+                            <option value="33">33</option>
+                            <option value="34">34</option>
+                            <option value="35">35</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
 
-             -->               
-			 <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal">New visitor time-in</button>
-			 
-			 <div id="myModal" class="modal fade" role="dialog">
-			<div class="modal-dialog modal-lg">
-			<!-- Modal content-->
-					<div class="modal-content">
-					  <div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">Input information</h4>
-					  </div>
-					  <div class="modal-body">
-					<!--	<label><h4>Tag  :</h4></label> -->
-                    <input type="hidden" name="type" value="Computer_Usage"></input>
-                     
-                    <div id="tagsComputer"></div>
-                    
-						<div class="input-group-lg">
-    <!--IEDIT TO    -->                             <input type="text" name="studentNumber" id="charging2" class="form-control sn" placeholder="Name" >
+                        </select>
+                        <input type="hidden" name="type" value="Computer_Usage"></input>
+                        <div class="input-group">
+                            <input type="text" name="visName" id="visname1" class="form-control sn" placeholder="Name" pattern="[A-Za-z\s]{2,}">
                             </input>
-                        </div>
-						<div class="input-group-lg">
-    <!--IEDIT TO    -->                             <input type="text" name="studentNumber" id="charging2" class="form-control sn" placeholder="Occupation" >
+							<input type="text" name="visOccu" id="visoccu1" class="form-control sn" placeholder="Occupation" pattern="[A-Za-z\s]{2,}">
                             </input>
-                        </div>
-						<div class="input-group-lg">
-    <!--IEDIT TO    -->                             <input type="text" name="studentNumber" id="charging2" class="form-control sn" placeholder="Organization" >
+							<input type="text" name="visOrg" id="visorg1" class="form-control sn" placeholder="Organization" pattern="[A-Za-z\s]{2,}">
                             </input>
-                        </div>
-						<div class="input-group-lg">
-    <!--IEDIT TO    -->                             <input type="text" name="studentNumber" id="charging2" class="form-control sn" placeholder="Alumni?" >
+							<input type="text" name="visAlum" id="visAlum1" class="form-control sn" placeholder="Alumni?" pattern="[A-Za-z\s]{2,3}">
                             </input>
-                        </div>
-						
-						
                             <span class="input-group-btn">
-                                <button class="btn btn-danger btn-lg" type="submit">Go!</button>
+                                <button class="btn btn-danger" type="submit">Go!</button>
                             </span>
-					  </div>
-					  <div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					  </div>
-					</div>
-
-				  </div>
-				</div>
-			 
-			 
-                </div>
-            </form>
+                        </div>
+                        
+                    </div>
+                </form>
+				
+            </div>
         </div>
-            <div class="offset-sm-4" id="ipadinput" hidden>
-                <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
-                    <div class="form-inline well">
-                        <label><h4>Tag  :</h4></label>
-                        <input type="hidden" name="type" value="iPad_Usage"></input>
-                        <div id="inputsiPad"></div>
-                        <div class="input-group-lg">
-                            <input type="text" name="studentNumber" id="charging1" class="form-control sn" placeholder="iPad Usage" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
-                            </input>
-                        </div>
-                            <span class="input-group-btn">
-                                <button class="btn btn-danger btn-lg" type="submit">	</button>
-                            </span>
-                        
-                        
-                    </div>
-                </form>
-            </div>
+    </div>
 
-            <div class="offset-sm-4" id="charginginput" hidden>
-                <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
-                    <div class="form-inline well">
-                        <label><h4>Tag  :</h4></label>
-                        <input type="hidden" name="type" value="Power_Usage"></input>
-                        <div id="inputsCharging"></div>
-                        <div class="input-group-lg">
-                            <input type="text" name="studentNumber" id="charging3" class="form-control sn" placeholder="Charging" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
-                            </input>
-                        </div>
-                            <span class="input-group-btn">
-                                <button class="btn btn-danger btn-lg" type="submit">Go!</button>
-                            </span>
-                        
-                        
-                    </div>
-                </form>
-            </div>
-            <div class="offset-sm-4" id="eresourceinput" hidden>
-                <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
-                    <div class="form-inline well">
-                        <label><h4>Tag  :</h4></label>
-                        <input type="hidden" name="type" value="E-Resources"></input>
-                        <div id="inputsEResources"></div>
-                        <div class="input-group-lg">
-                            <input type="text" name="studentNumber" id="charging4" class="form-control sn" placeholder="E-Resources" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
-                            </input>
-                        </div>
-                            <span class="input-group-btn">
-                                <button class="btn btn-danger btn-lg" type="submit">Go!</button>
-                            </span>
-                        
-                        
-                    </div>
-                </form>
-            </div>
     <br/>
         <br/>
  <!--table for time-in>-->
-            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+            <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
+               
                 <li class="nav-item">
-                  <a class="nav-link" onclick="showComputer()" data-toggle="tab" href="#home" role="tab" aria-controls="home">Computer Usage</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" onclick="showCharging()" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Power Usage</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" onclick="showiPad()" data-toggle="tab" href="#messages" role="tab" aria-controls="messages">iPad Usage</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" onclick="showeResource()" data-toggle="tab" href="#settings" role="tab" aria-controls="settings">E-Resources</a>
+                  <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Computer</a>
                 </li>
               </ul>
               
             <div class="tab-content">
-                <div class="tab-pane fade" id="home" role="tabpanel">
-                    <div class="table-responsive col-lg-12"><br/>
-                        <table class="table" id="tableHolder1"> 
-                        </table>
-                    </div>
-                </div>
-                <div class="tab-pane fade active in" id="profile" role="tabpanel">
+
+                <div class="tab-pane active in" id="home" role="tabpanel">
                     <div class="table-responsive col-lg-12"><br/>
                         <table class="table" id="tableHolder"> 
                         </table>
                     </div>
                 </div>
-
-                <div class="tab-pane fade" id="messages" role="tabpanel">
+                <div class="tab-pane" id="profile" role="tabpanel">
                     <div class="table-responsive col-lg-12"><br/>
-                        <table class="table" id="tableHolder2"> 
-                        </table>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="settings" role="tabpanel">
-                    <div class="table-responsive col-lg-12"><br/>
-                        <table class="table" id="tableHolder3"> 
+                        <table class="table" id="tableHolder1"> 
                         </table>
                     </div>
                 </div>
@@ -243,81 +174,29 @@
     $(function () {
       $('#myTab a:first').tab('show')
     })
-</script>
-<script>
-    function showComputer(){
-        document.getElementById('computerinput').hidden=false;
-        document.getElementById('ipadinput').hidden=true;
-        document.getElementById('charginginput').hidden=true;
-        document.getElementById('eresourceinput').hidden=true;
-    }
-    function showiPad(){
-        document.getElementById('computerinput').hidden=true;
-        document.getElementById('ipadinput').hidden=false;
-        document.getElementById('charginginput').hidden=true;
-        document.getElementById('eresourceinput').hidden=true;
-    }
-    function showCharging(){
-        document.getElementById('computerinput').hidden=true;
-        document.getElementById('ipadinput').hidden=true;
-        document.getElementById('charginginput').hidden=false;
-        document.getElementById('eresourceinput').hidden=true;
-    }
-    function showeResource(){
-        document.getElementById('computerinput').hidden=true;
-        document.getElementById('ipadinput').hidden=true;
-        document.getElementById('charginginput').hidden=true;
-        document.getElementById('eresourceinput').hidden=false;
-    }
-</script>
+  </script>
+
 <script type="text/javascript">
     $(document).ready(function(){
       load();
     });
     function load(){
 
-        setTimeout(function(){
-            $('#tagsComputer').load('ajax/inputs.php',function(){
-        });
-        },500);
-        setTimeout(function(){
-            $('#inputsCharging').load('ajax/inputsCharging.php',function(){
-        });
-        },500);
-        setTimeout(function(){
-            $('#inputsEResources').load('ajax/inputsEresource.php',function(){
-        });
-        },500);
-        setTimeout(function(){
-            $('#inputsiPad').load('ajax/inputsiPad.php',function(){
-        });
-        },500);
 
         setTimeout(function(){
-            $('#tableHolder').load('ajax/display.php',function(){
+            $('#tableHolder').load('ajax/displayPaid.php',function(){
                 $('#tableHolder').DataTable().destroy();
-                $('#tableHolder').DataTable();
+                $('#tableHolder').DataTable({
+                    "order": [[ 0, "desc" ]]
+                });
         });
         },500);
         setTimeout(function(){
-            $('#tableHolder1').load('ajax/displaycomputer.php',function(){
-                $('#tableHolder1').DataTable();
+            $('#tableHolder1').load('ajax/displaypaidcomputer.php',function(){
                 $('#tableHolder1').DataTable().destroy();
-                $('#tableHolder1').DataTable();
-        });
-        },500);
-        setTimeout(function(){
-            $('#tableHolder2').load('ajax/displayipadusage.php',function(){
-                $('#tableHolder2').DataTable();
-                $('#tableHolder2').DataTable().destroy();
-                $('#tableHolder2').DataTable();
-        });
-        },500);
-        setTimeout(function(){
-            $('#tableHolder3').load('ajax/displayeresources.php',function(){
-                $('#tableHolder3').DataTable();
-                $('#tableHolder3').DataTable().destroy();
-                $('#tableHolder3').DataTable();
+                $('#tableHolder1').DataTable({
+                    "order": [[ 3, "desc" ]]
+                });
         });
         },500);
         
@@ -331,7 +210,7 @@ function Alert() {
         
         swal({
             position: 'top-end',
-            title: 'Timing in',
+            title: 'Processing',
             showConfirmButton: false,
             timer: 500,
             onOpen: function onOpen() {
@@ -345,7 +224,7 @@ function Alert() {
     function Alert1() {
         swal({
             position: 'top-end',
-            title: 'Timing out',
+            title: 'Processing',
             text: 'Please Wait',
             timer: 500,
             onOpen: function onOpen() {
@@ -359,50 +238,38 @@ function Alert() {
     </script>
 <script>
 $(document).ready(function(){
-        $("#tableHolder1").on('change','.custom-select',function(){
-            var that=$(this);
-            var data=that.attr('name');
-            var tag=that.val();
-             $.ajax({
-                url:'ajax/updatetag.php',
-                method:'POST',
-                data:{'tranNum':data, 'tag':tag},
-                success: function(response){
-                    $("#result").html(response);
-                    
-                }
-             });
-             load();
-        });
-        $("#tableHolder1").on('click','.btnSelect',function(){
-             // get the current row
-            if(document.getElementById('confirm').checked){
+       
+        $("#tableHolder").on('click','.btnSelect',function(){
                 var that=$(this);
-                var name=that.attr('name');
+                var tn=that.attr('id');
+                var id="#"+tn;
+                var orNumber=$("tbody").find(id).val();
+            if(document.getElementById('confirm').checked){
+
                 swal({
-                    title: 'Time out '+name+'?',
+                    title: 'Complete Payment?',
                     text: "You won't be able to revert this!",
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, timeout!'
+                    confirmButtonText: 'Yes!'
                 }).then((result) => {
                     if (result.value) {
                         var that=$(this);
                         var data=that.attr('id');
                         $.ajax({
-                            url:'ajax/timeout.php',
+                            url:'ajax/pay.php',
                             method:'POST',
-                            data:{tranNum:data},
+                            data:{tranNum:tn , orNumber:orNumber},
                             success: function(response){
                                 $("#result").html(response);
                             }
                         });
                         Alert1();
                         swal(
-                            'Timed out!',
-                            'User has been timed out',
+                            'Process finished',
+                            'Transaction Complete.',
                             'success'
                         )
                         load();
@@ -413,9 +280,9 @@ $(document).ready(function(){
                 var data=that.attr('id');
                 Alert1();
                 $.ajax({
-                    url:'ajax/timeout.php',
+                    url:'ajax/pay.php',
                     method:'POST',
-                    data:{tranNum:data},
+                    data:{tranNum:tn , orNumber:orNumber},
                     success: function(response){
                         $("#result").html(response);
                     }
@@ -423,12 +290,13 @@ $(document).ready(function(){
                 load();
             }
         });
-
-        $("#tableHolder").on('click','.btnSelect',function(){
-             // get the current row
-            if(document.getElementById('confirm').checked){
+        $("#tableHolder1").on('click','.btnSelect',function(){
                 var that=$(this);
-                var name=that.attr('name');
+                var tn=that.attr('id');
+                var id="#"+tn;
+                var orNumber=$("tbody").find(id).val();
+            if(document.getElementById('confirm').checked){
+
                 swal({
                     title: 'Time out '+name+'?',
                     text: "You won't be able to revert this!",
@@ -442,9 +310,9 @@ $(document).ready(function(){
                         var that=$(this);
                         var data=that.attr('id');
                         $.ajax({
-                            url:'ajax/timeout.php',
+                            url:'ajax/timeoutpaidcomputer.php',
                             method:'POST',
-                            data:{tranNum:data},
+                            data:{tranNum:tn},
                             success: function(response){
                                 $("#result").html(response);
                             }
@@ -463,9 +331,9 @@ $(document).ready(function(){
                 var data=that.attr('id');
                 Alert1();
                 $.ajax({
-                    url:'ajax/timeout.php',
+                    url:'ajax/timeoutpaidcomputer.php',
                     method:'POST',
-                    data:{tranNum:data},
+                    data:{tranNum:tn},
                     success: function(response){
                         $("#result").html(response);
                     }
@@ -473,36 +341,37 @@ $(document).ready(function(){
                 load();
             }
         });
-
-        $("#tableHolder2").on('click','.btnSelect',function(){
-             // get the current row
-            var that=$(this);
-            var name=that.attr('name');
+        $("#tableHolder1").on('click','.OR',function(){
+                var that=$(this);
+                var tn=that.attr('name');
+                var classwhere='.'+tn;
+                var or=$('tr').find(classwhere).val();
             if(document.getElementById('confirm').checked){
+
                 swal({
-                    title: 'Time out '+name+'?',
+                    title: 'Complete Payment?',
                     text: "You won't be able to revert this!",
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, timeout!'
+                    confirmButtonText: 'Yes!'
                 }).then((result) => {
                     if (result.value) {
                         var that=$(this);
                         var data=that.attr('id');
                         $.ajax({
-                            url:'ajax/timeout.php',
+                            url:'ajax/paycomputer.php',
                             method:'POST',
-                            data:{tranNum:data},
+                            data:{tranNum:tn , orNumber:or},
                             success: function(response){
                                 $("#result").html(response);
                             }
                         });
                         Alert1();
                         swal(
-                            'Timed out!',
-                            'User has been timed out',
+                            'Transaction Complete',
+                            'Payment Complete',
                             'success'
                         )
                         load();
@@ -513,9 +382,9 @@ $(document).ready(function(){
                 var data=that.attr('id');
                 Alert1();
                 $.ajax({
-                    url:'ajax/timeout.php',
+                    url:'ajax/paycomputer.php',
                     method:'POST',
-                    data:{tranNum:data},
+                    data:{tranNum:tn , orNumber:or},
                     success: function(response){
                         $("#result").html(response);
                     }
@@ -523,65 +392,14 @@ $(document).ready(function(){
                 load();
             }
         });
-        $("#tableHolder3").on('click','.btnSelect',function(){
-             // get the current row
-            var that=$(this);
-            var name=that.attr('name');
-            if(document.getElementById('confirm').checked){
-                swal({
-                    title: 'Time out '+name+'?',
-                    text: "You won't be able to revert this!",
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, timeout!'
-                }).then((result) => {
-                    if (result.value) {
-                        var that=$(this);
-                        var data=that.attr('id');
-                        $.ajax({
-                            url:'ajax/timeout.php',
-                            method:'POST',
-                            data:{tranNum:data},
-                            success: function(response){
-                                $("#result").html(response);
-                            }
-                        });
+});
 
-                        Alert1();
-
-                        swal(
-                            'Timed out!',
-                            'User has been timed out.',
-                            'success'
-                        )
-                        load();
-                    }
-                })
-            }else{
-                var that=$(this);
-                var data=that.attr('id');
-                Alert1();
-                $.ajax({
-                    url:'ajax/timeout.php',
-                    method:'POST',
-                    data:{tranNum:data},
-                    success: function(response){
-                        $("#result").html(response);
-                    }
-                });
-                load();
-            }
-        });
-        
-    });//ID 1
 </script>
 
     <script>
 
     $("form.ajax1").on("submit",function(){
-        var snvalue=$("#charging1").val()+$("#charging2").val()+$("#charging3").val()+$("#charging4").val();
+    var snvalue=$("#scanning").val()+$("#printing").val()+$("#computer").val();
         if(snvalue.length===9){
             first=snvalue.slice(0,4);
             second=snvalue.slice(4,9);
