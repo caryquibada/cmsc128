@@ -115,16 +115,26 @@ color:#FFFFFF;
                             <option value="40">40</option>
 
                         </select>
-                        <input type="hidden" name="type" value="Computer_Usage"></input>
+                        
+                        <select name="type" class="custom-select">
+                                <option value="Computer_Usage">Computer Usage</option>
+                                <option value="ipad">iPad Usage</option>
+                                <option value="charging">Charging</option>
+                        </select>
+                        
                         <div class="input-group">
-                            <input type="text" name="visName" id="visname1" class="form-control sn" placeholder="Name" pattern="[A-Za-z\s]{2,}">
+                            <input type="text"   name="visName" id="visname1" class="form-control sn" placeholder="Name" pattern="[A-Za-z\s]{2,}">
                             </input>
-							<input type="text" name="visOccu" id="visoccu1" class="form-control sn" placeholder="Occupation" pattern="[A-Za-z\s]{2,}">
+							<input type="text"  name="visOccu" id="visoccu1" class="form-control sn" placeholder="Occupation" pattern="[A-Za-z\s]{2,}">
                             </input>
-							<input type="text" name="visOrg" id="visorg1" class="form-control sn" placeholder="Organization" pattern="[A-Za-z\s]{2,}">
+							<input type="text"  name="visOrg" id="visorg1" class="form-control sn" placeholder="Organization" pattern="[A-Za-z\s]{2,}">
                             </input>
-							<input type="text" name="visAlum" id="visAlum1" class="form-control sn" placeholder="Alumni?" pattern="[A-Za-z\s]{2,3}">
-                            </input>
+                            <label><pre class="tab">Alumni:</pre></label>
+                            <select name="visAlum" class="custom-select">
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                         
+                            </select>
                             <span class="input-group-btn">
                                 <button class="btn btn-danger" type="submit">Go!</button>
                             </span>
@@ -195,7 +205,7 @@ color:#FFFFFF;
         });
         },500);
         setTimeout(function(){
-            $('#tableHolder1').load('ajax/displaypaidcomputer.php',function(){
+            $('#tableHolder1').load('ajax/displaypaidcomputerVis.php',function(){
                 $('#tableHolder1').DataTable().destroy();
                 $('#tableHolder1').DataTable({
                     "order": [[ 3, "desc" ]]
@@ -313,7 +323,7 @@ $(document).ready(function(){
                         var that=$(this);
                         var data=that.attr('id');
                         $.ajax({
-                            url:'ajax/timeoutpaidcomputer.php',
+                            url:'ajax/timeoutpaidcomputerVis.php',
                             method:'POST',
                             data:{tranNum:tn},
                             success: function(response){
@@ -334,7 +344,7 @@ $(document).ready(function(){
                 var data=that.attr('id');
                 Alert1();
                 $.ajax({
-                    url:'ajax/timeoutpaidcomputer.php',
+                    url:'ajax/timeoutpaidcomputerVis.php',
                     method:'POST',
                     data:{tranNum:tn},
                     success: function(response){
@@ -364,7 +374,7 @@ $(document).ready(function(){
                         var that=$(this);
                         var data=that.attr('id');
                         $.ajax({
-                            url:'ajax/paycomputer.php',
+                            url:'ajax/paycomputerVis.php',
                             method:'POST',
                             data:{tranNum:tn , orNumber:or},
                             success: function(response){
@@ -385,7 +395,7 @@ $(document).ready(function(){
                 var data=that.attr('id');
                 Alert1();
                 $.ajax({
-                    url:'ajax/paycomputer.php',
+                    url:'ajax/paycomputerVis.php',
                     method:'POST',
                     data:{tranNum:tn , orNumber:or},
                     success: function(response){
@@ -402,12 +412,8 @@ $(document).ready(function(){
     <script>
 
     $("form.ajax1").on("submit",function(){
-    var snvalue=$("#scanning").val()+$("#printing").val()+$("#computer").val();
-        if(snvalue.length===9){
-            first=snvalue.slice(0,4);
-            second=snvalue.slice(4,9);
-            $(".sn").val(first+"-"+second);
-        }
+ //   var snvalue=$("#scanning").val()+$("#printing").val()+$("#computer").val();
+       
     var that= $(this),
         url=that.attr('action'),
         type=that.attr('method'),
@@ -417,7 +423,7 @@ $(document).ready(function(){
         var that=$(this),
             name=that.attr('name'),
             value=that.val();
-            data[name]=value;
+            data[name]=value; //name org occu alum
     });
             
             
