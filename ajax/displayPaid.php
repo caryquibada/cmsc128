@@ -2,7 +2,7 @@
 
 include 'conn.php';
 
-$sql="SELECT * FROM payment WHERE month(date)=month(CURRENT_TIMESTAMP) OR status='UNPAID' ORDER BY date";
+$sql="SELECT * FROM payment WHERE status='UNPAID' AND (type='Printing' OR type='Scanning') ORDER BY date";
 $result=mysqli_query($connect,$sql);
 
 echo "<thead>
@@ -33,7 +33,7 @@ while($row=mysqli_fetch_row($result)){
             <td>$row[2]</td>
             <td>$row[3]</td>";
         if($row[5]==""){
-            echo "<td><input type='text' id='$row[8]' class='form-group'></input></td>";
+            echo "<td><input type='text' id='$row[8]' class='form-group' pattern='([1-9])+'></input></td>";
         }else{
             echo "<td>$row[5]</td>";
         }

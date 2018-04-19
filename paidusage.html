@@ -199,12 +199,8 @@
                     </div>
                 </div>
             </div>
-            <div class="">
-                <label class="custom-control custom-checkbox">
-                    <input type="checkbox" id="confirm" class="custom-control-input">
-                    <span class="custom-control-indicator"></span>
-                    <span class="custom-control-description">Confirm on timeouts</span>
-                  </label>
+            <div id="settingloader">
+                
             </div>
        
     </body>
@@ -222,6 +218,10 @@
     });
     function load(){
 
+        setTimeout(function(){
+            $('#settingloader').load('ajax/loadsetting.php',function(){
+        });
+        },500);
 
         setTimeout(function(){
             $('#tableHolder').load('ajax/displayPaid.php',function(){
@@ -284,7 +284,7 @@ $(document).ready(function(){
                 var tn=that.attr('id');
                 var id="#"+tn;
                 var orNumber=$("tbody").find(id).val();
-            if(document.getElementById('confirm').checked){
+            if($('#confirm').val()==1){
 
                 swal({
                     title: 'Complete Payment?',
@@ -335,7 +335,7 @@ $(document).ready(function(){
                 var tn=that.attr('id');
                 var id="#"+tn;
                 var orNumber=$("tbody").find(id).val();
-            if(document.getElementById('confirm').checked){
+            if($('#confirm').val()==1){
 
                 swal({
                     title: 'Time out '+name+'?',
@@ -386,7 +386,7 @@ $(document).ready(function(){
                 var tn=that.attr('name');
                 var classwhere='.'+tn;
                 var or=$('tr').find(classwhere).val();
-            if(document.getElementById('confirm').checked){
+            if($('#confirm').val()==1){
 
                 swal({
                     title: 'Complete Payment?',

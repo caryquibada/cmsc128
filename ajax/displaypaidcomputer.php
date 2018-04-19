@@ -1,6 +1,6 @@
 <?php
     include 'conn.php';
-    $query="SELECT * FROM payment where type='Computer_Usage'";
+    $query="SELECT * FROM payment where type='Computer_Usage' AND status='UNPAID'";
     $result=mysqli_query($connect,$query);
 
     echo "<thead>
