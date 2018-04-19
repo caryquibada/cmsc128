@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2018 at 12:16 PM
+-- Generation Time: Apr 19, 2018 at 03:14 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.5.38
 
@@ -37,8 +37,18 @@ CREATE TABLE `vistransaction` (
   `visOccu` varchar(100) NOT NULL,
   `visOrg` varchar(100) NOT NULL,
   `visAlum` varchar(10) NOT NULL,
-  `status` varchar(10) NOT NULL DEFAULT 'UNPAID'
+  `status` varchar(10) NOT NULL DEFAULT 'UNPAID',
+  `or_number` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `vistransaction`
+--
+
+INSERT INTO `vistransaction` (`transaction_number`, `tag_no`, `time_consumed`, `time_out`, `time_in`, `type`, `visName`, `visOccu`, `visOrg`, `visAlum`, `status`, `or_number`) VALUES
+(24, '05', '', '2018-04-19 20:49:07', '2018-04-19 19:32:17', 'Computer_Usage', 'numb', 'numbb', 'numbbb', 'yes', 'PAID', '123'),
+(25, '01', '', '2018-04-19 20:48:54', '2018-04-19 20:43:05', 'Computer_Usage', 'Charles', 'Occu', 'Shit', 'yes', 'PAID', '123'),
+(26, '01', '', '2018-04-19 20:52:31', '2018-04-19 20:52:27', 'Computer_Usage', 'Charles', 'Nikkon', 'Acoba', 'yes', 'PAID', '123123');
 
 --
 -- Indexes for dumped tables
@@ -58,7 +68,7 @@ ALTER TABLE `vistransaction`
 -- AUTO_INCREMENT for table `vistransaction`
 --
 ALTER TABLE `vistransaction`
-  MODIFY `transaction_number` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `transaction_number` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
