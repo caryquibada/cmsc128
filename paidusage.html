@@ -16,26 +16,26 @@
     <script src="js/jquery.dataTables.min.js"></script>
 
     <style>
-    .nav-pills>li.nav-item>a.active, .nav-pills>li.nav-item>a.hover, .nav-pills>li.active>a:focus{
-background-color:#8E1538;
-color:#FFFFFF;
-}
-.nav-pills>li.nav-item>a{
-    color:grey;
-}
-.btn-danger,.btn-danger:active{
-    background-color:#8E1538;
-    outline:#8E1538;
-}
-.btn-danger:hover{
-    background-color:white;
-    color:grey;
-}
-.btn{
-    border: 0;
-}
-
-    </style>
+        .nav-tabs>li.nav-item>a.active, .nav-tabs>li.nav-item>a.hover, .nav-pills>li.active>a:focus{
+            color:#8E1538;
+    }
+    .nav-tabs>li.nav-item>a{
+        background-color:white;
+        color:black;
+    }
+    .btn-danger,.btn-danger:active{
+        background-color:#8E1538;
+        outline:#8E1538;
+    }
+    .btn-danger:hover{
+        background-color:white;
+        color:grey;
+    }
+    .btn{
+        border: 0;
+    }
+    
+        </style>
     </head>
     <body>
     <nav class="navbar navbar-toggleable-md navbar-light" style="background-color: #8E1538;">
@@ -58,6 +58,9 @@ color:#FFFFFF;
                     <a class="nav-link" href="report.php" style="color:white;"> Report <span class="sr-only">(current)</span></a>
                 </li>
         </ul>
+        <div style="color:white">
+            <a style="color:white" href="settings.php"><i class="fas fa-cog fa-2x"></i></a>
+        </div>
     </div>
     </nav>
     <br/>
@@ -69,7 +72,7 @@ color:#FFFFFF;
                         <div class="form-inline well">
                             <input type="hidden" name="type" value="Printing"></input>
                             <label><pre class="tab">Copies:</pre></label>
-                           <input type="number" min="1" name="Copies" id="copiesPrinting" class="form-control col-sm-2"></input>
+                           <input type="number" min="1" value="1" name="Copies" id="copiesPrinting" class="form-control col-sm-2"></input>
                             <div class="input-group">
                                 <input type="text" name="studentNumber" id="printing" class="form-control sn" placeholder="Printing" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
                                 </input>
@@ -86,7 +89,7 @@ color:#FFFFFF;
                     <div class="form-inline well">
                         <input type="hidden" name="type" value="Scanning"></input>
                         <label><pre class="tab">Copies :</pre></label>
-                        <input type="number" min="1" name="Copies" id="copiesScanning" class="form-control col-sm-2"></input>
+                        <input type="number" min="1" value="1" name="Copies" id="copiesScanning" class="form-control col-sm-2"></input>
                         <div class="input-group">
                             <input type="text" name="studentNumber" id="scanning" class="form-control sn" placeholder="Scanning" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
                             </input>
@@ -172,7 +175,7 @@ color:#FFFFFF;
     <br/>
         <br/>
  <!--table for time-in>-->
-            <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
+            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
                 <li class="nav-item">
                   <a class="nav-link" data-toggle="tab" href="#home" role="tab" aria-controls="home">Printing/Scanning</a>
                 </li>

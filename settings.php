@@ -49,20 +49,29 @@ color:#FFFFFF;
                 <a class="nav-link" href="paidusage.html" style="color:white;"> Paid Services <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="outsiders.html" style="color:white;"> Visitor Services <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="SNumbers.php" style="color:white;"> Students <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                     <a class="nav-link" href="report.php" style="color:white;"> Report <span class="sr-only">(current)</span></a>
                 </li>
         </ul>
+        <div style="color:white">
+            <a style="color:white" href="settings.php"><i class="fas fa-cog fa-2x"></i></a>
+        </div>
     </div>
     </nav>
     <br/>
     <form class="ajax1" action="ajax/changesettings.php" method="POST">
-        <div id="items">
+        <div class="container">
+            <div id="items">
     
+            </div>
+            
+            <input type="submit" class="btn btn-danger" value="Apply Changes" onclick="success();"></input>
         </div>
-    <input type="submit" value="Apply Changes"></input>
     </form>
     </body>
 </html>
@@ -75,8 +84,8 @@ $(document).ready(function(){
              
         });
     });
-
-    
+    $('#confirmTimeouts').prop('indeterminate', true)
+    $('#chargeComputer').prop('indeterminate', true)
     
 
     
@@ -107,4 +116,14 @@ $(document).ready(function(){
         return false;
     });
 });
+</script>
+<script>
+    function success(){
+        swal({
+  type: 'success',
+  title: 'Your settings have been saved',
+  showConfirmButton: false,
+  timer: 1000
+})
+    }
 </script>

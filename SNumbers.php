@@ -36,6 +36,9 @@
                 <a class="nav-link" href="report.php" style="color:white;"> Report <span class="sr-only">(current)</span></a>
             </li>
         </ul>
+        <div style="color:white">
+            <a style="color:white" href="settings.php"><i class="fas fa-cog fa-2x"></i></a>
+        </div>
     </div>
     </nav>
     <br/><br/>
