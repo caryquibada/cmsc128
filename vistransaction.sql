@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2018 at 07:35 PM
+-- Generation Time: Apr 19, 2018 at 12:16 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.5.38
 
@@ -32,6 +32,7 @@ CREATE TABLE `vistransaction` (
   `time_consumed` varchar(20) NOT NULL,
   `time_out` datetime NOT NULL,
   `time_in` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `type` varchar(20) NOT NULL,
   `visName` varchar(100) NOT NULL,
   `visOccu` varchar(100) NOT NULL,
   `visOrg` varchar(100) NOT NULL,
@@ -49,6 +50,15 @@ CREATE TABLE `vistransaction` (
 ALTER TABLE `vistransaction`
   ADD PRIMARY KEY (`transaction_number`);
 
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `vistransaction`
+--
+ALTER TABLE `vistransaction`
+  MODIFY `transaction_number` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
