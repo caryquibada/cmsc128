@@ -1,11 +1,12 @@
 <?php
     include 'conn.php';
-    $query="SELECT * FROM vistransaction where type='Computer_Usage'";
+    $query="SELECT * FROM vistransaction ";
     $result=mysqli_query($connect,$query);
 
     echo "<thead>
 <tr>
     <th>Tag Number</th> 
+    <th>Type</th>
     <th>Name</th>
     <th>Occupation</th>
     <th>Organization</th>
@@ -20,7 +21,9 @@
 <tbody id="."'tableBody'".">";
     while($row=mysqli_fetch_row($result)){
         echo "<tr>
-                <td>$row[1]</td>";
+                <td>$row[1]</td>
+                <td>$row[5]</td>";
+             
             echo "<td>$row[6]</td>
                     <td>$row[7]</td>
                     <td>$row[8]</td>
