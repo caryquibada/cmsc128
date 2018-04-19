@@ -2043,6 +2043,10 @@ CREATE TABLE `transaction` (
 --
 -- Dumping data for table `transaction`
 --
+CREATE TABLE `settings` (
+  `charge_computer` tinyint(1) NOT NULL DEFAULT '0',
+  `confirm_timeout` tinyint(1) NOT NULL DEFAULT '1'
+) 
 
 
 -- Indexes for dumped tables

@@ -42,11 +42,10 @@
                     $time=$time+1;
                     $time=floatval($time*5.00);
                     mysqli_query($connect,"UPDATE payment SET amount_due=$time where transaction_number='$row[8]'");
-                    echo "<td>$time</td>
-                    <td>";
-                    echo date( "h:i:s A F d, Y", strtotime($row[2]));
-                    echo "</td>";
-
+                    $timeout=date( "h:i:s A F d, Y", strtotime($row[7]));
+                    echo "<td>$timeout</td>";
+                    
+                    echo "<td>$time</td>";
                             if($row[4]=='UNPAID'){
                                 echo "
                                 <td><input type='text' class='$row[8]'></input></td>
@@ -55,7 +54,7 @@
                             }else{
                                 echo "
                                 <td>$row[5]</td>
-                                <td>PAID</td>
+                                <td><b>PAID</b></td>
                                 </tr>";
                             }
                     
