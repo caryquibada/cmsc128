@@ -86,12 +86,12 @@ color:#FFFFFF;
         
         <label>From:</label>
             <div class="col-sm-4">
-                <input type="text" id="fromtime" placeholder="YEAR-MONTH-DAY HOUR:MINUTE:SECOND"></input>
+                <input type="date" id="fromtime"></input>
             </div>
         
             <label>To:</label>
             <div class="col-sm-4">
-                <input type="text" id="totime" placeholder="YEAR-MONTH-DAY HOUR:MINUTE:SECOND"></input>
+                <input type="date" id="totime"></input>
             </div>
         </div>
     </div>

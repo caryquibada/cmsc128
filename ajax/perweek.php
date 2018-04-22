@@ -1,8 +1,8 @@
 <?php
     include 'conn.php';
     //Obtaining From time and To time
-    $fromtime=$_POST['from'];
-    $totime=$_POST['to'];
+    $fromtime=date("Y-m-d", strtotime($_POST['from']));
+    $totime=date("Y-m-d", strtotime($_POST['to']));
     //Sql query
     $sql="SELECT year(time_out),month(time_out),week(time_out) as Week, count(*) as Count from transaction where time_out between '$fromtime' and '$totime' group by year(time_out), month(time_out),week(time_out)";
     $result=mysqli_query($connect,$sql);

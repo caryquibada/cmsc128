@@ -2,8 +2,8 @@
 
 include 'conn.php';
 
-$fromtime=$_POST['from'];
-$totime=$_POST['to'];
+$fromtime=date("Y-m-d", strtotime($_POST['from']));
+$totime=date("Y-m-d", strtotime($_POST['to']));
 
 $cs = array('MSMAT','BSBIO','BSCS','BSPHY','CS');
 $cac= array('MALL','BALL','BACOM','BFA','CFA','CAC');

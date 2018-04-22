@@ -1,8 +1,8 @@
 <?php
     include 'conn.php';
     //Obtaining From time and To time
-    $fromtime=$_POST['from'];
-    $totime=$_POST['to'];
+    $fromtime=date("Y-m-d", strtotime($_POST['from']));
+    $totime=date("Y-m-d", strtotime($_POST['to']));
     //Sql query
         $sql="SELECT * from payment where (date between '$fromtime' and '$totime') and type = 'Printing' OR type='Scanning'";
                 $result=mysqli_query($connect,$sql);
