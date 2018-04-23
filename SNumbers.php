@@ -33,7 +33,7 @@
                 <a class="nav-link" href="SNumbers.php" style="color:white;"> Students <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="report.php" style="color:white;"> Report <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="passwordreport.html" style="color:white;"> Report <span class="sr-only">(current)</span></a>
             </li>
         </ul>
         <div style="color:white">
