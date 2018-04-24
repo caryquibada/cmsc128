@@ -38,7 +38,7 @@ CREATE TABLE `vistransaction` (
   `visOrg` varchar(100) NOT NULL,
   `visAlum` varchar(10) NOT NULL,
   `status` varchar(10) NOT NULL DEFAULT 'UNPAID',
-  `or_number` varchar(10) NOT NULL
+  `or_number` varchar(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

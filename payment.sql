@@ -34,7 +34,7 @@ CREATE TABLE `payment` (
   `amount_due` double NOT NULL,
   `no_copies` int(3) NOT NULL,
   `status` varchar(10) NOT NULL DEFAULT 'UNPAID',
-  `or_number` varchar(10) NOT NULL,
+  `or_number` varchar(7) NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_paid` datetime NOT NULL,
   `transaction_number` int(10) UNSIGNED ZEROFILL NOT NULL,
