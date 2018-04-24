@@ -2046,14 +2046,13 @@ CREATE TABLE `transaction` (
 CREATE TABLE `settings` (
   `charge_computer` tinyint(1) NOT NULL DEFAULT '0',
   `confirm_timeout` tinyint(1) NOT NULL DEFAULT '1'
-) 
-
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `student`
+-- Indexes for table 'student`
 --
 ALTER TABLE `student`
   ADD PRIMARY KEY (`student_number`);
