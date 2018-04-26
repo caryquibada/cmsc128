@@ -113,7 +113,7 @@ color:#FFFFFF;
                             <option value="38">38</option>
                             <option value="39">39</option>
                             <option value="40">40</option>
-
+                            <option value="41">41</option>
                         </select>
                         
                         <select name="type" class="custom-select">
@@ -246,7 +246,15 @@ function Alert() {
         
         });
         }
+        function formatAlert(){
+            swal({
+            position: 'middle',
+            title: 'Wrong Format',
+            text: 'Please match OR Number format which is 7 digits and only numerics ',
+            timer: 2000,
         
+        });
+        }    
      
     </script>
 <script>
@@ -257,6 +265,9 @@ $(document).ready(function(){
                 var tn=that.attr('id');
                 var id="#"+tn;
                 var orNumber=$("tbody").find(id).val();
+                var orNumberElement=$("tbody").find(id);
+                
+            if ( orNumberElement.is(':valid') ) {
             if(document.getElementById('confirm').checked){
 
                 swal({
@@ -302,13 +313,19 @@ $(document).ready(function(){
                 });
                 load();
             }
+            }else{
+                formatAlert();
+            }
         });
         $("#tableHolder1").on('click','.btnSelect',function(){
                 var that=$(this);
                 var tn=that.attr('id');
                 var id="#"+tn;
                 var orNumber=$("tbody").find(id).val();
-            if($('#confirm').val()==1){
+                
+            var orNumberElement=$("tbody").find(id);
+            if ( orNumberElement.is(':valid') ) {
+                if($('#confirm').val()==1){
 
                 swal({
                     title: 'Time out '+name+'?',
@@ -353,12 +370,20 @@ $(document).ready(function(){
                 });
                 load();
             }
+        }else{
+            formatAlert();
+
+        }
         });
         $("#tableHolder1").on('click','.OR',function(){
                 var that=$(this);
                 var tn=that.attr('name');
                 var classwhere='.'+tn;
                 var or=$('tr').find(classwhere).val();
+                
+                var orNumberElement=$('tr').find(classwhere);
+                
+            if ( orNumberElement.is(':valid') ) {
             if($('#confirm').val()==1){
 
                 swal({
@@ -404,7 +429,10 @@ $(document).ready(function(){
                 });
                 load();
             }
-        });
+            }else{
+                formatAlert();
+            }
+            });
 });
 
 </script>

@@ -151,7 +151,7 @@
                             <option value="38">38</option>
                             <option value="39">39</option>
                             <option value="40">40</option>
-
+                            <option value="41">41</option>
                         </select>
                         <input type="hidden" name="type" value="Computer_Usage"></input>
                         <div class="input-group">
@@ -273,7 +273,15 @@ function Alert() {
         
         });
         }
+        function formatAlert(){
+            swal({
+            position: 'middle',
+            title: 'Wrong Format',
+            text: 'Please match OR Number format which is 7 digits and only numerics ',
+            timer: 2000,
         
+        });
+        }
      
     </script>
 <script>
@@ -284,6 +292,8 @@ $(document).ready(function(){
                 var tn=that.attr('id');
                 var id="#"+tn;
                 var orNumber=$("tbody").find(id).val();
+                var orNumberElement=$("tbody").find(id);
+            if ( orNumberElement.is(':valid') ) {
             if($('#confirm').val()==1){
 
                 swal({
@@ -329,12 +339,16 @@ $(document).ready(function(){
                 });
                 load();
             }
+        }else{
+            formatAlert();
+        }
         });
         $("#tableHolder1").on('click','.btnSelect',function(){
                 var that=$(this);
                 var tn=that.attr('id');
                 var id="#"+tn;
                 var orNumber=$("tbody").find(id).val();
+                var orNumberElement=$("tbody").find(id);
             if($('#confirm').val()==1){
 
                 swal({
@@ -386,6 +400,9 @@ $(document).ready(function(){
                 var tn=that.attr('name');
                 var classwhere='.'+tn;
                 var or=$('tr').find(classwhere).val();
+                
+                var orNumberElement=$('tr').find(classwhere);
+            if ( orNumberElement.is(':valid') ) {
             if($('#confirm').val()==1){
 
                 swal({
@@ -430,6 +447,9 @@ $(document).ready(function(){
                     }
                 });
                 load();
+            }
+            }else{
+                formatAlert();
             }
         });
 });

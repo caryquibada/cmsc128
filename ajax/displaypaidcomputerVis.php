@@ -56,8 +56,8 @@
             echo "<td>$time</td>";
                     if($row[10]=='UNPAID'){
                         echo "
-                        <td><input type='text' class='$row[0]'></input></td>
-                        <td><button class='btn btn-group btn-primary OR' name='$row[0]'>UNPAID</button></td>
+                        <td><input type='text' class='$row[0]' pattern='([1-9])+' minlength='7' maxlength='7'></input></td>
+                        <td><button class='btn btn-group btn-primary OR' name='$row[0]' >UNPAID</button></td>
                         </tr>";
                     }else{
                         echo "

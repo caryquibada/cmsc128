@@ -33,7 +33,7 @@ while($row=mysqli_fetch_row($result)){
             <td>$row[2]</td>
             <td>$row[3]</td>";
         if($row[5]==""){
-            echo "<td><input type='text' id='$row[8]' class='form-group' pattern='([1-9])+'></input></td>";
+            echo "<td><input type='text' id='$row[8]' class='form-group' minlength='7' maxlength='7' pattern='([1-9])+'></input></td>";
         }else{
             echo "<td>$row[5]</td>";
         }
