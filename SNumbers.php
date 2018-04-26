@@ -152,19 +152,19 @@
                     <div class="modal-body">
                         <form action="ajax/newstudent.php" method="post" class="ajax1">
                             <label>Student Number:</label>
-                                <input type="text" name="sn"></input>
+                                <input type="text" name="sn" required pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}" maxlength='10'></input>
                             <label>Name:</label>
-                                <input type="text" name="name"></input>
+                                <input type="text" name="name" required placeholder="LASTNAME, Firstname M." pattern="[A-Z]{2,49}, [A-Z]{1}[a-z]{2,50}( [A-Z]{1}.)?" maxlength='100'></input>
                             <label>Academic Program:</label>
-                                <input type="text" name="ap"></input>
+                                <input type="text" name="ap" required pattern="[A-Z]{2,10}" maxlength='10'></input>
                             <label>Tuition Discount:</label>
-                                <input type="text" name="td"></input>
+                                <input type="text" name="td" maxlength='10'></input>
                             <label>Tuition Bracket:</label>
-                                <input type="text" name="tb"></input>
+                                <input type="text" name="tb" pattern="[A-E]{1}|[]" maxlength='1'></input>
                                
                     </div>
                     <div class="modal-footer">
-                    <button type="submit" class="btn btn-unique" id="test" onclick="success();">SUBMIT</button>
+                    <button type="submit" class="btn btn-unique" id="test">SUBMIT</button>
                         </form>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
@@ -285,7 +285,7 @@
  
 </script>
 <script>
-    function success(){
+    function successA(){
         swal(
             'Student Entered!',
             'Please wait, the page is reloading',
@@ -342,6 +342,7 @@
         type:type,
         data:data,
         success: function(response){
+            successA();
             console.log(response);
         }
     });
