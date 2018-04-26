@@ -10,9 +10,11 @@ echo "<thead>
         <th>Count</th>
         </thead><tbody>";
 while($row=mysqli_fetch_row($result)){
+        if($row[0]!=''){
         echo "<tr>
                 <td>$row[0]</td>
                 <td>$row[1]</td></tr>";
+        }
 }
 echo "</tbody>";
 ?>
