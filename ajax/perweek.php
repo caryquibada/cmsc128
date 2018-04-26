@@ -3,8 +3,14 @@
     //Obtaining From time and To time
     $fromtime=date("Y-m-d", strtotime($_POST['from']));
     $totime=date("Y-m-d", strtotime($_POST['to']));
+    $by=$_POST['by'];
     //Sql query
-    $sql="SELECT year(time_out),month(time_out),week(time_out) as Week, count(*) as Count from transaction where time_out between '$fromtime' and '$totime' group by year(time_out), month(time_out),week(time_out)";
+    if($by==""){
+        $sql="SELECT year(time_out),month(time_out),week(time_out) as Week, count(*) as Count from transaction where time_out between '$fromtime' and '$totime' group by year(time_out), month(time_out),week(time_out)";
+    }else{
+        $sql="SELECT year(time_out),month(time_out),week(time_out) as Week, count(*) as Count from transaction where type='$by' AND (time_out between '$fromtime' and '$totime') group by year(time_out), month(time_out),week(time_out)";
+    }
+    
     $result=mysqli_query($connect,$sql);
         echo "  
         <thead>

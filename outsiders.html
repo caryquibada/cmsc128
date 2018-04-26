@@ -180,7 +180,7 @@ color:#FFFFFF;
             $('#tableHolder').load('ajax/displayPaid.php',function(){
                 $('#tableHolder').DataTable().destroy();
                 $('#tableHolder').DataTable({
-                    "order": [[ 0, "desc" ]]
+                    "order": [[ 10, "desc" ]]
                 });
         });
         },500);
@@ -188,7 +188,7 @@ color:#FFFFFF;
             $('#tableHolder1').load('ajax/displaypaidcomputerVis.php',function(){
                 $('#tableHolder1').DataTable().destroy();
                 $('#tableHolder1').DataTable({
-                    "order": [[ 3, "desc" ]]
+                    "order": [[ 10, "desc" ]]
                 });
         });
         },500);

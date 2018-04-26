@@ -3,8 +3,14 @@ include 'conn.php';
 
 $fromtime=date("Y-m-d", strtotime($_POST['from']));
 $totime=date("Y-m-d", strtotime($_POST['to']));
+$by=$_POST['by'];
 //Sql query
-$sql="SELECT month(time_out) as Month, day(time_out) as Day, hour(time_out) as Hour, count(*) as Count from transaction where time_out between '$fromtime' and '$totime' group by month(time_out),day(time_out), hour(time_out)";
+if($by!=""){
+    $sql="SELECT month(time_out) as Month, day(time_out) as Day, hour(time_out) as Hour, count(*) as Count from transaction where (time_out between '$fromtime' and '$totime') AND type='$by' group by month(time_out),day(time_out), hour(time_out)";
+}else{
+    $sql="SELECT month(time_out) as Month, day(time_out) as Day, hour(time_out) as Hour, count(*) as Count from transaction where (time_out between '$fromtime' and '$totime') group by month(time_out),day(time_out), hour(time_out)";
+}
+
 $days= array(array(),array());
 $i=0;
 $result=mysqli_query($connect,$sql);

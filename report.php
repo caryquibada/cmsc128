@@ -21,6 +21,7 @@
     <script src="js/pdfmake.min.js"></script>
     <script src="js/vfs_fonts.js"></script>
     <script src="js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="js/stringMonthYear.js"></script>
     <script src="js/buttons.print.min.js"></script>
     <style>
     #wrapper ul {
@@ -92,6 +93,16 @@ color:#FFFFFF;
             <label>To:</label>
             <div class="col-sm-4">
                 <input type="date" id="totime"></input>
+            </div>
+            <label>By:</label>
+            <div class="col-sm-3">
+                <select id="by">
+                    <option value="all"></option>
+                    <option value="Computer_Usage">Computer Usage</option>
+                    <option value="Power_Usage">Power Usage</option>
+                    <option value="iPad_Usage">iPad Usage</option>
+                    <option value="E-Resources">E-Resources</option>
+                </select>
             </div>
         </div>
     </div>
@@ -233,7 +244,7 @@ color:#FFFFFF;
             var data={};
              var from=$("#fromtime");
              var to=$("#totime");
-             var by=$('input[name=by]:checked');
+             var by=$("#by");
              data["by"]=by.val();
              data["from"]=from.val();
              data["to"]=to.val();
@@ -246,6 +257,9 @@ color:#FFFFFF;
                     dom: 'Bfrtip',
                     buttons: [
                         'copy', 'csv', 'excel', 'pdf', 'print'
+                    ],
+                    "columnDefs": [
+                        { "type": "stringMonthYear", targets: 0 }
                     ]
                 });
 
@@ -258,6 +272,9 @@ color:#FFFFFF;
                     dom: 'Bfrtip',
                     buttons: [
                         'copy', 'csv', 'excel', 'pdf', 'print'
+                    ],
+                    "columnDefs": [
+                        { "type": "stringMonthYear", targets: 0 }
                     ]
                 });
 
