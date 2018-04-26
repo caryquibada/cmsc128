@@ -123,11 +123,11 @@ color:#FFFFFF;
                         </select>
                         
                         <div class="input-group">
-                            <input type="text"   name="visName" id="visname1" class="form-control sn" placeholder="Name" pattern="[A-Za-z\s]{2,}">
+                            <input type="text"   name="visName" id="visname1" maxlength='100' class="form-control sn" placeholder="Name" pattern="[A-Za-z\s]{2,}">
                             </input>
-							<input type="text"  name="visOccu" id="visoccu1" class="form-control sn" placeholder="Occupation" pattern="[A-Za-z\s]{2,}">
+							<input type="text"  name="visOccu" id="visoccu1" maxlength='100' class="form-control sn" placeholder="Occupation" pattern="[A-Za-z\s]{2,}">
                             </input>
-							<input type="text"  name="visOrg" id="visorg1" class="form-control sn" placeholder="Organization" pattern="[A-Za-z\s]{2,}">
+							<input type="text"  name="visOrg" id="visorg1" maxlength='100' class="form-control sn" placeholder="Organization" pattern="[A-Za-z\s]{2,}">
                             </input>
                             <label><pre class="tab">Alumni:</pre></label>
                             <select name="visAlum" class="custom-select">
@@ -150,29 +150,9 @@ color:#FFFFFF;
     <br/>
         <br/>
  <!--table for time-in>-->
-            <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
-               
-                <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Usage</a>
-                </li>
-                
-              </ul>
-              
-            <div class="tab-content">
-
-                <div class="tab-pane active in" id="home" role="tabpanel">
-                    <div class="table-responsive col-lg-12"><br/>
-                        <table class="table" id="tableHolder"> 
-                        </table>
-                    </div>
-                </div>
-                <div class="tab-pane" id="profile" role="tabpanel">
-                    <div class="table-responsive col-lg-12"><br/>
+           <br><br><br>
                         <table class="table" id="tableHolder1"> 
                         </table>
-                    </div>
-                </div>
-            </div>
             <div id="settingloader">
                 
             </div>
