@@ -67,14 +67,14 @@
     </nav>
     <br/>
         <div class="offset-sm-4" id="computerinput" >
-            <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
+            <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="load();">
                 <div class="form-inline well">
                     <label><h4>Tag  :</h4></label>
                     <input type="hidden" name="type" value="Computer_Usage"></input>
                            
                     <div id="tagsComputer"></div>
                         <div class="input-group-lg">
-                            <input type="text" name="studentNumber" id="charging2" class="form-control sn" placeholder="Computer Usage" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
+                            <input type="text" name="studentNumber" id="charging2" minlength='9' maxlength='10' class="form-control sn" placeholder="Computer Usage" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
                             </input>
                         </div>
                             <span class="input-group-btn">
@@ -86,13 +86,13 @@
             </form>
         </div>
             <div class="offset-sm-4" id="ipadinput" hidden>
-                <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
+                <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="load();">
                     <div class="form-inline well">
                         <label><h4>Tag  :</h4></label>
                         <input type="hidden" name="type" value="iPad_Usage"></input>
                         <div id="inputsiPad"></div>
                         <div class="input-group-lg">
-                            <input type="text" name="studentNumber" id="charging1" class="form-control sn" placeholder="iPad Usage" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
+                            <input type="text" name="studentNumber" id="charging1" minlength='9' maxlength='10' class="form-control sn" placeholder="iPad Usage" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
                             </input>
                         </div>
                             <span class="input-group-btn">
@@ -105,13 +105,13 @@
             </div>
 
             <div class="offset-sm-4" id="charginginput" hidden>
-                <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
+                <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="load();">
                     <div class="form-inline well">
                         <label><h4>Tag  :</h4></label>
                         <input type="hidden" name="type" value="Power_Usage"></input>
                         <div id="inputsCharging"></div>
                         <div class="input-group-lg">
-                            <input type="text" name="studentNumber" id="charging3" class="form-control sn" placeholder="Charging" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
+                            <input type="text" name="studentNumber" id="charging3" minlength='9' maxlength='10' class="form-control sn" placeholder="Charging" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
                             </input>
                         </div>
                             <span class="input-group-btn">
@@ -123,13 +123,13 @@
                 </form>
             </div>
             <div class="offset-sm-4" id="eresourceinput" hidden>
-                <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
+                <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="load();">
                     <div class="form-inline well">
                         <label><h4>Tag  :</h4></label>
                         <input type="hidden" name="type" value="E-Resources"></input>
                         <div id="inputsEResources"></div>
                         <div class="input-group-lg">
-                            <input type="text" name="studentNumber" id="charging4" class="form-control sn" placeholder="E-Resources" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
+                            <input type="text" name="studentNumber" id="charging4" minlength='9' maxlength='10' class="form-control sn" placeholder="E-Resources" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
                             </input>
                         </div>
                             <span class="input-group-btn">
@@ -284,40 +284,28 @@
     }
 </script>
 <script>
-function Alert() {
-    if($("#charging1").val()===""&&$("#charging2").val()===""&&$("#charging3").val()===""&&$("#charging4").val()===""){
-
-    }else{
-        
+ 
+        function Alert2() {
+        var d = new Date();
         swal({
-            position: 'top-end',
-            title: 'Timing in',
-            showConfirmButton: false,
-            timer: 500,
-            onOpen: function onOpen() {
-                swal.showLoading();
-          }
-        })
-    
-    }
-}
-    
-    function Alert1() {
-        swal({
-            position: 'top-end',
-            title: 'Timing out',
-            text: 'Please Wait',
-            timer: 500,
-            onOpen: function onOpen() {
-                swal.showLoading();
-          }
+            position: 'Middle',
+            title: 'Current Time',
+            text: d.toLocaleTimeString()
         
         });
         }
         
-     
+    function studentDNE() {
+        swal({
+            position: 'Middle',
+            title: 'STUDENT IS NOT IN DATABASE',
+            text: 'STUDENT DOES NOT EXIST IN DATABASE'
+        
+        });
+        }
     </script>
 <script>
+    
 $(document).ready(function(){
         $("#tableHolder1").on('change','.custom-select',function(){
             var that=$(this);
@@ -349,6 +337,8 @@ $(document).ready(function(){
                     confirmButtonText: 'Yes, timeout!'
                 }).then((result) => {
                     if (result.value) {
+                        
+                    
                         var that=$(this);
                         var data=that.attr('id');
                         $.ajax({
@@ -356,31 +346,25 @@ $(document).ready(function(){
                             method:'POST',
                             data:{tranNum:data},
                             success: function(response){
-                                $("#result").html(response);
+                                load();
+                                Alert2();
                             }
                         });
-                        Alert1();
-                        swal(
-                            'Timed out!',
-                            'User has been timed out',
-                            'success'
-                        )
-                        load();
                     }
                 })
             }else{
                 var that=$(this);
                 var data=that.attr('id');
-                Alert1();
+                
                 $.ajax({
                     url:'ajax/timeout.php',
                     method:'POST',
                     data:{tranNum:data},
                     success: function(response){
-                        $("#result").html(response);
+                        load();
+                        Alert2();
                     }
                 });
-                load();
             }
         });
 
@@ -399,6 +383,8 @@ $(document).ready(function(){
                     confirmButtonText: 'Yes, timeout!'
                 }).then((result) => {
                     if (result.value) {
+                        
+                    
                         var that=$(this);
                         var data=that.attr('id');
                         $.ajax({
@@ -406,35 +392,31 @@ $(document).ready(function(){
                             method:'POST',
                             data:{tranNum:data},
                             success: function(response){
-                                $("#result").html(response);
+                                load();
+                                Alert2();
                             }
                         });
-                        Alert1();
-                        swal(
-                            'Timed out',
-                            'User has been timed out.',
-                            'success'
-                        )
-                        load();
                     }
                 })
             }else{
                 var that=$(this);
                 var data=that.attr('id');
-                Alert1();
+                
+                
                 $.ajax({
                     url:'ajax/timeout.php',
                     method:'POST',
                     data:{tranNum:data},
                     success: function(response){
-                        $("#result").html(response);
+                        load();
+                        Alert2();
                     }
                 });
-                load();
             }
         });
 
         $("#tableHolder2").on('click','.btnSelect',function(){
+
              // get the current row
             var that=$(this);
             var name=that.attr('name');
@@ -449,6 +431,8 @@ $(document).ready(function(){
                     confirmButtonText: 'Yes, timeout!'
                 }).then((result) => {
                     if (result.value) {
+                        
+                        
                         var that=$(this);
                         var data=that.attr('id');
                         $.ajax({
@@ -456,31 +440,26 @@ $(document).ready(function(){
                             method:'POST',
                             data:{tranNum:data},
                             success: function(response){
-                                $("#result").html(response);
+                                
+                                load();
+                                Alert2();
                             }
                         });
-                        Alert1();
-                        swal(
-                            'Timed out!',
-                            'User has been timed out',
-                            'success'
-                        )
-                        load();
                     }
                 })
             }else{
                 var that=$(this);
                 var data=that.attr('id');
-                Alert1();
+                
                 $.ajax({
                     url:'ajax/timeout.php',
                     method:'POST',
                     data:{tranNum:data},
                     success: function(response){
-                        $("#result").html(response);
+                        load();
+                        Alert2();
                     }
                 });
-                load();
             }
         });
         $("#tableHolder3").on('click','.btnSelect',function(){
@@ -497,6 +476,8 @@ $(document).ready(function(){
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Yes, timeout!'
                 }).then((result) => {
+                    
+                    
                     if (result.value) {
                         var that=$(this);
                         var data=that.attr('id');
@@ -505,33 +486,25 @@ $(document).ready(function(){
                             method:'POST',
                             data:{tranNum:data},
                             success: function(response){
-                                $("#result").html(response);
+                                load();
+                                Alert2();
                             }
                         });
-
-                        Alert1();
-
-                        swal(
-                            'Timed out!',
-                            'User has been timed out.',
-                            'success'
-                        )
-                        load();
                     }
                 })
             }else{
                 var that=$(this);
                 var data=that.attr('id');
-                Alert1();
+                
                 $.ajax({
                     url:'ajax/timeout.php',
                     method:'POST',
                     data:{tranNum:data},
                     success: function(response){
-                        $("#result").html(response);
+                        load();
+                        Alert2();
                     }
                 });
-                load();
             }
         });
         
@@ -564,8 +537,12 @@ $(document).ready(function(){
         url:url,
         type:type,
         data:data,
-        success: function(response){
-            $(".form-control").val("");
+        success: function(data){
+            if(data==0){
+                studentDNE();
+            }else{
+                $(".form-control").val("");
+            }
         }
     });
         return false;;
