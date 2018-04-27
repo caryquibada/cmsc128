@@ -37,7 +37,8 @@ if($type=='Printing'){
     $insertQuery="INSERT into payment(student_number,type,tag) values ('$studentNumber','$type','$tag')";
 }
 
-echo $checker;
+
 mysqli_query($connect,$insertQuery);
 }
+echo $checker;
 ?>

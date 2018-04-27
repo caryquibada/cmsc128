@@ -151,19 +151,27 @@ color:#FFFFFF;
         });
         },500);
         setTimeout(function(){
-            $('#tags').load('ajax/inputs.php');
+            $('#tags').load('ajax/inputs.php',function(){
+                $('.form-control-lg').removeClass('form-control-lg').addClass('form-control');
+            });
         },500);
-
+        
         $("#types").on('change',function(){
             if($("#types").val()=='Computer_Usage'){
                 $('#tags').unload();
-                $('#tags').load('ajax/inputs.php');
+                $('#tags').load('ajax/inputs.php',function(){
+                $('.form-control-lg').removeClass('form-control-lg').addClass('form-control');
+            });
             }else if($("#types").val()=='iPad'){
                 $('#tags').unload();
-                $('#tags').load('ajax/inputsiPad.php');
+                $('#tags').load('ajax/inputsiPad.php',function(){
+                $('.form-control-lg').removeClass('form-control-lg').addClass('form-control');
+            });
             }else{
                 $('#tags').unload();
-                $('#tags').load('ajax/inputsCharging.php');
+                $('#tags').load('ajax/inputsCharging.php',function(){
+                $('.form-control-lg').removeClass('form-control-lg').addClass('form-control');
+            });
             }
         });
     }
