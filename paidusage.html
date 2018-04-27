@@ -68,11 +68,11 @@
     <div class="col-sm-12">
         <div class="row">
                 <div class="col-sm-6">
-                    <form action="ajax/inputPaid.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
+                    <form action="ajax/inputPaid.php" method="post" class="ajax1" id="chargingform" >
                         <div class="form-inline well">
                             <input type="hidden" name="type" value="Printing"></input>
                             <label><pre class="tab">Copies:</pre></label>
-                           <input type="number" min="1" value="1" name="Copies" id="copiesPrinting" class="form-control col-sm-2"></input>
+                           <input type="number" min="1" value="1" pattern="\d{1,}" name="Copies" id="copiesPrinting" class="form-control col-sm-2"></input>
                             <div class="input-group">
                                 <input type="text" name="studentNumber" id="printing" class="form-control sn" placeholder="Printing" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
                                 </input>
@@ -85,11 +85,11 @@
                     </form>
                 </div>
             <div class="col-sm-6">
-                <form action="ajax/inputPaid.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
+                <form action="ajax/inputPaid.php" method="post" class="ajax1" id="chargingform">
                     <div class="form-inline well">
                         <input type="hidden" name="type" value="Scanning"></input>
                         <label><pre class="tab">Copies :</pre></label>
-                        <input type="number" min="1" value="1" name="Copies" id="copiesScanning" class="form-control col-sm-2"></input>
+                        <input type="number" min="1" value="1" name="Copies" pattern="\d{1,}" id="copiesScanning" class="form-control num col-sm-2"></input>
                         <div class="input-group">
                             <input type="text" name="studentNumber" id="scanning" class="form-control sn" placeholder="Scanning" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
                             </input>
@@ -107,52 +107,10 @@
     <div class="col-sm-12">
         <div class="row">
             <div class="col-sm-6">
-                <form action="ajax/inputPaid.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
+                <form action="ajax/inputPaid.php" method="post" class="ajax1" id="chargingform">
                     <div class="form-inline well">
                         <label><pre class="tab">Tag        :</pre></label>
-                        <select name="tag" class="custom-select">
-                            <option value="01">01</option>
-                            <option value="02">02</option>
-                            <option value="03">03</option>
-                            <option value="04">04</option>
-                            <option value="05">05</option>
-                            <option value="06">06</option>
-                            <option value="07">07</option>
-                            <option value="08">08</option>
-                            <option value="09">09</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
-                            <option value="21">21</option>
-                            <option value="22">22</option>
-                            <option value="23">23</option>
-                            <option value="24">24</option>
-                            <option value="25">25</option>
-                            <option value="26">26</option>
-                            <option value="27">27</option>
-                            <option value="28">28</option>
-                            <option value="29">29</option>
-                            <option value="30">30</option>
-                            <option value="31">31</option>
-                            <option value="32">32</option>
-                            <option value="33">33</option>
-                            <option value="34">34</option>
-                            <option value="35">35</option>
-                            <option value="36">36</option>
-                            <option value="37">37</option>
-                            <option value="38">38</option>
-                            <option value="39">39</option>
-                            <option value="40">40</option>
-                            <option value="41">41</option>
-                        </select>
+                        <div id="tags"></div>
                         <input type="hidden" name="type" value="Computer_Usage"></input>
                         <div class="input-group">
                             <input type="text" name="studentNumber" id="computer" class="form-control sn" placeholder="Computer Usage" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
@@ -239,6 +197,9 @@
                 });
         });
         },500);
+        setTimeout(function(){
+            $('#tags').load('ajax/inputs.php');
+        },500);
         
     }
 </script>
@@ -282,7 +243,15 @@ function Alert() {
         
         });
         }
-     
+        function formatAlert1(){
+            swal({
+            position: 'middle',
+            title: 'Wrong Format',
+            text: 'Input seems be wrong ',
+            timer: 2000,
+        
+        });
+        }
     </script>
 <script>
 $(document).ready(function(){
@@ -476,15 +445,24 @@ $(document).ready(function(){
             value=that.val();
             data[name]=value;
     });
-            
+
+    Alert1();        
             
     $.ajax({
         url:url,
         type:type,
         data:data,
         success: function(response){
-            $(".form-control").val("");
+            if(response=="0"){
+                formatAlert1();
+            }else{
+                $(".sn").val("");
+                $(".num").val("1");
+                load();
+            }
         }
     });
-        return false;;
-});</script>
+        return false;
+});
+   
+    </script>

@@ -292,7 +292,6 @@
             'success'
         )
         setTimeout(function(){
-            location.reload();
         }, 1000);
     }
 </script>
@@ -341,14 +340,26 @@
         url:url,
         type:type,
         data:data,
-        success: function(response){
-            successA();
+        success: function(data){
+            if(data=='0'){
+                studentE();
+            }else{
+                successA();
+            }
             console.log(response);
         }
     });
         return false;;
 });</script>
 <script>
+    function studentE() {
+        swal({
+            position: 'Middle',
+            title: 'STUDENT IS IN DATABASE ALREADY',
+            text: 'STUDENT NUMBER IS ALREADY IN DATABASE'
+        
+        });
+        }
     function help(){
         swal({
             imageUrl: 'cmschelp.jpg',
