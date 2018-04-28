@@ -69,7 +69,7 @@
     </nav>
     <br/>
         <div class="offset-sm-4" id="computerinput" >
-            <form action="ajax/input.php" method="post" class="ajax1" id="chargingform">
+            <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="timerForNotif();load();">
                 <div class="form-inline well">
                     <label><h4>Tag  :</h4></label>
                     <input type="hidden" name="type" value="Computer_Usage"></input>
@@ -88,7 +88,7 @@
             </form>
         </div>
             <div class="offset-sm-4" id="ipadinput" hidden>
-                <form action="ajax/input.php" method="post" class="ajax1" id="chargingform">
+                <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="load();">
                     <div class="form-inline well">
                         <label><h4>Tag  :</h4></label>
                         <input type="hidden" name="type" value="iPad_Usage"></input>
@@ -107,7 +107,7 @@
             </div>
 
             <div class="offset-sm-4" id="charginginput" hidden>
-                <form action="ajax/input.php" method="post" class="ajax1" id="chargingform">
+                <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="load();">
                     <div class="form-inline well">
                         <label><h4>Tag  :</h4></label>
                         <input type="hidden" name="type" value="Power_Usage"></input>
@@ -125,7 +125,7 @@
                 </form>
             </div>
             <div class="offset-sm-4" id="eresourceinput" hidden>
-                <form action="ajax/input.php" method="post" class="ajax1" id="chargingform">
+                <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="load();">
                     <div class="form-inline well">
                         <label><h4>Tag  :</h4></label>
                         <input type="hidden" name="type" value="E-Resources"></input>
@@ -301,31 +301,11 @@
         swal({
             position: 'Middle',
             title: 'STUDENT IS NOT IN DATABASE',
-            text: 'STUDENT DOES NOT EXIST IN DATABASE',
-            type: 'warning'
-        
-        });
-        }
-        function studentZero() {
-        swal({
-            position: 'Middle',
-            title: 'STUDENT HAS NO REMAINING TIME LEFT',
-            text: 'STUDENT HAS DEPLETED THEIR 20 HOURS',
-            type: 'warning'
-        
-        });
-        }
-        function studentAlready() {
-        swal({
-            position: 'Middle',
-            title: 'STUDENT ALREADY HAS AN ONGOING TRANSACTION',
-            text: 'STUDENT IS ALREADY TIMED IN',
-            type: 'warning'
+            text: 'STUDENT DOES NOT EXIST IN DATABASE'
         
         });
         }
     </script>
-    
 <script>
     
 $(document).ready(function(){
@@ -569,17 +549,8 @@ $(document).ready(function(){
         success: function(data){
             if(data==0){
                 studentDNE();
-            }else if(data==1){
-                $(".form-control").val("");
-                load();
-            }else if(data==2){
-                studentZero();
-            }else if(data==3){
-                $(".form-control").val("");
-                timerForNotif();
-                load();
             }else{
-                studentAlready();
+                $(".form-control").val("");
             }
         }
     });
