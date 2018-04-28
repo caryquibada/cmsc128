@@ -5,7 +5,7 @@
     $totime=date("Y-m-d", strtotime($_POST['to']));
     $by=$_POST['by'];
     //Sql query
-    if($by==""){
+    if($by=="all"){
         $sql="SELECT year(time_out),month(time_out) as Month, count(*) as Count from transaction where (time_out between '$fromtime' and '$totime') group by year(time_out), month(time_out)";
     }else{
         $sql="SELECT year(time_out),month(time_out) as Month, count(*) as Count from transaction where type='$by' AND (time_out between '$fromtime' and '$totime') group by year(time_out), month(time_out)";

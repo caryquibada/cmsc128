@@ -12,7 +12,7 @@ echo "<thead>
         <th>College</th>
         <th>Count</th>
         </thead>";
-        if($by!=""){
+        if($by!="all"){
             $csSQL="SELECT count(transaction.transaction_number) from transaction inner join student on transaction.student_number=student.student_number where transaction.type='$by' AND (transaction.time_out between '$fromtime' and '$totime') AND (";
         }else{
             $csSQL="SELECT count(transaction.transaction_number) from transaction inner join student on transaction.student_number=student.student_number where (transaction.time_out between '$fromtime' and '$totime') AND (";
@@ -32,7 +32,7 @@ echo "<tbody>
             <td>CS</td>
             <td>$row[0]</td>
         </tr>";
-        if($by!=""){
+        if($by!="all"){
             $csSQL="SELECT count(transaction.transaction_number) from transaction inner join student on transaction.student_number=student.student_number where transaction.type='$by' AND (transaction.time_out between '$fromtime' and '$totime') AND (";
         }else{
             $csSQL="SELECT count(transaction.transaction_number) from transaction inner join student on transaction.student_number=student.student_number where (transaction.time_out between '$fromtime' and '$totime') AND (";
@@ -51,7 +51,7 @@ echo "<tr>
             <td>CAC</td>
             <td>$row[0]</td>
         </tr>";
-        if($by!=""){
+        if($by!="all"){
             $csSQL="SELECT count(transaction.transaction_number) from transaction inner join student on transaction.student_number=student.student_number where transaction.type='$by' AND (transaction.time_out between '$fromtime' and '$totime') AND (";
         }else{
             $csSQL="SELECT count(transaction.transaction_number) from transaction inner join student on transaction.student_number=student.student_number where (transaction.time_out between '$fromtime' and '$totime') AND (";

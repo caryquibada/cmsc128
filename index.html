@@ -258,28 +258,36 @@
         setTimeout(function(){
             $('#tableHolder').load('ajax/display.php',function(){
                 $('#tableHolder').DataTable().destroy();
-                $('#tableHolder').DataTable();
+                $('#tableHolder').DataTable({
+                    "pageLength": 50
+                });
         });
         },500);
         setTimeout(function(){
             $('#tableHolder1').load('ajax/displaycomputer.php',function(){
                 $('#tableHolder1').DataTable();
                 $('#tableHolder1').DataTable().destroy();
-                $('#tableHolder1').DataTable();
+                $('#tableHolder1').DataTable({
+                    "pageLength": 50
+                });
         });
         },500);
         setTimeout(function(){
             $('#tableHolder2').load('ajax/displayipadusage.php',function(){
                 $('#tableHolder2').DataTable();
                 $('#tableHolder2').DataTable().destroy();
-                $('#tableHolder2').DataTable();
+                $('#tableHolder2').DataTable({
+                    "pageLength": 50
+                });
         });
         },500);
         setTimeout(function(){
             $('#tableHolder3').load('ajax/displayeresources.php',function(){
                 $('#tableHolder3').DataTable();
                 $('#tableHolder3').DataTable().destroy();
-                $('#tableHolder3').DataTable();
+                $('#tableHolder3').DataTable({
+                    "pageLength": 50
+                });
         });
         },500);
         

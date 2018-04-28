@@ -84,19 +84,18 @@ color:#FFFFFF;
     <form id="timeout">
     <div class="col-sm-12">
         <div class="row">
-        
-        <label>From:</label>
-            <div class="col-sm-4">
+            <label>From:</label>
+            <div class="col-sm-3">
                 <input type="date" id="fromtime"></input>
             </div>
         
             <label>To:</label>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <input type="date" id="totime"></input>
             </div>
             <label>By:</label>
             <div class="col-sm-3">
-                <select id="by">
+                <select id="by" class='custom-select'>
                     <option value="all"></option>
                     <option value="Computer_Usage">Computer Usage</option>
                     <option value="Power_Usage">Power Usage</option>
@@ -104,12 +103,14 @@ color:#FFFFFF;
                     <option value="E-Resources">E-Resources</option>
                 </select>
             </div>
+            <button id="report" onclick="load()" class="col-sm-2 btn btn-unique">GENERATE</button>
+            
         </div>
     </div>
     <br/>
     <div class="col-sm-12">
         <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
-                <li class="nav-item">
+                <li class="nav-item ">
                   <a class="nav-link" data-toggle="tab" href="#home" role="tab" aria-controls="home">Hour</a>
                 </li>
                 <li class="nav-item">
@@ -143,7 +144,7 @@ color:#FFFFFF;
               </ul>
               
             <div class="tab-content">
-                <div class="tab-pane active in" id="home" role="tabpanel">
+                <div class="tab-pane active-in" id="home" role="tabpanel">
                     <div class="table-responsive col-lg-12"><br/>
                         <table class="table" id="tablePerHour"> 
                         </table>
@@ -207,37 +208,34 @@ color:#FFFFFF;
             </div>
         
     </div>
-    </form>
-    <button id="report" onclick="load()" class="btn btn-unique">GENERATE</button>
     
-    <button id="delete" class="btn btn-unique">DELETE 1 YEAR</button>
+    
+    <button class='btn btn-unique btn-md' data-toggle='modal' data-target='#myModal2'>DELETE TRANSACTIONS</button>
+    <div class="modal fade" id="myModal2" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <b>Delete Transaction</b>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="ajax/deleteyear.php" method="post" class="ajax1">
+                            <label>From:</label>
+                                <input type="date" name="from" required></input>
+                            <label>To:</label>
+                                <input type="date" name="to" required></input>
+                            
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-unique" id="test">DELETE</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
-<script type="text/javascript">
-    $('#delete').on('click',function(){
-        swal({
-  title: 'Are you sure you want to delete entries in a years interval? Print entries before doing so.',
-  text: "You won't be able to revert this!",
-  type: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, DELETE!'
-}).then((result) => {
-  if (result.value) {
-    swal(
-      'Reset Complete',
-      'Reloading page, please wait',
-      'success'
-    )
-    $('#delete').load("ajax/deleteyear.php",function(){
-        location.reload();
-    });
-    }
-    })   
-    }); 
- 
-</script>
+
 
 <script>
     function load(){
@@ -371,7 +369,48 @@ color:#FFFFFF;
                 });
             });
         }
+        $("#test").on("click",function(){
+            swal({
+  title: 'Are you sure you want to delete entries in a years interval? Print entries before doing so.',
+  text: "You won't be able to revert this!",
+  type: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, DELETE!'
+}).then((result) => {
+  if (result.value) {
+    var that= $('.ajax1'),
+        url=that.attr('action'),
+        type=that.attr('method'),
+        data={};
+        
+    that.find('[name]').each(function(index, value) {
+        var that=$(this),
+            name=that.attr('name'),
+            value=that.val();
+            data[name]=value;
+    });
+            
+            
+    $.ajax({
+        url:url,
+        type:type,
+        data:data,
+        success: function(data){
+            
+            swal(
+        'Deletion Complete',
+        'Reloading page, please wait',
+        'success'
+            )
+        }
+    });
     
+    }
+    })  
+        
+});
 </script>
 
     
