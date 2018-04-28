@@ -287,12 +287,12 @@
 </script>
 <script>
  
-        function Alert2() {
+        function Alert2(response) {
         var d = new Date();
         swal({
             position: 'Middle',
             title: 'Current Time',
-            text: d.toLocaleTimeString()
+            text: response
         
         });
         }
@@ -375,8 +375,10 @@ $(document).ready(function(){
                             method:'POST',
                             data:{tranNum:data},
                             success: function(response){
+                                var tag=$('.tag').val();
                                 load();
-                                Alert2();
+                                clearTime(tag);
+                                Alert2(response);
                             }
                         });
                     }
@@ -390,8 +392,10 @@ $(document).ready(function(){
                     method:'POST',
                     data:{tranNum:data},
                     success: function(response){
+                        var tag=$('.tag').val();
                         load();
-                        Alert2();
+                        clearTime(tag);
+                        Alert2(response);
                     }
                 });
             }
@@ -422,7 +426,7 @@ $(document).ready(function(){
                             data:{tranNum:data},
                             success: function(response){
                                 load();
-                                Alert2();
+                                Alert2(response);
                             }
                         });
                     }
@@ -438,7 +442,7 @@ $(document).ready(function(){
                     data:{tranNum:data},
                     success: function(response){
                         load();
-                        Alert2();
+                        Alert2(response);
                     }
                 });
             }
@@ -471,7 +475,7 @@ $(document).ready(function(){
                             success: function(response){
                                 
                                 load();
-                                Alert2();
+                                Alert2(response);
                             }
                         });
                     }
@@ -486,7 +490,7 @@ $(document).ready(function(){
                     data:{tranNum:data},
                     success: function(response){
                         load();
-                        Alert2();
+                        Alert2(response);
                     }
                 });
             }
@@ -516,7 +520,7 @@ $(document).ready(function(){
                             data:{tranNum:data},
                             success: function(response){
                                 load();
-                                Alert2();
+                                Alert2(response);
                             }
                         });
                     }
@@ -531,7 +535,7 @@ $(document).ready(function(){
                     data:{tranNum:data},
                     success: function(response){
                         load();
-                        Alert2();
+                        Alert2(response);
                     }
                 });
             }
@@ -541,13 +545,23 @@ $(document).ready(function(){
 </script>
 
 <script>
+    var timers=[];
+    var tags=[];
     function timerForNotif(){
-        var sn=$("#charging2").val();
         var tag=$("#chargingselect").val();
-        setTimeout(function(){
+        tags.push(tag);
+        timers.push(setTimeout(function(){
             $.MessageBox("55 Minutes has elapsed for PC: "+tag);
-            
-        },5000);
+            var index=tags.indexOf(tag);
+            timers.splice(index,1);
+            tags.splice(index,1);
+        },10000));
+    }
+    function clearTime(tag){
+        var index=tags.indexOf(tag);
+        timers[index]=clearTimeout(timers[index]);
+        timers.splice(index,1);
+        tags.splice(index,1);
     }
     $("form.ajax1").on("submit",function(){
     var snvalue=$("#charging1").val()+$("#charging2").val()+$("#charging3").val()+$("#charging4").val();

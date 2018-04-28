@@ -3,7 +3,6 @@ include 'conn.php';
 
 $tranNum=$_POST['tranNum'];
 $tranNum=explode(" ",$tranNum);
-echo $tranNum[0];
 $sql="UPDATE transaction SET time_out=CURRENT_TIMESTAMP WHERE transaction_number=$tranNum[1]";
 mysqli_query($connect,$sql);
 
@@ -11,7 +10,6 @@ mysqli_query($connect,$sql);
 $settingsql="SELECT charge_computer from settings";
 $settingresult=mysqli_query($connect,$settingsql);
 $result=mysqli_fetch_array($settingresult);
-echo $result[0];
 if($tranNum[0]=='Power_Usage'||($result[0]==1&&$tranNum[0]=='Computer_Usage')){
 
 $timeinsql="SELECT time_in from transaction WHERE transaction_number=$tranNum[1]";
@@ -41,15 +39,13 @@ CONCAT(MOD(HOUR(SEC_TO_TIME($timecon)), 24), 'H:',
     second(SEC_TO_TIME($timecon)), 'Sec') as 'consumed'";
 $resultsconsumed=mysqli_fetch_assoc(mysqli_query($connect,$timeconsquery));
 $consumed=$resultsconsumed['consumed'];
-echo $timecon;
-echo $consumed;
 $sql="UPDATE transaction SET time_consumed='$consumed' WHERE transaction_number=$tranNum[1]";
 mysqli_query($connect,$sql);
 
 $sqll="SELECT time_remaining FROM student where student_number='$resultsn1'";
 $resulttime=mysqli_fetch_assoc(mysqli_query($connect,$sqll));
 $timerem=(int)$resulttime['time_remaining'];
-
+echo "Time in: ".$timei."<br>Time-out: ".$timeo."<br>Time Consumed: ".$consumed;
 $timerem=$timerem-$timecon;
 $sql="UPDATE student SET time_remaining=$timerem WHERE student_number='$resultsn1'";
 mysqli_query($connect,$sql);
@@ -81,9 +77,8 @@ CONCAT(MOD(HOUR(SEC_TO_TIME($timecon)), 24), 'H:',
     second(SEC_TO_TIME($timecon)), 'Sec') as 'consumed'";
 $resultsconsumed=mysqli_fetch_assoc(mysqli_query($connect,$timeconsquery));
 $consumed=$resultsconsumed['consumed'];
-echo $timecon;
-echo $consumed;
 $sql="UPDATE transaction SET time_consumed='$consumed' WHERE transaction_number=$tranNum[1]";
 mysqli_query($connect,$sql);
+echo "Time in: ".$timei."\nTime-out: ".$timeo."\nTime Consumed: ".$consumed;
 }
 ?>

@@ -24,7 +24,7 @@ while($row=mysqli_fetch_row($result)){
 
 
         $i=1;
-        echo "<tr><div class='change'><td><select name='".$row[0]."' class='custom-select'>";
+        echo "<tr><div class='change'><td><select name='".$row[0]."' class='custom-select tag'>";
         while($i<=40){
             if($row[5]==(string)$i){
                 echo "<option value='".$row[5]."' selected>$row[5]</option>";
