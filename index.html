@@ -69,7 +69,7 @@
     </nav>
     <br/>
         <div class="offset-sm-4" id="computerinput" >
-            <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="timerForNotif();load();">
+            <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="load();">
                 <div class="form-inline well">
                     <label><h4>Tag  :</h4></label>
                     <input type="hidden" name="type" value="Computer_Usage"></input>
@@ -301,10 +301,37 @@
         swal({
             position: 'Middle',
             title: 'STUDENT IS NOT IN DATABASE',
-            text: 'STUDENT DOES NOT EXIST IN DATABASE'
+            text: 'STUDENT DOES NOT EXIST IN DATABASE',
+            type: 'error'
         
         });
         }
+    function studentMax() {
+        swal({
+            position: 'Middle',
+            title: 'STUDENT HAS NO TIME LEFT',
+            text: 'STUDENT HAS USED UP THEIR CHARGING TIME',
+            type: 'error'
+        
+        });
+        }
+        function studentAlready() {
+        swal({
+            position: 'Middle',
+            title: 'STUDENT CURRENTLY HAS AN ONGOING TRANSACTION',
+            text: 'STUDENT IS CURRENTLY TIMED-IN',
+            type: 'error'
+        
+        });
+        }
+        function success(){
+        swal({
+  type: 'success',
+  title: 'Timed-in',
+  showConfirmButton: false,
+  timer: 500
+})
+    }
     </script>
 <script>
     
@@ -523,8 +550,8 @@ $(document).ready(function(){
         },5000);
     }
     $("form.ajax1").on("submit",function(){
-        var snvalue=$("#charging1").val()+$("#charging2").val()+$("#charging3").val()+$("#charging4").val();
-        if(snvalue.length===9){
+    var snvalue=$("#charging1").val()+$("#charging2").val()+$("#charging3").val()+$("#charging4").val();
+        if(snvalue.length==9){
             first=snvalue.slice(0,4);
             second=snvalue.slice(4,9);
             $(".sn").val(first+"-"+second);
@@ -549,8 +576,14 @@ $(document).ready(function(){
         success: function(data){
             if(data==0){
                 studentDNE();
-            }else{
+            }else if(data==1){
+                timerForNotif();
+                success();
                 $(".form-control").val("");
+            }else if(data==2){
+                studentMax();
+            }else if(data==3){
+                studentAlready();
             }
         }
     });
