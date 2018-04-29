@@ -3,6 +3,7 @@
     //Obtaining From time and To time
     $fromtime=$_POST['from'];
     $totime=$_POST['to'];
+    $by=$_POST['by'];
     //Sql query
         $sql="SELECT * from payment where (date between '$fromtime' and '$totime') and type = 'Computer_Usage'";
                 $result=mysqli_query($connect,$sql);

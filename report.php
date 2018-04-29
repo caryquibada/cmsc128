@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="js/mdb.min.css">
     <link rel="stylesheet" href="sweetalert2.min.css">
     <link rel="stylesheet" href="material/material.min.css">
+    <link type="text/css" href="css/dataTables.checkboxes.css" rel="stylesheet" />
+    <script type="text/javascript" src="js/dataTables.checkboxes.min.js"></script>
     <script src="sweetalert2.all.js"></script>
     <script src="js/jquery.min.js"></script>
     <script defer src="js/fa.js"></script>
@@ -96,11 +98,18 @@ color:#FFFFFF;
             <label>By:</label>
             <div class="col-sm-3">
                 <select id="by" class='custom-select'>
-                    <option value="all"></option>
+                    <option value="all">ALL</option>
+                    <optgroup label="Transactions">
                     <option value="Computer_Usage">Computer Usage</option>
                     <option value="Power_Usage">Power Usage</option>
                     <option value="iPad_Usage">iPad Usage</option>
                     <option value="E-Resources">E-Resources</option>
+                    </optgroup>
+                    <optgroup label="Paid Services">
+                    <option value="Printing">Printing</option>
+                    <option value="Scanning">Scanning</option>
+                    <option value="pComputer_Usage">Paid Computer Usage</option>
+                    </optgroup>
                 </select>
             </div>
             <button id="report" onclick="load()" class="col-sm-2 btn btn-unique">GENERATE</button>
@@ -110,36 +119,36 @@ color:#FFFFFF;
     <br/>
     <div class="col-sm-12">
         <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
-                <li class="nav-item ">
+                <li class="nav-item transaction" >
                   <a class="nav-link" data-toggle="tab" href="#home" role="tab" aria-controls="home">Hour</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item transaction" >
                   <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Day</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item transaction" >
                   <a class="nav-link" data-toggle="tab" href="#messages" role="tab" aria-controls="messages">Week</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item transaction" >
                   <a class="nav-link" data-toggle="tab" href="#settings" role="tab" aria-controls="settings">Month</a>
                 </li>
                 <br/>
-                <li class="nav-item">
+                <li class="nav-item transaction" >
                   <a class="nav-link" data-toggle="tab" href="#course" role="tab" aria-controls="settings">Course</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item transaction" >
                   <a class="nav-link" data-toggle="tab" href="#college" role="tab" aria-controls="settings">College</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item payment" >
                   <a class="nav-link" data-toggle="tab" href="#paidservices" role="tab" aria-controls="settings">Paid Services</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" href="#paidcomputer" role="tab" aria-controls="settings">Paid Computer Usage</a>
-                </li>
-                <li class="nav-item">
+                <li class="nav-item transaction" >
                   <a class="nav-link" data-toggle="tab" href="#peak" role="tab" aria-controls="settings">Peak Hours</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item transaction" >
                   <a class="nav-link" data-toggle="tab" href="#lean" role="tab" aria-controls="settings">Lean Hours</a>
+                </li>
+                <li class="nav-item payment" >
+                  <a class="nav-link" data-toggle="tab" href="#permonthpaid" role="tab" aria-controls="settings">Month (Paid)</a>
                 </li>
               </ul>
               
@@ -187,12 +196,6 @@ color:#FFFFFF;
                         </table>
                     </div>
                 </div>
-                <div class="tab-pane" id="paidcomputer" role="tabpanel">
-                    <div class="table-responsive col-lg-12"><br/>
-                        <table class="table" id="tablePaidComputerUsage"> 
-                        </table>
-                    </div>
-                </div>
                 <div class="tab-pane" id="peak" role="tabpanel">
                     <div class="table-responsive col-lg-12"><br/>
                         <table class="table" id="tablePeak"> 
@@ -202,6 +205,12 @@ color:#FFFFFF;
                 <div class="tab-pane" id="lean" role="tabpanel">
                     <div class="table-responsive col-lg-12"><br/>
                         <table class="table" id="tableLean"> 
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane" id="permonthpaid" role="tabpanel">
+                    <div class="table-responsive col-lg-12"><br/>
+                        <table class="table" id="tablePerMonthPaid"> 
                         </table>
                     </div>
                 </div>
@@ -238,11 +247,30 @@ color:#FFFFFF;
 
 
 <script>
+    $(document).ready(function(){
+        $('.transaction').hide();
+        $('.payment').hide();
+    });
     function load(){
             var data={};
              var from=$("#fromtime");
              var to=$("#totime");
              var by=$("#by");
+             if(by.val()=='Computer_Usage'||by.val()=='iPad_Usage'||by.val()=='E-Resources'||by.val()=='Power_Usage'){
+                $('.transaction').show();
+                $('.payment').hide();
+             }else if(by.val()=='all'){
+                 $('.transaction').show();
+                 $('.payment').show();
+             }else if(by.val()=='pComputer_Usage'||by.val()=='Scanning'||by.val()=='Printing'){
+                if(by.val()=='pComputer_Usage'){
+                    by.val('Computer_Usage');
+                }
+                $('.transaction').hide();
+                 $('.payment').show();
+             }
+             
+             alert(by.val());
              data["by"]=by.val();
              data["from"]=from.val();
              data["to"]=to.val();
@@ -251,6 +279,21 @@ color:#FFFFFF;
                 $('#tablePerHour').DataTable();
                 $('#tablePerHour').DataTable().destroy();
                 $('#tablePerHour').DataTable({
+                    "pageLength": 50,
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ],
+                    "columnDefs": [
+                        { "type": "stringMonthYear", targets: 0 }
+                    ]
+                });
+
+            });
+            $('#tablePerMonthPaid').load("ajax/permonthpaid.php",data,function(){
+                $('#tablePerMonthPaid').DataTable();
+                $('#tablePerMonthPaid').DataTable().destroy();
+                $('#tablePerMonthPaid').DataTable({
                     "pageLength": 50,
                     dom: 'Bfrtip',
                     buttons: [
@@ -317,17 +360,6 @@ color:#FFFFFF;
                 $('#tablePaidServices').DataTable();
                 $('#tablePaidServices').DataTable().destroy();
                 $('#tablePaidServices').DataTable({
-                    "pageLength": 50,
-                    dom: 'Bfrtip',
-                    buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
-                    ]
-                });
-            });
-            $('#tablePaidComputerUsage').load("ajax/paidcomputerusage.php",data,function(){
-                $('#tablePaidComputerUsage').DataTable();
-                $('#tablePaidComputerUsage').DataTable().destroy();
-                $('#tablePaidComputerUsage').DataTable({
                     "pageLength": 50,
                     dom: 'Bfrtip',
                     buttons: [

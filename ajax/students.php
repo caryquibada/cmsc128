@@ -5,6 +5,7 @@
     $result=mysqli_query($connect,$sql);
     while($row=mysqli_fetch_row($result)){
         echo "<tr>
+                
                 <td>".$row[0]."</td>
                 <td>".$row[5]."</td>
                 <td>".$row[6]."</td>

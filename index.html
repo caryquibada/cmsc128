@@ -563,7 +563,10 @@ $(document).ready(function(){
             var index=tags.indexOf(tag);
             timers.splice(index,1);
             tags.splice(index,1);
-        },10000));
+            setTimeout(function(){
+                $.MessageBox("60 Minutes has elapsed for PC: "+tag);
+            },3000);
+        },7000));
     }
     function clearTime(tag){
         var index=tags.indexOf(tag);

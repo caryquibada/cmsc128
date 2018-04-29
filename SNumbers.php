@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="js/mdb.min.css">
     <link rel="stylesheet" href="sweetalert2.min.css">
     <link rel="stylesheet" href="material/material.min.css">
+    <link rel="stylesheet" type="text/css" href="css/dataTables.checkboxes.css">
 <script src="material/material.min.js"></script>
     <script src="js/mdb.min.js"></script>
    <script src="js/jquery.min.js"></script>
@@ -53,6 +54,8 @@
         echo "<table id="."'tableHolder'"." class="."table table-sm".">
                 <thead>
                     <tr>
+                        <th></th>
+                        <th hidden></th>
                         <th>Student Number</th>
                         <th>Name</th>
                         <th>Degree Program</th>
@@ -65,6 +68,8 @@
                 <tbody>";
         while($row=mysqli_fetch_row($result)){
             echo "<tr>
+                    <td></td>
+                    <td hidden>$row[0]</td>
                     <td><button type="."'button'"." class="."'btn btn-unique btn-md'"." data-toggle="."'modal'"." data-target="."'#myModal'"." id=".$row[0].">".$row[0]."</button></td>
                     <td>$row[1]</td>
                     <td>$row[2]</td>
@@ -92,6 +97,7 @@
         ?>
         <div class="row" id="reset">
             <button id="resetall" data-toggle="confirmation" class="btn btn-unique" onclick="resetall();">RESET ALL</button>
+            <button class="btn btn-unique" id="delSelect">DELETE SELECTED</button>
             <button class="btn btn-unique" onclick="help();">NEW STUDENT INSERTION HELP</button>
         </div>
         <div class="modal fade" id="myModal" role="dialog">
@@ -183,6 +189,7 @@
 <script src="js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/bootstrap-confirmation.js"></script>
+<script type="text/javascript" src="js/dataTables.checkboxes.min.js"></script>
 
 <script>
     $(document).ready(function(){
@@ -207,6 +214,7 @@
     }
     
 </script>
+
 <script type="text/javascript">
    $('#tableHolder').on('click','.delete', function(){
         swal({
@@ -253,9 +261,37 @@
     
 </script>
 <script type="text/javascript">
+var tbl;
     $(document).ready(function(){
-        $('#tableHolder').DataTable();
+       tbl =$('#tableHolder').DataTable({
+                    'columnDefs': [
+      {
+         'targets': 0,
+         'data':1,
+         'checkboxes': {
+            'selectRow': true
+         }
+      }
+   ],
+   'select': {
+      'style': 'multi'
+   }
+                
+        });
         
+    });
+    $('#delSelect').on('click',function(){
+        var selectedIds = tbl.columns().checkboxes.selected()[0];
+        console.log(selectedIds);
+        $.ajax({
+            type: "POST",
+            data: {IDS:selectedIds},
+            url: "ajax/deleteSelected.php",
+            success: function(msg){
+            }
+        });
+      // Iterate over all selected checkboxes
+      
     });
 </script>
 

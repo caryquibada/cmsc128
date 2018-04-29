@@ -48,7 +48,7 @@ if (isset($_POST['studentNumber'])&&!empty($_POST['studentNumber'])){
                 
             }
         }
-        $currentSQL="SELECT student_number from transaction where time_out='0000-00-00 00:00:00' AND type='$type'";
+        $currentSQL="SELECT student_number from transaction where time_out='0000-00-00 00:00:00' AND type='$type' AND student_number='$sn'";
                 $resultCurrent=mysqli_query($connect,$currentSQL);
                 $current=mysqli_fetch_assoc($resultCurrent);
                 if(in_array($sn,$current)){

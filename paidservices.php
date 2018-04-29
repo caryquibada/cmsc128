@@ -3,8 +3,15 @@
     //Obtaining From time and To time
     $fromtime=$_POST['from'];
     $totime=$_POST['to'];
+    $by=$_POST['by'];
     //Sql query
-        $sql="SELECT * from payment where (date between '$fromtime' and '$totime') and type = 'Printing' OR type='Scanning'";
+    if($by=='all'){
+      $sql="SELECT * from payment where (date between '$fromtime' and '$totime')";
+    }else{
+      $sql="SELECT * from payment where (date between '$fromtime' and '$totime') and type = '$by'";
+    }
+    echo $by;
+        
                 $result=mysqli_query($connect,$sql);
                 echo "  
                 <thead>
