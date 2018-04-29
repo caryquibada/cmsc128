@@ -10,7 +10,7 @@ mysqli_query($connect,$sql);
 $settingsql="SELECT charge_computer from settings";
 $settingresult=mysqli_query($connect,$settingsql);
 $result=mysqli_fetch_array($settingresult);
-if($tranNum[0]=='Power_Usage'||($result[0]==1&&$tranNum[0]=='Computer_Usage')){
+if($tranNum[0]=='Power_Usage'){
 
 $timeinsql="SELECT time_in from transaction WHERE transaction_number=$tranNum[1]";
 $timeinresult=mysqli_query($connect,$timeinsql);

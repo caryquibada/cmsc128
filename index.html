@@ -72,7 +72,7 @@
             <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="load();">
                 <div class="form-inline well">
                     <label><h4>Tag  :</h4></label>
-                    <input type="hidden" name="type" value="Computer_Usage"></input>
+                    <input type="hidden" name="type" class='type' value="Computer_Usage"></input>
                            
                     <div id="tagsComputer"></div>
                         <div class="input-group-lg">
@@ -91,7 +91,7 @@
                 <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="load();">
                     <div class="form-inline well">
                         <label><h4>Tag  :</h4></label>
-                        <input type="hidden" name="type" value="iPad_Usage"></input>
+                        <input type="hidden" name="type" class='type' value="iPad_Usage"></input>
                         <div id="inputsiPad"></div>
                         <div class="input-group-lg">
                             <input type="text" name="studentNumber" id="charging1" minlength='9' maxlength='10' class="form-control sn" placeholder="iPad Usage" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
@@ -110,7 +110,7 @@
                 <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="load();">
                     <div class="form-inline well">
                         <label><h4>Tag  :</h4></label>
-                        <input type="hidden" name="type" value="Power_Usage"></input>
+                        <input type="hidden" name="type" class='type' value="Power_Usage"></input>
                         <div id="inputsCharging"></div>
                         <div class="input-group-lg">
                             <input type="text" name="studentNumber" id="charging3" minlength='9' maxlength='10' class="form-control sn" placeholder="Charging" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
@@ -128,7 +128,7 @@
                 <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="load();">
                     <div class="form-inline well">
                         <label><h4>Tag  :</h4></label>
-                        <input type="hidden" name="type" value="E-Resources"></input>
+                        <input type="hidden" name="type" class='type' value="E-Resources"></input>
                         <div id="inputsEResources"></div>
                         <div class="input-group-lg">
                             <input type="text" name="studentNumber" id="charging4" minlength='9' maxlength='10' class="form-control sn" placeholder="E-Resources" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
@@ -190,6 +190,8 @@
             <div id="settingloader">
                 
             </div>
+            <div id="compsettingloader">
+            </div>
        
     </body>
 </html>
@@ -232,6 +234,10 @@
     function load(){
         setTimeout(function(){
             $('#settingloader').load('ajax/loadsetting.php',function(){
+        });
+        },500);
+        setTimeout(function(){
+            $('#compsettingloader').load('ajax/loadcompsetting.php',function(){
         });
         },500);
         setTimeout(function(){
@@ -383,9 +389,12 @@ $(document).ready(function(){
                             method:'POST',
                             data:{tranNum:data},
                             success: function(response){
-                                var tag=$('.tag').val();
+                                var tag=that.find('input').val();
                                 load();
-                                clearTime(tag);
+                                if($('#computer').val()==1){
+
+                                    clearTime(tag);
+                                }
                                 Alert2(response);
                             }
                         });
@@ -400,9 +409,11 @@ $(document).ready(function(){
                     method:'POST',
                     data:{tranNum:data},
                     success: function(response){
-                        var tag=$('.tag').val();
+                        var tag=that.find('input').val();
                         load();
-                        clearTime(tag);
+                        if($('#computer').val()==1){
+                            clearTime(tag);
+                        }
                         Alert2(response);
                     }
                 });
@@ -575,7 +586,7 @@ $(document).ready(function(){
         tags.splice(index,1);
     }
     $("form.ajax1").on("submit",function(){
-    var snvalue=$("#charging1").val()+$("#charging2").val()+$("#charging3").val()+$("#charging4").val();
+    var snvalue=$(".sn").val();
         if(snvalue.length==9){
             first=snvalue.slice(0,4);
             second=snvalue.slice(4,9);
@@ -602,7 +613,10 @@ $(document).ready(function(){
             if(data==0){
                 studentDNE();
             }else if(data==1){
-                timerForNotif();
+                
+                if($('#computer').val()==1&&that.find('.type').val()=='Computer_Usage'){
+                    timerForNotif();
+                }
                 success();
                 $(".form-control").val("");
             }else if(data==2){
