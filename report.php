@@ -110,6 +110,11 @@ color:#FFFFFF;
                     <option value="Scanning">Scanning</option>
                     <option value="pComputer_Usage">Paid Computer Usage</option>
                     </optgroup>
+                    <optgroup label="Visitor Services">
+                    <option value="vComputer_Usage">Computer Usage</option>
+                    <option value="vPower_Usage">Charging</option>
+                    <option value="viPad_Usage">iPad Usage</option>
+                    </optgroup>
                 </select>
             </div>
             <button id="report" onclick="load()" class="col-sm-2 btn btn-unique">GENERATE</button>
@@ -152,6 +157,12 @@ color:#FFFFFF;
                 </li>
                 <li class="nav-item payment" >
                   <a class="nav-link" data-toggle="tab" href="#permonthpaid" role="tab" aria-controls="settings">Month (Paid)</a>
+                </li>
+                <li class="nav-item visitor" >
+                  <a class="nav-link" data-toggle="tab" href="#permonthvis" role="tab" aria-controls="settings">Month (Visitor)</a>
+                </li>
+                <li class="nav-item visitor" >
+                  <a class="nav-link" data-toggle="tab" href="#vis" role="tab" aria-controls="settings">Visitor Transactions</a>
                 </li>
               </ul>
               
@@ -223,6 +234,18 @@ color:#FFFFFF;
                         </table>
                     </div>
                 </div>
+                <div class="tab-pane" id="permonthvis" role="tabpanel">
+                    <div class="table-responsive col-lg-12"><br/>
+                        <table class="table" id="tablePerMonthVis"> 
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane" id="vis" role="tabpanel">
+                    <div class="table-responsive col-lg-12"><br/>
+                        <table class="table" id="tablePaidVis"> 
+                        </table>
+                    </div>
+                </div>
             </div>
         
     </div>
@@ -268,15 +291,30 @@ color:#FFFFFF;
              if(by.val()=='Computer_Usage'||by.val()=='iPad_Usage'||by.val()=='E-Resources'||by.val()=='Power_Usage'){
                 $('.transaction').show();
                 $('.payment').hide();
+                $('.visitor').hide();
              }else if(by.val()=='all'){
                  $('.transaction').show();
                  $('.payment').show();
+                 
+                $('.visitor').show();
              }else if(by.val()=='pComputer_Usage'||by.val()=='Scanning'||by.val()=='Printing'){
                 if(by.val()=='pComputer_Usage'){
                     by.val('Computer_Usage');
                 }
                 $('.transaction').hide();
                  $('.payment').show();
+                $('.visitor').hide();
+             }else{
+                if(by.val()=='vComputer_Usage'){
+                    by.val('Computer_Usage');
+                }else if(by.val()=='vPower_Usage'){
+                    by.val('Power_Usage');
+                }else if(by.val()=='viPad_Usage'){
+                    by.val('iPad_Usage');
+                }
+                $('.visitor').show();
+                $('.transaction').hide();
+                 $('.payment').hide();
              }
              
              alert(by.val());
@@ -384,6 +422,28 @@ color:#FFFFFF;
                 $('#tablePaidServices').DataTable();
                 $('#tablePaidServices').DataTable().destroy();
                 $('#tablePaidServices').DataTable({
+                    "pageLength": 50,
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+            });
+            $('#tablePaidVis').load("ajax/displaypaidvisreport.php",data,function(){
+                $('#tablePaidVis').DataTable();
+                $('#tablePaidVis').DataTable().destroy();
+                $('#tablePaidVis').DataTable({
+                    "pageLength": 50,
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+            });
+            $('#tablePerMonthVis').load("ajax/permonthvis.php",data,function(){
+                $('#tablePerMonthVis').DataTable();
+                $('#tablePerMonthVis').DataTable().destroy();
+                $('#tablePerMonthVis').DataTable({
                     "pageLength": 50,
                     dom: 'Bfrtip',
                     buttons: [

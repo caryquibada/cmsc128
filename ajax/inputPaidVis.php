@@ -8,7 +8,7 @@ $visOccu= $_POST['visOccu'];
 $visOrg= $_POST['visOrg'];
 $visAlum= $_POST['visAlum'];
 $type=$_POST['type'];
-$tag=$_POST['tag'];
+$tag=$_POST['tagnumber'];
 echo $type;
 echo $tag;
 

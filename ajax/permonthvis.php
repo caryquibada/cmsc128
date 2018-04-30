@@ -6,9 +6,9 @@
     $by=$_POST['by'];
     //Sql query
     if($by=="all"){
-        $sql="SELECT year(date_paid),month(date_paid) as Month, sum(amount_due) as Count from payment where (date_paid between '$fromtime' and '$totime') group by year(date_paid), month(date_paid)";
+        $sql="SELECT year(time_in),month(time_in) as Month, sum(amount_due) as Count from vistransaction where (time_in between '$fromtime' and '$totime') group by year(time_in), month(time_in)";
     }else{
-        $sql="SELECT year(date_paid),month(date_paid) as Month, sum(amount_due) as Count from payment where type='$by' AND (date_paid between '$fromtime' and '$totime') group by year(date_paid), month(date_paid)";
+        $sql="SELECT year(time_in),month(time_in) as Month, sum(amount_due) as Count from vistransaction where type='$by' AND (time_in between '$fromtime' and '$totime') group by year(time_in), month(time_in)";
     }
     
     $result=mysqli_query($connect,$sql);

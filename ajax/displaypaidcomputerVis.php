@@ -1,6 +1,6 @@
 <?php
     include 'conn.php';
-    $query="SELECT * FROM vistransaction ";
+    $query="SELECT * FROM vistransaction WHERE MONTH(time_in)=MONTH(now())";
     $result=mysqli_query($connect,$query);
 
     echo "<thead>
