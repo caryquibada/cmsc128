@@ -1,6 +1,6 @@
 <?php 
 include 'conn.php';
-    echo '<select class="form-control-lg" name="tagnumber" form="chargingform" id="chargingselect">';
+    echo '<select class="form-control-lg  custom-select" name="tagnumber" form="chargingform" id="chargingselect">';
     $computer= array("1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20");
     $query="SELECT tag_no from transaction WHERE YEAR(time_out)='0000' AND type='E-Resources'";
     $result=mysqli_query($connect,$query);

@@ -69,7 +69,7 @@
     </nav>
     <br/>
         <div class="offset-sm-4" id="computerinput" >
-            <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="load();">
+            <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" >
                 <div class="form-inline well">
                     <label><h4>Tag  :</h4></label>
                     <input type="hidden" name="type" class='type' value="Computer_Usage"></input>
@@ -88,7 +88,7 @@
             </form>
         </div>
             <div class="offset-sm-4" id="ipadinput" hidden>
-                <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="load();">
+                <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" >
                     <div class="form-inline well">
                         <label><h4>Tag  :</h4></label>
                         <input type="hidden" name="type" class='type' value="iPad_Usage"></input>
@@ -107,7 +107,7 @@
             </div>
 
             <div class="offset-sm-4" id="charginginput" hidden>
-                <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="load();">
+                <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" >
                     <div class="form-inline well">
                         <label><h4>Tag  :</h4></label>
                         <input type="hidden" name="type" class='type' value="Power_Usage"></input>
@@ -125,7 +125,7 @@
                 </form>
             </div>
             <div class="offset-sm-4" id="eresourceinput" hidden>
-                <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" onsubmit="load();">
+                <form action="ajax/input.php" method="post" class="ajax1" id="chargingform" >
                     <div class="form-inline well">
                         <label><h4>Tag  :</h4></label>
                         <input type="hidden" name="type" class='type' value="E-Resources"></input>
@@ -566,8 +566,7 @@ $(document).ready(function(){
 <script>
     var timers=[];
     var tags=[];
-    function timerForNotif(){
-        var tag=$("#chargingselect").val();
+    function timerForNotif(tag){
         tags.push(tag);
         timers.push(setTimeout(function(){
             $.MessageBox("55 Minutes has elapsed for PC: "+tag);
@@ -613,12 +612,13 @@ $(document).ready(function(){
             if(data==0){
                 studentDNE();
             }else if(data==1){
-                
                 if($('#computer').val()==1&&that.find('.type').val()=='Computer_Usage'){
-                    timerForNotif();
+                    var tag=$('#chargingselect').val();
+                    timerForNotif(tag);
                 }
                 success();
                 $(".form-control").val("");
+                load();
             }else if(data==2){
                 studentMax();
             }else if(data==3){

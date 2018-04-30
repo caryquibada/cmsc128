@@ -282,16 +282,28 @@ var tbl;
     });
     $('#delSelect').on('click',function(){
         var selectedIds = tbl.columns().checkboxes.selected()[0];
-        console.log(selectedIds);
-        $.ajax({
-            type: "POST",
-            data: {IDS:selectedIds},
-            url: "ajax/deleteSelected.php",
-            success: function(msg){
-            }
-        });
-      // Iterate over all selected checkboxes
-      
+        if(selectedIds!=''){
+            swal({
+                title: 'Are you sure you want to delete '+selectedIds.length+' student/s?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, DELETE!'
+            }).then((result) => {
+                if (result.value) {
+                    console.log(selectedIds);
+                $.ajax({
+                    type: "POST",
+                    data: {IDS:selectedIds},
+                    url: "ajax/deleteSelected.php",
+                    success: function(msg){
+                    }
+                });
+                }
+            });
+        }
     });
 </script>
 

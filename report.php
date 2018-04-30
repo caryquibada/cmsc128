@@ -120,6 +120,9 @@ color:#FFFFFF;
     <div class="col-sm-12">
         <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
                 <li class="nav-item transaction" >
+                  <a class="nav-link" data-toggle="tab" href="#transactions" role="tab" aria-controls="home">Transaction</a>
+                </li>
+                <li class="nav-item transaction" >
                   <a class="nav-link" data-toggle="tab" href="#home" role="tab" aria-controls="home">Hour</a>
                 </li>
                 <li class="nav-item transaction" >
@@ -153,6 +156,12 @@ color:#FFFFFF;
               </ul>
               
             <div class="tab-content">
+                <div class="tab-pane" id="transactions" role="tabpanel">
+                    <div class="table-responsive col-lg-12"><br/>
+                        <table class="table" id="tableTransactions"> 
+                        </table>
+                    </div>
+                </div>
                 <div class="tab-pane active-in" id="home" role="tabpanel">
                     <div class="table-responsive col-lg-12"><br/>
                         <table class="table" id="tablePerHour"> 
@@ -320,6 +329,21 @@ color:#FFFFFF;
                 });
 
             });
+            $('#tableTransactions').load("ajax/displaytransactions.php",data,function(){
+                $('#tableTransactions').DataTable();
+                $('#tableTransactions').DataTable().destroy();
+                $('#tableTransactions').DataTable({
+                    "pageLength": 50,
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ],
+                    "columnDefs": [
+                        { "type": "stringMonthYear", targets: 0 }
+                    ]
+                });
+
+            });
             $('#tablePerWeek').load("ajax/perweek.php",data,function(){
                 $('#tablePerWeek').DataTable();
                 $('#tablePerWeek').DataTable().destroy();
@@ -403,17 +427,17 @@ color:#FFFFFF;
         }
         $("#test").on("click",function(){
             swal({
-  title: 'Are you sure you want to delete entries in a years interval? Print entries before doing so.',
-  text: "You won't be able to revert this!",
-  type: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, DELETE!'
-}).then((result) => {
-  if (result.value) {
-    var that= $('.ajax1'),
-        url=that.attr('action'),
+                title: 'Are you sure you want to delete entries in a specified interval? Print entries before doing so.',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, DELETE!'
+            }).then((result) => {
+                if (result.value) {
+                    var that= $('.ajax1'),
+                    url=that.attr('action'),
         type=that.attr('method'),
         data={};
         
