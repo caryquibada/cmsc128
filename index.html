@@ -574,7 +574,18 @@ $(document).ready(function(){
             timers.splice(index,1);
             tags.splice(index,1);
             setTimeout(function(){
-                $.MessageBox("60 Minutes has elapsed for PC: "+tag);
+                $.MessageBox({
+                buttonDone  : "Yes",
+	            buttonFail  : "No",
+	            message     : "60 Minutes has elapsed for PC: "+tag+". Extend user?"
+	            }).done(function(){
+	                $.MessageBox("Extended PC:"+ tag);
+                    clearTime(tag);
+                    timerForNotif(tag);
+	            }).fail(function(){
+	                clearTime(tag);
+                    $("#tableHolder1").find('button').find('input[value="'+tag+'"]').trigger('click');
+                });
             },3000);
         },7000));
     }
