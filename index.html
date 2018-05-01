@@ -36,6 +36,11 @@
 .btn{
     border: 0;
 }
+.custom_messagebox {
+    background-color    : #8E1538;
+    border              : 3px solid black;
+    color:white;
+}
 
     </style>
     </head>
@@ -569,17 +574,24 @@ $(document).ready(function(){
     function timerForNotif(tag){
         tags.push(tag);
         timers.push(setTimeout(function(){
-            $.MessageBox("55 Minutes has elapsed for PC: "+tag);
+            $.MessageBox({
+                customClass : "custom_messagebox",
+                message: "55 Minutes has elapsed for PC: "+tag
+            });
             var index=tags.indexOf(tag);
             timers.splice(index,1);
             tags.splice(index,1);
             setTimeout(function(){
                 $.MessageBox({
+                customClass : "custom_messagebox",
                 buttonDone  : "Yes",
 	            buttonFail  : "No",
 	            message     : "60 Minutes has elapsed for PC: "+tag+". Extend user?"
 	            }).done(function(){
-	                $.MessageBox("Extended PC:"+ tag);
+	                $.MessageBox({
+                        customClass : "custom_messagebox",
+                        message: "Extended PC: "+tag
+                    });
                     clearTime(tag);
                     timerForNotif(tag);
 	            }).fail(function(){
