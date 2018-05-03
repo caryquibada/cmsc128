@@ -69,10 +69,50 @@ color:#FFFFFF;
             <div id="items">
     
             </div>
-            
             <input type="submit" class="btn btn-danger" value="Apply Changes" onclick="success();"></input>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-danger offset-md-5" data-toggle="modal" data-target="#exampleModalCenter">
+                Change Password
+            </button>
+
         </div>
     </form>
+    <br/>
+    <br/>
+    <br/>
+    <div id="password"></div>
+    
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Change Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form class="ajax2" action="ajax/changepassword.php" method="POST">
+      <label> Old Password: </label>
+        <input type="password"  class="offset-sm-2" id="oldpassword" required></input>
+        <br/>
+        <label > New Password: </label>
+        <input type="password" class="offset-md-2" name='password' id="newpassword" required></input>
+        <br/>
+        <label> Confirm New Password: </label>
+        <input type="password" id="confirmpassword" required></input>
+        <br/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-danger">Change password</button>
+    </form>  
+    </div>
+    </div>
+  </div>
+</div>
     </body>
 </html>
 
@@ -81,6 +121,11 @@ $(document).ready(function(){
     var data={};
     setTimeout(function(){
         $('#items').load('ajax/settingitems.php',function(){
+             
+        });
+    });
+    setTimeout(function(){
+        $('#password').load('ajax/loadpassword.php',function(){
              
         });
     });
@@ -115,6 +160,28 @@ $(document).ready(function(){
     });
         return false;
     });
+    $("form.ajax2").on("submit",function(){
+        if((($('#loaded').val())==($('#oldpassword').val()))&&(($('#newpassword').val())==($('#confirmpassword').val()))){
+            var that= $(this),
+            url=that.attr('action'),
+            type=that.attr('method');
+            data['password']=$('#newpassword').val();
+        $.ajax({
+            url:url,
+            type:type,
+            data:data,
+            success: function(response){
+                pwsuccess()
+            }
+        });
+        
+        }else if(($('#newpassword').val())!=($('#confirmpassword').val())){
+            pwfail2();
+        }else{
+            pwfail();
+        }
+        return false;
+    });
 });
 </script>
 <script>
@@ -122,6 +189,30 @@ $(document).ready(function(){
         swal({
   type: 'success',
   title: 'Your settings have been saved',
+  showConfirmButton: false,
+  timer: 1000
+})
+    }
+    function pwsuccess(){
+        swal({
+  type: 'success',
+  title: 'Your new password have been saved',
+  showConfirmButton: false,
+  timer: 1000
+})
+    }
+    function pwfail(){
+        swal({
+  type: 'error',
+  title: 'Old password incorrect',
+  showConfirmButton: false,
+  timer: 1000
+})
+    }
+    function pwfail2(){
+        swal({
+  type: 'error',
+  title: 'Unable to match new password and confirmation of new password',
   showConfirmButton: false,
   timer: 1000
 })
