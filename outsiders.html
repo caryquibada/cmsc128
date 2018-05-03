@@ -87,11 +87,15 @@ color:#FFFFFF;
                             </input>
 							<input type="text"  name="visOrg" id="visorg1" maxlength='100' class="form-control sn" required placeholder="Organization" pattern="[A-Za-z\s]{2,}">
                             </input>
-                            <label><pre class="tab">Alumni:</pre></label>
+                            <label><pre class="tab">Part of UP Staff?:</pre></label>
                             <select name="visAlum" class="custom-select">
-                                    <option value="yes">Yes</option>
-                                    <option value="no">No</option>
-                         
+                                <optgroup label="Yes"></optgroup>
+                                    <option value="Alumni">Alumni</option>
+                                    <option value="Professor">Professor</option>
+                                    <option value="Instructor">Instructor</option>
+                                    <option value="Staff">Staff</option>
+                                <optgroup label="No"></optgroup>
+                                    <option value="No">No</option>
                             </select>
                             <span class="input-group-btn">
                                 <button class="btn btn-danger" type="submit">Go!</button>
@@ -132,14 +136,6 @@ color:#FFFFFF;
 
         setTimeout(function(){
             $('#settingloader').load('ajax/loadsetting.php',function(){
-        });
-        },500);
-        setTimeout(function(){
-            $('#tableHolder').load('ajax/displayPaid.php',function(){
-                $('#tableHolder').DataTable().destroy();
-                $('#tableHolder').DataTable({
-                    "order": [[ 10, "desc" ]]
-                });
         });
         },500);
         setTimeout(function(){
