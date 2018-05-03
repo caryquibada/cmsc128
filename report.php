@@ -275,6 +275,7 @@ color:#FFFFFF;
                     <button type="button" class="btn btn-unique" id="test">DELETE</button>
                         </form>
                     </div>
+                    <div id="password"></div>
                 </div>
             </div>
         </div>
@@ -490,6 +491,11 @@ color:#FFFFFF;
                     ]
                 });
             });
+            setTimeout(function(){
+                $('#password').load('ajax/loadpassword.php',function(){
+             
+                });
+            });
         }
         $("#test").on("click",function(){
             swal({
@@ -546,7 +552,7 @@ color:#FFFFFF;
   }
 }); 
 $('#unlock').click(function() {
-    if($('#pswd').val()=='password'){
+    if($('#pswd').val()==$('#loaded').val()){
         $('#unlock_div').fadeOut();
         $(this).closest('div').siblings().fadeIn();
     }else{

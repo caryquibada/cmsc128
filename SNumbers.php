@@ -198,6 +198,7 @@
         <div id="reset1">
 
         </div>
+        <div id="password"></div>
     </div>
     </body>
 </html>
@@ -272,6 +273,11 @@
              });
              
         });
+        setTimeout(function(){
+        $('#password').load('ajax/loadpassword.php',function(){
+             
+        });
+    });
         
         
         
@@ -448,7 +454,7 @@ var tbl;
   }
 }); 
 $('#unlock').click(function() {
-    if($('#pswd').val()=='password'){
+    if($('#pswd').val()==$('#loaded').val()){
         $('#unlock_div').fadeOut();
         $(this).closest('div').siblings().fadeIn();
     }else{
