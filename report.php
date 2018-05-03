@@ -552,7 +552,6 @@ color:#FFFFFF;
   }
 }); 
 $('#unlock').click(function() {
-    alert($('#loaded').val());
     if($('#pswd').val()==$('#loaded').val()){
         $('#unlock_div').fadeOut();
         $(this).closest('div').siblings().fadeIn();

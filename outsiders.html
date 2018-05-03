@@ -38,9 +38,6 @@ color:#FFFFFF;
     </style>
     </head>
     <body>
-            <div id="unlock_div"><label>Enter password: </label><input type="password" id="pswd"></input><input type="button" value="unlock" id="unlock"></input>
-            </div>
-                <div id="lock">
     <nav class="navbar navbar-toggleable-md navbar-light" style="background-color: #8E1538;">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -220,7 +217,6 @@ function Alert() {
     </script>
 <script>
 $(document).ready(function(){
-        $('#lock').fadeOut();
         $("#tableHolder").on('click','.btnSelect',function(){
                 var that=$(this);
                 var tn=that.attr('id');
