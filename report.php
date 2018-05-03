@@ -56,6 +56,7 @@ color:#FFFFFF;
     </style>
     </head>
     <body>
+   
     <nav class="navbar navbar-toggleable-md navbar-light" style="background-color: #8E1538;">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -71,7 +72,7 @@ color:#FFFFFF;
                 <a class="nav-link" href="outsiders.html" style="color:white;"> Visitor Services <span class="sr-only">(current)</span></a>
             </li>		
             <li class="nav-item">
-                <a class="nav-link" href="passwordstudents.html" style="color:white;"> Students <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="SNumbers.php" style="color:white;"> Students <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="report.php" style="color:white;"> Report <span class="sr-only">(current)</span></a>
@@ -82,7 +83,10 @@ color:#FFFFFF;
         </div>
     </div>
     </nav>
-    <br/>
+    <br/><br/>
+    <div id="unlock_div" class="form-inline offset-md-2"><br/><label>Enter password: </label><input class="form-control col-sm-6" type="password" id="pswd"></input><input type="button" class="btn btn-unique col-sm-2" value="Unlock" id="unlock"></input>
+    </div>
+<div id="lock">
     <form id="timeout">
     <div class="col-sm-12">
         <div class="row">
@@ -274,6 +278,7 @@ color:#FFFFFF;
                 </div>
             </div>
         </div>
+    </div>
     </body>
 </html>
 
@@ -282,6 +287,8 @@ color:#FFFFFF;
     $(document).ready(function(){
         $('.transaction').hide();
         $('.payment').hide();
+        $('.visitor').hide();
+        $('#lock').hide();
     });
     function load(){
             var data={};
@@ -528,5 +535,29 @@ color:#FFFFFF;
         
 });
 </script>
-
+<script>
+    var input = document.getElementById("pswd");
+    input.addEventListener("keyup", function(event) {
+  // Cancel the default action, if needed
+  event.preventDefault();
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Trigger the button element with a click
+    document.getElementById("unlock").click();
+  }
+}); 
+$('#unlock').click(function() {
+    if($('#pswd').val()=='password'){
+        $('#unlock_div').fadeOut();
+        $(this).closest('div').siblings().fadeIn();
+    }else{
+        swal({
+  type: 'error',
+  title: 'Password Incorrect',
+  showConfirmButton: false,
+  timer: 1000
+    });
+        }
+});
+</script>
     

@@ -10,11 +10,24 @@
     <link rel="stylesheet" href="sweetalert2.min.css">
     <link rel="stylesheet" href="material/material.min.css">
     <link rel="stylesheet" type="text/css" href="css/dataTables.checkboxes.css">
-<script src="material/material.min.js"></script>
+
     <script src="js/mdb.min.js"></script>
    <script src="js/jquery.min.js"></script>
     <script defer src="js/fa.js"></script>
-
+    <script src="material/material.min.js"></script>
+    <style>
+    .btn-danger,.btn-danger:active{
+    background-color:#8E1538;
+    outline:#8E1538;
+}
+.btn-danger:hover{
+    background-color:white;
+    color:grey;
+}
+.btn{
+    border: 0;
+}
+    </style>
     </head>
     <body>
     <nav class="navbar navbar-toggleable-md navbar-light" style="background-color: #8E1538;">
@@ -43,6 +56,9 @@
     </div>
     </nav>
     <br/><br/>
+    <div id="unlock_div" class="form-inline offset-md-2"><br/><label>Enter password: </label><input class="form-control col-sm-6" type="password" id="pswd"></input><input type="button" class="btn btn-unique col-sm-2" value="Unlock" id="unlock"></input>
+    </div>
+<div id="lock">
     <div>
         <button class='btn btn-unique btn-md' data-toggle='modal' data-target='#myModal2'>New Student</button>
     </div>
@@ -51,7 +67,7 @@
     
         $sql="SELECT * FROM student";
         $result=mysqli_query($connect,$sql);
-        echo "<table id="."'tableHolder'"." class="."table table-sm".">
+        echo "<table id="."'tableHolder'"." class="."table table-sm"." width='100%'>
                 <thead>
                     <tr>
                         <th></th>
@@ -182,6 +198,7 @@
         <div id="reset1">
 
         </div>
+    </div>
     </body>
 </html>
 <script src="sweetalert2.all.js"></script>
@@ -193,6 +210,7 @@
 
 <script>
     $(document).ready(function(){
+        $("#lock").hide();
         load();
     });
     function load(){
@@ -417,4 +435,29 @@ var tbl;
             imageAlt: 'A tall image'
         })
     }
+</script>
+<script>
+    var input = document.getElementById("pswd");
+    input.addEventListener("keyup", function(event) {
+  // Cancel the default action, if needed
+  event.preventDefault();
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Trigger the button element with a click
+    document.getElementById("unlock").click();
+  }
+}); 
+$('#unlock').click(function() {
+    if($('#pswd').val()=='password'){
+        $('#unlock_div').fadeOut();
+        $(this).closest('div').siblings().fadeIn();
+    }else{
+        swal({
+  type: 'error',
+  title: 'Password Incorrect',
+  showConfirmButton: false,
+  timer: 1000
+    });
+        }
+});
 </script>

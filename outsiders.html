@@ -38,6 +38,9 @@ color:#FFFFFF;
     </style>
     </head>
     <body>
+            <div id="unlock_div"><label>Enter password: </label><input type="password" id="pswd"></input><input type="button" value="unlock" id="unlock"></input>
+            </div>
+                <div id="lock">
     <nav class="navbar navbar-toggleable-md navbar-light" style="background-color: #8E1538;">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -52,10 +55,10 @@ color:#FFFFFF;
                 <a class="nav-link" href="outsiders.html" style="color:white;"> Visitor Services <span class="sr-only">(current)</span></a>
             </li>				
             <li class="nav-item">
-                <a class="nav-link" href="passwordstudents.html" style="color:white;"> Students  <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="SNumbers.php" style="color:white;"> Students  <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                    <a class="nav-link" href="passwordreport.html" style="color:white;"> Report <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="report.php" style="color:white;"> Report <span class="sr-only">(current)</span></a>
                 </li>
         </ul>
         <div style="color:white">
@@ -118,7 +121,7 @@ color:#FFFFFF;
             <div id="settingloader">
                 
             </div>
-       
+        </div>
     </body>
 </html>
 
@@ -217,7 +220,7 @@ function Alert() {
     </script>
 <script>
 $(document).ready(function(){
-       
+        $('#lock').fadeOut();
         $("#tableHolder").on('click','.btnSelect',function(){
                 var that=$(this);
                 var tn=that.attr('id');
@@ -394,6 +397,8 @@ $(document).ready(function(){
 });
 
 </script>
+
+
 
     <script>
 
