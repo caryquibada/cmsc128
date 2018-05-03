@@ -254,6 +254,8 @@ color:#FFFFFF;
         
     </div>
     
+    <div id="password"></div>
+    
     
     <button class='btn btn-unique btn-md' data-toggle='modal' data-target='#myModal2'>DELETE TRANSACTIONS</button>
     <div class="modal fade" id="myModal2" role="dialog">
@@ -275,7 +277,6 @@ color:#FFFFFF;
                     <button type="button" class="btn btn-unique" id="test">DELETE</button>
                         </form>
                     </div>
-                    <div id="password"></div>
                 </div>
             </div>
         </div>
@@ -286,6 +287,10 @@ color:#FFFFFF;
 
 <script>
     $(document).ready(function(){
+        
+        $('#password').load('ajax/loadpassword.php',function(){
+             
+        });
         $('.transaction').hide();
         $('.payment').hide();
         $('.visitor').hide();
@@ -491,11 +496,6 @@ color:#FFFFFF;
                     ]
                 });
             });
-            setTimeout(function(){
-                $('#password').load('ajax/loadpassword.php',function(){
-             
-                });
-            });
         }
         $("#test").on("click",function(){
             swal({
@@ -552,6 +552,7 @@ color:#FFFFFF;
   }
 }); 
 $('#unlock').click(function() {
+    alert($('#loaded').val());
     if($('#pswd').val()==$('#loaded').val()){
         $('#unlock_div').fadeOut();
         $(this).closest('div').siblings().fadeIn();
