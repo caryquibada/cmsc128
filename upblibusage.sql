@@ -2045,7 +2045,8 @@ CREATE TABLE `transaction` (
 --
 CREATE TABLE `settings` (
   `charge_computer` tinyint(1) NOT NULL DEFAULT '0',
-  `confirm_timeout` tinyint(1) NOT NULL DEFAULT '1'
+  `confirm_timeout` tinyint(1) NOT NULL DEFAULT '1',
+  `password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Indexes for dumped tables
