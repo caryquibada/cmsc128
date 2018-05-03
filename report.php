@@ -324,7 +324,6 @@ color:#FFFFFF;
                  $('.payment').hide();
              }
              
-             alert(by.val());
              data["by"]=by.val();
              data["from"]=from.val();
              data["to"]=to.val();
