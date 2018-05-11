@@ -77,6 +77,15 @@ color:#FFFFFF;
 
         </div>
     </form>
+    <br>
+    <button type="button" class="btn btn-danger offset-md-2" data-toggle="modal" data-target="#PCModal">
+        Enable PC Tags
+    </button>
+    <button type="button" class="btn btn-danger offset-md-1" data-toggle="modal" data-target="#PowerModal">
+        Enable Power Tags
+    </button>
+
+
     <br/>
     <br/>
     <br/>
@@ -113,6 +122,63 @@ color:#FFFFFF;
     </div>
   </div>
 </div>
+<!-- The Modal -->
+<div class="modal" id="PCModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form class="ajax3" action="ajax/updatepctags.php" method="POST">
+            <div id="tags">
+            </div>
+        
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="modal" id="PowerModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form class="ajax4" action="ajax/updatepowertags.php" method="POST">
+            <div id="powertags">
+            </div>
+        
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
     </body>
 </html>
 
@@ -129,6 +195,8 @@ $(document).ready(function(){
              
         });
     });
+    $('#tags').load('ajax/enablecomputertags.php');
+    $('#powertags').load('ajax/enablepowertags.php');
     $('#confirmTimeouts').prop('indeterminate', true)
     $('#chargeComputer').prop('indeterminate', true)
     
@@ -180,6 +248,54 @@ $(document).ready(function(){
         }else{
             pwfail();
         }
+            return false;
+    });
+    $("form.ajax3").on("submit",function(){
+        var that= $(this),
+            url=that.attr('action'),
+            type=that.attr('method');
+    var checkedtags = [];
+        $('input.pc:checkbox:checked').each(function () {
+            checkedtags.push($(this).val());
+        });
+    var uncheckedtags = [];
+        $('input.pc:checkbox:not(:checked)').each(function () {
+            uncheckedtags.push($(this).val());
+        });
+        data['checked']=checkedtags;
+        data['unchecked']=uncheckedtags;
+        $.ajax({
+            url:url,
+            type:type,
+            data:data,
+            success: function(response){
+                success();
+            }
+        });
+        return false;
+    });
+    $("form.ajax4").on("submit",function(){
+        var that= $(this),
+            url=that.attr('action'),
+            type=that.attr('method');
+    var checkedtags = [];
+        $('input.power:checkbox:checked').each(function () {
+            checkedtags.push($(this).val());
+        });
+    var uncheckedtags = [];
+        $('input.power:checkbox:not(:checked)').each(function () {
+            uncheckedtags.push($(this).val());
+        });
+        data['checked']=checkedtags;
+        data['unchecked']=uncheckedtags;
+        $.ajax({
+            url:url,
+            type:type,
+            data:data,
+            success: function(response){
+                success();
+            }
+        });
         return false;
     });
 });

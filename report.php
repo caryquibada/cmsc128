@@ -121,7 +121,7 @@ color:#FFFFFF;
                     </optgroup>
                 </select>
             </div>
-            <button id="report" onclick="load()" class="col-sm-2 btn btn-unique">GENERATE</button>
+            <input type="button" id="report" onclick="load()" class="col-sm-2 btn btn-unique" value="GENERATE"></button>
             
         </div>
     </div>
@@ -256,32 +256,7 @@ color:#FFFFFF;
     
     <div id="password"></div>
     
-    
-    <button class='btn btn-unique btn-md' data-toggle='modal' data-target='#myModal2'>DELETE TRANSACTIONS</button>
-    <div class="modal fade" id="myModal2" role="dialog">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <b>Delete Transaction</b>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="ajax/deleteyear.php" method="post" class="ajax1">
-                            <label>From:</label>
-                                <input type="date" name="from" required></input>
-                            <label>To:</label>
-                                <input type="date" name="to" required></input>
-                                
-                        </form>
-                            
-                    </div>
-                    <div class="modal-footer">
-                    <button class="btn btn-unique" id="test">DELETE</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <input type="button" id="test" class="btn btn-primary"></button>
     </body>
 </html>
 
@@ -300,7 +275,9 @@ color:#FFFFFF;
     function load(){
             var data={};
              var from=$("#fromtime");
-             var to=$("#totime");
+             
+             var to= new Date($('#totime').val());
+            to.setDate(to.getDate()+1);
              var by=$("#by");
              if(by.val()=='Computer_Usage'||by.val()=='iPad_Usage'||by.val()=='E-Resources'||by.val()=='Power_Usage'){
                 $('.transaction').show();
@@ -333,7 +310,7 @@ color:#FFFFFF;
              
              data["by"]=by.val();
              data["from"]=from.val();
-             data["to"]=to.val();
+             data["to"]=to.toISOString().substring(0, 10);
 
             $('#tablePerHour').load("ajax/perhour.php",data,function(){
                 $('#tablePerHour').DataTable();
@@ -589,7 +566,7 @@ color:#FFFFFF;
                 });
             });
         }
-        $("#test").on("click",function(){
+        $('#test').on('click',function(){
             swal({
                 title: 'Are you sure you want to delete entries in a specified interval? Print entries before doing so.',
                 text: "You won't be able to revert this!",
@@ -598,44 +575,36 @@ color:#FFFFFF;
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, DELETE!'
-            }).then((result) => {
+                }).then((result) => {
                 if (result.value) {
                     
-                    var that= $('form.ajax1'),
-                    url=that.attr('action'),
-        type=that.attr('method'),
-        data={};
-        $(".buttons-pdf").trigger('click');
-        alert(url);
-        alert(type);
-        
-    that.find('[name]').each(function(index, value) {
-        var that=$(this),
-            name=that.attr('name'),
-            value=that.val();
-            data[name]=value;
-    });
-            
-            
-    $.ajax({
-        url:url,
-        type:type,
-        data:data,
-        success: function(data){
-            
-            swal(
+                    
+                    var that= $('form.ajax1');
+                    var data={};
+                    var to= new Date($('#totime').val());
+                    
+                    to.setDate(to.getDate()+1);
+                    data['from']=$('#fromtime').val();
+                    data['to']=to.toISOString().substring(0, 10);
+                    alert("test");
+                    $.ajax({
+                        url:'ajax/deleteyear.php',
+                        type:'POST',
+                        data:data,
+                        success: function(data){
+                            $(".buttons-pdf").trigger('click');  
+                        }
+                    });
+                    return false;
+                    }
+                })
+        });  
+    function deletioncomplete(){
+        swal(
         'Deletion Complete',
         'Reloading page, please wait',
-        'success'
-            )
-        }
-    });
-    
-    return false;
+        'success');
     }
-    })  
-        
-});
 </script>
 <script>
     var input = document.getElementById("pswd");

@@ -1,4 +1,23 @@
 <?php
+function convertTime($dec)
+{
+    // start by converting to seconds
+    $seconds = ($dec * 3600);
+    // we're given hours, so let's get those the easy way
+    $hours = floor($dec);
+    // since we've "calculated" hours, let's remove them from the seconds variable
+    $seconds -= $hours * 3600;
+    // calculate minutes left
+    $minutes = floor($seconds / 60);
+    // remove those from seconds as well
+    $seconds -= $minutes * 60;
+    // return the time formatted HH:MM:SS
+    return lz($hours).":".lz($minutes).":".lz($seconds);
+}
+function lz($num)
+{
+    return (strlen($num) < 2) ? "0{$num}" : $num;
+}
 include 'conn.php';
 
 $sql="SELECT * FROM transaction WHERE YEAR(time_out)='0000' AND Type='Power_Usage'ORDER BY time_in DESC";
@@ -37,9 +56,9 @@ while($row=mysqli_fetch_row($result)){
 			<td>$row[1]</td>
 			<td>";
 
-			echo "$timerem hours</td>
+			echo convertTime($timerem)." hours</td>
 			<td>";
-        echo date( "h:i:s A F d, Y", strtotime($row[2]));
+        echo date( "h:i:s a F d, Y", strtotime($row[2]));
         echo "</td>
 			
 			<td><button class="."'btnSelect btn btn-unique'"." id='".$row[6]." ".$row[0]."' name='<br>Tag: ".$row[5]."<br>Student Number: ".$row[1]."'>Time-out</button></td>
@@ -51,9 +70,9 @@ while($row=mysqli_fetch_row($result)){
 		<td>$row[1]</td>
 		<td>";
 
-		echo "$timerem hours</td>
+		echo convertTime($timerem )."hours</td>
 		<td>";
-        echo date( "h:i:s A F d, Y", strtotime($row[2]));
+        echo date( "h:i:s a F d, Y", strtotime($row[2]));
         echo "</td>
 		
 		<td><button class="."'btnSelect btn btn-unique'"." id='".$row[6]." ".$row[0]."' name='<br>Tag: ".$row[5]."<br>Student Number: ".$row[1]."'>Time-out</button></td>

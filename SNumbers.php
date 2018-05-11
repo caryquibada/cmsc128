@@ -62,55 +62,8 @@
     <div>
         <button class='btn btn-unique btn-md' data-toggle='modal' data-target='#myModal2'>New Student</button>
     </div>
-        <?php
-        include 'ajax/conn.php';
-    
-        $sql="SELECT * FROM student";
-        $result=mysqli_query($connect,$sql);
-        echo "<table id="."'tableHolder'"." class="."table table-sm"." width='100%'>
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th hidden></th>
-                        <th>Student Number</th>
-                        <th>Name</th>
-                        <th>Degree Program</th>
-                        <th>Tuition Discount</th>
-                        <th>Tuition Bracket</th>
-                        <th>Time Remaining</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>";
-        while($row=mysqli_fetch_row($result)){
-            echo "<tr>
-                    <td></td>
-                    <td hidden>$row[0]</td>
-                    <td><button type="."'button'"." class="."'btn btn-unique btn-md'"." data-toggle="."'modal'"." data-target="."'#myModal'"." id=".$row[0].">".$row[0]."</button></td>
-                    <td>$row[1]</td>
-                    <td>$row[2]</td>
-                    <td>$row[3]</td>
-                    <td>$row[4]</td>
-                    <td>";
-                    $timerem=$row[5]/3600;
-                    if(!function_exists('ceiling')){
-                        function ceiling($number, $significance = 1){
-                        return ( is_numeric($number) && is_numeric($significance) ) ? (ceil($number/$significance)*$significance) : false;
-                        }
-                    }
-                    $timerem=ceiling($timerem,0.005);   //ID 7
-                    echo "$timerem hours</td>
-                    <td><button type='button' class='btn btn-unique btn-md' data-toggle='modal' data-target='#myModal1' id=".$row[0].">UPDATE</button>
-                    <input type='hidden' value=$row[0] class='hideme'/>
-                    <button type='button' class='btn btn-unique btn-md delete' id=".$row[0].">DELETE</button>
-                    <button type='button' class='btn btn-unique btn-md reset' id=".$row[0].">RESET</button>
-                    
-                    </td>
-                </tr>";
-        }
-        echo "  </tbody>
-            </table>";
-        ?>
+       <div id="loadstudents">
+        </div>
         <div class="row" id="reset">
             <button id="resetall" data-toggle="confirmation" class="btn btn-unique" onclick="resetall();">RESET ALL</button>
             <button class="btn btn-unique" id="delSelect">DELETE SELECTED</button>
@@ -159,7 +112,7 @@
                     <div class="modal-footer">
                     <button type="submit" class="btn btn-unique" id="test">UPDATE</button>
                         </form>
-                        <button type="button" class="btn btn-unique" data-dismiss="modal" onclick="location.reload();" >Close</button>
+                        <button type="button" class="btn btn-unique" data-dismiss="modal" onclick="load();" >Close</button>
                     </div>
                 </div>
             </div>    
@@ -173,7 +126,7 @@
                     </div>
                     <div class="modal-body">
                         <form action="ajax/newstudent.php" method="post" class="ajax1">
-                            <label>Student Number:</label>pattern
+                            <label>Student Number:</label>
                                 <input type="text" name="sn" required pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}" maxlength='10'></input>
                             <label>Name:</label>
                                 <input type="text" name="name" required placeholder="LASTNAME, Firstname M." maxlength='100'></input>
@@ -212,25 +165,7 @@
 <script>
     $(document).ready(function(){
         $("#lock").hide();
-        load();
     });
-    function load(){
-    
-            
-        $("#tableHolder").on('click','.btn',function(){
-             // get the current row
-  
-             $('#tableHolder1').DataTable();
-             $('#tableHolder1').DataTable().destroy();
-             var that=$(this);
-             var data=that.attr('id');
-             $('#display').load("ajax/students.php",{student:data},function(){
-                $('#tableHolder1').DataTable();
-             });
-            
-           
-        });
-    }
     
 </script>
 
@@ -255,7 +190,7 @@
     
     var data=that.attr('id');
     $('#delete').load("ajax/delete.php",{student:data},function(){
-        location.reload();        
+        load();        
     });
     }
     })   
@@ -265,14 +200,6 @@
 </script>
 <script>
     $(document).ready(function(){
-        $("#tableHolder").on('click','.btn',function(){
-             var that=$(this);
-             var data=that.attr('id');
-             $('#update').load("ajax/update.php",{student:data},function(){
-                 
-             });
-             
-        });
         setTimeout(function(){
         $('#password').load('ajax/loadpassword.php',function(){
              
@@ -285,8 +212,11 @@
     
 </script>
 <script type="text/javascript">
-var tbl;
-    $(document).ready(function(){
+function load(){
+    $('#loadstudents').load("ajax/loadstudents.php",function(){
+            $('#tableHolder').DataTable();
+            $('#tableHolder').DataTable().destroy();
+            
        tbl =$('#tableHolder').DataTable({
                     'columnDefs': [
       {
@@ -302,6 +232,59 @@ var tbl;
    }
                 
         });
+        $("#tableHolder").on('click','.btn',function(){
+             // get the current row
+  
+             $('#tableHolder1').DataTable();
+             $('#tableHolder1').DataTable().destroy();
+             var that=$(this);
+             var data=that.attr('id');
+             $('#display').load("ajax/students.php",{student:data},function(){
+                $('#tableHolder1').DataTable();
+             });
+            
+           
+        });
+        
+        $("#tableHolder").on('click','.btn',function(){
+             var that=$(this);
+             var data=that.attr('id');
+             $('#update').load("ajax/update.php",{student:data},function(){
+                 
+             });
+             
+        });
+        
+   $('#tableHolder').on('click','.reset',function(){
+        swal({
+            title: 'Are you sure you want to reset this students time remaining?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, RESET!'
+        }).then((result) => {
+            if (result.value) {
+                swal(
+                    'Reset Complete',
+                    'Reloading page, please wait',
+                'success'
+                )
+                var that=$(this);
+                var data=that.attr('id');
+                $('#reset1').load("ajax/resetstudent.php",{student:data},function(){
+                    load();        
+                });
+            }
+        })
+    });
+        });
+}
+var tbl;
+    $(document).ready(function(){
+        
+        load();
         
     });
     $('#delSelect').on('click',function(){
@@ -349,7 +332,7 @@ var tbl;
       'success'
     )
     $('#reset').load("ajax/resetall.php",function(){
-        location.reload();
+        load();
     });
     }
     })   
@@ -366,32 +349,6 @@ var tbl;
         setTimeout(function(){
         }, 1000);
     }
-</script>
-<script>
-   $('#tableHolder').on('click','.reset',function(){
-        swal({
-            title: 'Are you sure you want to reset this students time remaining?',
-            text: "You won't be able to revert this!",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, RESET!'
-        }).then((result) => {
-            if (result.value) {
-                swal(
-                    'Reset Complete',
-                    'Reloading page, please wait',
-                'success'
-                )
-                var that=$(this);
-                var data=that.attr('id');
-                $('#reset1').load("ajax/resetstudent.php",{student:data},function(){
-                    location.reload();        
-                });
-            }
-        })
-    });
 </script>
 <script>
     $("form.ajax1").on("submit",function(){

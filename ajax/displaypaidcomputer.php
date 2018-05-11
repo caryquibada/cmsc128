@@ -25,7 +25,7 @@
             echo "<td>$name[0]</td>
                     <td>$row[0]</td>
                     <td>";
-        echo date( "h:i:s A F d, Y", strtotime($row[6]));
+        echo date( "h:i:s a F d, Y", strtotime($row[6]));
         echo "</td>";
                 $timeoutyear=mysqli_fetch_row(mysqli_query($connect,"SELECT YEAR(date_paid) from payment where transaction_number='$row[8]'"));
                 $timediff=mysqli_fetch_row(mysqli_query($connect,"SELECT TIMESTAMPDIFF(minute,'$row[6]','$row[7]')"));
@@ -42,7 +42,7 @@
                     $time=$time+1;
                     $time=floatval($time*5.00);
                     mysqli_query($connect,"UPDATE payment SET amount_due=$time where transaction_number='$row[8]'");
-                    $timeout=date( "h:i:s A F d, Y", strtotime($row[7]));
+                    $timeout=date( "h:i:s a F d, Y", strtotime($row[7]));
                     echo "<td>$timeout</td>";
                     
                     echo "<td>$time</td>";

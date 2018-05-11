@@ -1,6 +1,22 @@
 <?php
 include 'conn.php';
-$choices= array("0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41");
+$choicesql="SELECT tag_number from tag where type='computer' AND status='enabled'";
+$choiceresult=mysqli_query($connect,$choicesql);
+while($row=mysqli_fetch_row($choiceresult)){
+    $choices[]=$row[0];
+}
+$query="SELECT tag_no from transaction WHERE YEAR(time_out)='0000' AND type='Computer_Usage'";
+$result=mysqli_query($connect,$query);
+
+$usedcomputer=[];
+while($row=mysqli_fetch_row($result)){
+    $row[0]=(string)$row[0];
+    echo $row[0];
+    if((in_array($row[0],$choices))){
+        $usedcomputer[]=$row[0];
+     }
+}
+$unusedcomputer=array_diff($choices,$usedcomputer);
 $sql="SELECT * FROM transaction WHERE YEAR(time_out)='0000' AND Type='Computer_Usage' ORDER BY time_in DESC";
 $result=mysqli_query($connect,$sql);
 //ID #2
@@ -23,15 +39,12 @@ while($row=mysqli_fetch_row($result)){
     $name=$namearray['name'];
 
 
-        $i=1;
+        
         echo "<tr><div class='change'><td data-search='$row[5]'><select name='".$row[0]."' class='custom-select tag'>";
-        while($i<=41){
-            if($row[5]==(string)$i){
-                echo "<option value='".$row[5]."' selected>$row[5]</option>";
-            }else{
-                echo "<option value='".$i."'>$i</option>";
-            }
-            $i=$i+1;
+        echo "<option value='".$row[5]."' selected>$row[5]</option>";
+        foreach($unusedcomputer as $choice){
+            echo "<option value='".$choice."'>$choice</option>";
+            
         }
         echo "</select></td></div><td>$name</td>
         <td>$row[1]</td>

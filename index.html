@@ -301,7 +301,7 @@
             $('#tableHolder').load('ajax/display.php',function(){
                 $('#tableHolder').DataTable().destroy();
                 $('#tableHolder').DataTable({
-                    "pageLength": 50
+                    "pageLength": 100
                 });
         });
         },0);
@@ -310,7 +310,7 @@
                 $('#tableHolder1').DataTable();
                 $('#tableHolder1').DataTable().destroy();
                 $('#tableHolder1').DataTable({
-                    "pageLength": 50,
+                    "pageLength": 100,
                     'columnDefs' : [  
                         { 
                             'searchable'    : false, 
@@ -325,7 +325,7 @@
                 $('#tableHolder2').DataTable();
                 $('#tableHolder2').DataTable().destroy();
                 $('#tableHolder2').DataTable({
-                    "pageLength": 50
+                    "pageLength": 100
                 });
         });
         },0);
@@ -334,7 +334,7 @@
                 $('#tableHolder3').DataTable();
                 $('#tableHolder3').DataTable().destroy();
                 $('#tableHolder3').DataTable({
-                    "pageLength": 50
+                    "pageLength": 100
                 });
         });
         },0);
@@ -401,10 +401,10 @@ $(document).ready(function(){
                 method:'POST',
                 data:{'tranNum':data, 'tag':tag},
                 success: function(response){
-                    load();
                     $("#result").html(response);
                 }
              });
+             load();
         });
         $("#tableHolder1").on('click','.btnSelect',function(){
              // get the current row
