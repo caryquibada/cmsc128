@@ -45,7 +45,7 @@ mysqli_query($connect,$sql);
 $sqll="SELECT time_remaining FROM student where student_number='$resultsn1'";
 $resulttime=mysqli_fetch_assoc(mysqli_query($connect,$sqll));
 $timerem=(int)$resulttime['time_remaining'];
-echo "Time in: ".$timei."<br>Time-out: ".$timeo."<br>Time Consumed: ".$consumed;
+echo "Time in: ".$timei." Time-out: ".$timeo."\nTime Consumed: ".$consumed;
 $timerem=$timerem-$timecon;
 $sql="UPDATE student SET time_remaining=$timerem WHERE student_number='$resultsn1'";
 mysqli_query($connect,$sql);

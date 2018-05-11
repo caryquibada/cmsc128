@@ -1,6 +1,6 @@
 <?php
 include 'conn.php';
-$choices= array("0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40");
+$choices= array("0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41");
 $sql="SELECT * FROM transaction WHERE YEAR(time_out)='0000' AND Type='Computer_Usage' ORDER BY time_in DESC";
 $result=mysqli_query($connect,$sql);
 //ID #2
@@ -24,8 +24,8 @@ while($row=mysqli_fetch_row($result)){
 
 
         $i=1;
-        echo "<tr><div class='change'><td><select name='".$row[0]."' class='custom-select tag'>";
-        while($i<=40){
+        echo "<tr><div class='change'><td data-search='$row[5]'><select name='".$row[0]."' class='custom-select tag'>";
+        while($i<=41){
             if($row[5]==(string)$i){
                 echo "<option value='".$row[5]."' selected>$row[5]</option>";
             }else{
@@ -36,7 +36,7 @@ while($row=mysqli_fetch_row($result)){
         echo "</select></td></div><td>$name</td>
         <td>$row[1]</td>
         <td>";
-        echo date( "h:i:s A F d, Y", strtotime($row[2]));
+        echo date( "h:i:s a F d, Y", strtotime($row[2]));
         echo "</td>
         
         <td><button class="."'btnSelect btn btn-unique'"." id='".$row[6]." ".$row[0]."' name='<br>Tag: ".$row[5]."<br>Student Number: ".$row[1]."'><input type='hidden' value='".$row[5]."'></input>Time-out</button></td>

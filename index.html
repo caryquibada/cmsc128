@@ -89,9 +89,11 @@
             </li>
             <li class="nav-item">
                     <a class="nav-link" href="report.php" style="color:white;"> Report <span class="sr-only">(current)</span></a>
-                </li>
-            
+            </li>
+           
         </ul>
+       
+        <div style="margin-right:20px;margin-top:5px"><b id="currTime" style="color:white"></b></div>
         <div style="color:white">
             <a style="color:white" href="settings.php"><i class="fas fa-cog fa-2x"></i></a>
         </div>
@@ -261,36 +263,39 @@
 <script type="text/javascript">
     $(document).ready(function(){
       load();
+      
+        var d = new Date();
+        document.getElementById("currTime").innerHTML = d.toDateString();
     });
     function load(){
         setTimeout(function(){
             $('#settingloader').load('ajax/loadsetting.php',function(){
         });
-        },500);
+        },0);
         setTimeout(function(){
             $('#compsettingloader').load('ajax/loadcompsetting.php',function(){
         });
-        },500);
+        },0);
         setTimeout(function(){
             $('#tagsComputer').load('ajax/inputs.php',function(){
         });
-        },500);
+        },0);
         setTimeout(function(){
             $('#tagsComputer').load('ajax/inputs.php',function(){
         });
-        },500);
+        },0);
         setTimeout(function(){
             $('#inputsCharging').load('ajax/inputsCharging.php',function(){
         });
-        },500);
+        },0);
         setTimeout(function(){
             $('#inputsEResources').load('ajax/inputsEresource.php',function(){
         });
-        },500);
+        },0);
         setTimeout(function(){
             $('#inputsiPad').load('ajax/inputsiPad.php',function(){
         });
-        },500);
+        },0);
 
         setTimeout(function(){
             $('#tableHolder').load('ajax/display.php',function(){
@@ -299,16 +304,22 @@
                     "pageLength": 50
                 });
         });
-        },500);
+        },0);
         setTimeout(function(){
             $('#tableHolder1').load('ajax/displaycomputer.php',function(){
                 $('#tableHolder1').DataTable();
                 $('#tableHolder1').DataTable().destroy();
                 $('#tableHolder1').DataTable({
-                    "pageLength": 50
+                    "pageLength": 50,
+                    'columnDefs' : [  
+                        { 
+                            'searchable'    : false, 
+                            'targets'       : [3,4] 
+                        },
+                    ]
                 });
         });
-        },500);
+        },0);
         setTimeout(function(){
             $('#tableHolder2').load('ajax/displayipadusage.php',function(){
                 $('#tableHolder2').DataTable();
@@ -317,7 +328,7 @@
                     "pageLength": 50
                 });
         });
-        },500);
+        },0);
         setTimeout(function(){
             $('#tableHolder3').load('ajax/displayeresources.php',function(){
                 $('#tableHolder3').DataTable();
@@ -326,7 +337,7 @@
                     "pageLength": 50
                 });
         });
-        },500);
+        },0);
         
     }
 </script>
@@ -336,7 +347,7 @@
         var d = new Date();
         swal({
             position: 'Middle',
-            title: 'Current Time',
+            title: 'Time-out Info',
             text: response
         
         });
@@ -390,11 +401,10 @@ $(document).ready(function(){
                 method:'POST',
                 data:{'tranNum':data, 'tag':tag},
                 success: function(response){
+                    load();
                     $("#result").html(response);
-                    
                 }
              });
-             load();
         });
         $("#tableHolder1").on('click','.btnSelect',function(){
              // get the current row
@@ -592,27 +602,10 @@ $(document).ready(function(){
         });
         
     });//ID 1
-    if ($('#back-to-top').length) {
-    var scrollTrigger = 100, // px
-        backToTop = function () {
-            var scrollTop = $(window).scrollTop();
-            if (scrollTop > scrollTrigger) {
-                $('#back-to-top').addClass('show');
-            } else {
-                $('#back-to-top').removeClass('show');
-            }
-        };
-    backToTop();
-    $(window).on('scroll', function () {
-        backToTop();
+    
+    $('.ajax1').on('change',function(){
+        $(this).find('input.form-control').focus();
     });
-    $('#back-to-top').on('click', function (e) {
-        e.preventDefault();
-        $('html,body').animate({
-            scrollTop: 0
-        }, 700);
-    });
-}
 </script>
 
 <script>
@@ -645,8 +638,8 @@ $(document).ready(function(){
 	                clearTime(tag);
                     $("#tableHolder1").find('button').find('input[value="'+tag+'"]').trigger('click');
                 });
-            },3000);
-        },7000));
+            },3300000);
+        },300000));
     }
     function clearTime(tag){
         var index=tags.indexOf(tag);

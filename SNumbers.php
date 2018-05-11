@@ -173,10 +173,10 @@
                     </div>
                     <div class="modal-body">
                         <form action="ajax/newstudent.php" method="post" class="ajax1">
-                            <label>Student Number:</label>
+                            <label>Student Number:</label>pattern
                                 <input type="text" name="sn" required pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}" maxlength='10'></input>
                             <label>Name:</label>
-                                <input type="text" name="name" required placeholder="LASTNAME, Firstname M." pattern="[A-Z]{2,49}, [A-Z]{1}[a-z]{2,50}( [A-Z]{1}.)?" maxlength='100'></input>
+                                <input type="text" name="name" required placeholder="LASTNAME, Firstname M." maxlength='100'></input>
                             <label>Academic Program:</label>
                                 <input type="text" name="ap" required pattern="[A-Z]{2,10}" maxlength='10'></input>
                             <label>Tuition Discount:</label>

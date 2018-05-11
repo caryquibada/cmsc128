@@ -9,7 +9,7 @@ while($row=mysqli_fetch_row($result)){
     <label>Student Number: $row[0]</label><br/>
         <input type='hidden' name='sn' class='input-group' value='$row[0]'></input>    
     <label>Name:</label>
-        <input type='text' name='name' class='input-group' value='$row[1]' maxlength='100' pattern='[A-Z]{2,49}, [A-Z]{1}[a-z]{2,50}( [A-Z]{1}.)?'></input>
+        <input type='text' name='name' class='input-group' value='$row[1]' maxlength='100'></input>
     <label>Academic Program:</label>
         <input type='text' name='ap' class='input-group' value='$row[2]' maxlength='10' pattern='[A-Z]{2,10}'></input>
     <label>Tuition Discount:</label>

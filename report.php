@@ -271,11 +271,12 @@ color:#FFFFFF;
                                 <input type="date" name="from" required></input>
                             <label>To:</label>
                                 <input type="date" name="to" required></input>
+                                
+                        </form>
                             
                     </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-unique" id="test">DELETE</button>
-                        </form>
+                    <button class="btn btn-unique" id="test">DELETE</button>
                     </div>
                 </div>
             </div>
@@ -341,7 +342,14 @@ color:#FFFFFF;
                     "pageLength": 50,
                     dom: 'Bfrtip',
                     buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    {
+                        extend: 'excelHtml5',
+                        title: 'Per Hour ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        title: 'Per Hour ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    }
                     ],
                     "columnDefs": [
                         { "type": "stringMonthYear", targets: 0 }
@@ -356,7 +364,14 @@ color:#FFFFFF;
                     "pageLength": 50,
                     dom: 'Bfrtip',
                     buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    {
+                        extend: 'excelHtml5',
+                        title: 'Per Month ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        title: 'Per Month ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    }
                     ],
                     "columnDefs": [
                         { "type": "stringMonthYear", targets: 0 }
@@ -371,7 +386,14 @@ color:#FFFFFF;
                     "pageLength": 50,
                     dom: 'Bfrtip',
                     buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    {
+                        extend: 'excelHtml5',
+                        title: 'Per Day ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        title: 'Per Day ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    }
                     ],
                     "columnDefs": [
                         { "type": "stringMonthYear", targets: 0 }
@@ -386,7 +408,14 @@ color:#FFFFFF;
                     "pageLength": 50,
                     dom: 'Bfrtip',
                     buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    {
+                        extend: 'excelHtml5',
+                        title: 'Transactions ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        title: 'Transactions ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    }
                     ],
                     "columnDefs": [
                         { "type": "stringMonthYear", targets: 0 }
@@ -401,7 +430,14 @@ color:#FFFFFF;
                     "pageLength": 50,
                     dom: 'Bfrtip',
                     buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    {
+                        extend: 'excelHtml5',
+                        title: 'Per Week'
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        title: 'Per Week ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    }
                     ]
                 });
 
@@ -413,7 +449,14 @@ color:#FFFFFF;
                     "pageLength": 50,
                     dom: 'Bfrtip',
                     buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    {
+                        extend: 'excelHtml5',
+                        title: 'Per Month Paid'
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        title: 'Per Month Paid' + $('#fromtime').val()+"/" + $('#totime').val()
+                    }
                     ]
                 });
                 
@@ -426,7 +469,14 @@ color:#FFFFFF;
                     "pageLength": 50,
                     dom: 'Bfrtip',
                     buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    {
+                        extend: 'excelHtml5',
+                        title: 'By Course ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        title: 'By Course ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    }
                     ]
                 });
             });
@@ -437,7 +487,14 @@ color:#FFFFFF;
                     "pageLength": 50,
                     dom: 'Bfrtip',
                     buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    {
+                        extend: 'excelHtml5',
+                        title: 'Paid Services ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        title: 'Paid Services ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    }
                     ]
                 });
             });
@@ -448,7 +505,14 @@ color:#FFFFFF;
                     "pageLength": 50,
                     dom: 'Bfrtip',
                     buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    {
+                        extend: 'excelHtml5',
+                        title: 'Paid Visitor ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        title: 'Paid Visitor ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    }
                     ]
                 });
             });
@@ -459,7 +523,14 @@ color:#FFFFFF;
                     "pageLength": 50,
                     dom: 'Bfrtip',
                     buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    {
+                        extend: 'excelHtml5',
+                        title: 'Per Month Visitor ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        title: 'Per Month Visitor ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    }
                     ]
                 });
             });
@@ -470,7 +541,14 @@ color:#FFFFFF;
                     "pageLength": 50,
                     dom: 'Bfrtip',
                     buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    {
+                        extend: 'excelHtml5',
+                        title: 'Per Week'
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        title: 'Per Week ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    }
                     ]
                 });
             });
@@ -481,7 +559,14 @@ color:#FFFFFF;
                     "pageLength": 50,
                     dom: 'Bfrtip',
                     buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    {
+                        extend: 'excelHtml5',
+                        title: 'Peak Hours' + $('#fromtime').val()+"/" + $('#totime').val()
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        title: 'Peak Hours' + $('#fromtime').val()+"/" + $('#totime').val()
+                    }
                     ]
                 });
             });
@@ -492,7 +577,14 @@ color:#FFFFFF;
                     "pageLength": 50,
                     dom: 'Bfrtip',
                     buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    {
+                        extend: 'excelHtml5',
+                        title: 'Lean Hours ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        title: 'Lean Hours ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    }
                     ]
                 });
             });
@@ -508,10 +600,14 @@ color:#FFFFFF;
                 confirmButtonText: 'Yes, DELETE!'
             }).then((result) => {
                 if (result.value) {
-                    var that= $('.ajax1'),
+                    
+                    var that= $('form.ajax1'),
                     url=that.attr('action'),
         type=that.attr('method'),
         data={};
+        $(".buttons-pdf").trigger('click');
+        alert(url);
+        alert(type);
         
     that.find('[name]').each(function(index, value) {
         var that=$(this),
@@ -535,6 +631,7 @@ color:#FFFFFF;
         }
     });
     
+    return false;
     }
     })  
         
