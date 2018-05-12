@@ -112,7 +112,28 @@
                     <div class="modal-footer">
                     <button type="submit" class="btn btn-unique" id="test">UPDATE</button>
                         </form>
-                        <button type="button" class="btn btn-unique" data-dismiss="modal" onclick="load();" >Close</button>
+                        <button type="button" class="btn btn-unique" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>    
+        </div>
+        <div class="modal fade" id="myModal3" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="ajax/changetimerem.php" method="post" class="ajax3">
+                            <div id="changetime">
+                                
+                            </div>
+                            
+                    </div>
+                    <div class="modal-footer">
+                    <button type="submit" class="btn btn-unique" id="timestudent">Update Time</button>
+                        </form>
+                        <button type="button" class="btn btn-unique" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>    
@@ -125,7 +146,7 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <form action="ajax/newstudent.php" method="post" class="ajax1">
+                        <form action="ajax/newstudent.php" method="post" class="ajax2">
                             <label>Student Number:</label>
                                 <input type="text" name="sn" required pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}" maxlength='10'></input>
                             <label>Name:</label>
@@ -196,6 +217,7 @@
     })   
         
     });
+    
 
 </script>
 <script>
@@ -234,19 +256,16 @@ function load(){
         });
         $("#tableHolder").on('click','.btn',function(){
              // get the current row
-  
-             $('#tableHolder1').DataTable();
-             $('#tableHolder1').DataTable().destroy();
+
              var that=$(this);
              var data=that.attr('id');
              $('#display').load("ajax/students.php",{student:data},function(){
-                $('#tableHolder1').DataTable();
              });
             
            
         });
         
-        $("#tableHolder").on('click','.btn',function(){
+        $("#tableHolder").on('click','.table',function(){
              var that=$(this);
              var data=that.attr('id');
              $('#update').load("ajax/update.php",{student:data},function(){
@@ -254,7 +273,13 @@ function load(){
              });
              
         });
+        $('#tableHolder').on('click','.changetime', function(){
         
+        var that=$(this);
+        var data=that.attr('id');
+        $('#changetime').load("ajax/changetimestudent.php",{student:data},function(){        
+        });
+    });
    $('#tableHolder').on('click','.reset',function(){
         swal({
             title: 'Are you sure you want to reset this students time remaining?',
@@ -283,7 +308,6 @@ function load(){
 }
 var tbl;
     $(document).ready(function(){
-        
         load();
         
     });
@@ -306,6 +330,7 @@ var tbl;
                     data: {IDS:selectedIds},
                     url: "ajax/deleteSelected.php",
                     success: function(msg){
+                        load();
                     }
                 });
                 }
@@ -346,12 +371,10 @@ var tbl;
             'Please wait, the page is reloading',
             'success'
         )
-        setTimeout(function(){
-        }, 1000);
     }
 </script>
 <script>
-    $("form.ajax1").on("submit",function(){
+    $("form.ajax2").on("submit",function(){
     var that= $(this),
         url=that.attr('action'),
         type=that.attr('method'),
@@ -374,12 +397,38 @@ var tbl;
                 studentE();
             }else{
                 successA();
+                load();
             }
             console.log(response);
         }
     });
         return false;;
-});</script>
+});
+
+ $("form.ajax3").on("submit",function(){
+    var that= $(this),
+        url=that.attr('action'),
+        type=that.attr('method'),
+        data={};
+        
+    that.find('[name]').each(function(index, value) {
+        var that=$(this),
+            name=that.attr('name'),
+            value=that.val();
+            data[name]=value;
+    });
+     data['student']=that.find('input').attr('id');    
+    $.ajax({
+        url:url,
+        type:type,
+        data:data,
+        success: function(data){
+            load();
+        }
+    });
+        return false;;
+});
+</script>
 <script>
     function studentE() {
         swal({

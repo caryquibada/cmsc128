@@ -12,7 +12,7 @@ function convertTime($dec)
     // remove those from seconds as well
     $seconds -= $minutes * 60;
     // return the time formatted HH:MM:SS
-    return lz($hours).":".lz($minutes).":".lz($seconds);
+    return lz($hours).":".lz($minutes);
 }
 function lz($num)
 {
