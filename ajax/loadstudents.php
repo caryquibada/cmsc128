@@ -55,7 +55,7 @@ function lz($num)
                     }
                     $timerem=ceiling($timerem,0.005);   //ID 7
                     echo convertTime($timerem)." hours</td>
-                    <td><button type='button' class='btn btn-unique btn-md' data-toggle='modal' data-target='#myModal1' id=".$row[0].">UPDATE</button>
+                    <td><button type='button' class='btn btn-unique btn-md update' data-toggle='modal' data-target='#myModal1' id=".$row[0].">UPDATE</button>
                     <button type='button' class='btn btn-unique btn-md changetime' data-toggle='modal' data-target='#myModal3' id=".$row[0].">CHANGE TIME</button>
                     <input type='hidden' value=$row[0] class='hideme'/>
                     <button type='button' class='btn btn-unique btn-md delete' id=".$row[0].">DELETE</button>

@@ -49,7 +49,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="report.php" style="color:white;"> Report <span class="sr-only">(current)</span></a>
             </li>
-        </ul>
+        </ul><div style="margin-right:20px;margin-top:5px"><b id="currTime" style="color:white"></b></div>
         <div style="color:white">
             <a style="color:white" href="settings.php"><i class="fas fa-cog fa-2x"></i></a>
         </div>
@@ -121,6 +121,7 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
+                        <b>Update time remaining</b>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
@@ -260,12 +261,13 @@ function load(){
              var that=$(this);
              var data=that.attr('id');
              $('#display').load("ajax/students.php",{student:data},function(){
+                 $('#tableHolder1').DataTable();
              });
             
            
         });
         
-        $("#tableHolder").on('click','.table',function(){
+        $("#tableHolder").on('click','.update',function(){
              var that=$(this);
              var data=that.attr('id');
              $('#update').load("ajax/update.php",{student:data},function(){
@@ -308,6 +310,8 @@ function load(){
 }
 var tbl;
     $(document).ready(function(){
+        var d = new Date();
+        document.getElementById("currTime").innerHTML = d.toDateString();
         load();
         
     });

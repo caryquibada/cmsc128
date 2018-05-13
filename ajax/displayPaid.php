@@ -33,7 +33,7 @@ while($row=mysqli_fetch_row($result)){
             <td>$row[2]</td>
             <td>$row[3]</td>";
         if($row[5]==""){
-            echo "<td><input type='text' id='$row[8]' class='form-group' minlength='7' maxlength='7' pattern='[1-9]{7}' required></input></td>";
+            echo "<td><input type='text' id='$row[8]' class='form-group' minlength='7' maxlength='7' pattern='[0-9]{7}' required></input></td>";
         }else{
             echo "<td>$row[5]</td>";
         }
@@ -44,7 +44,7 @@ while($row=mysqli_fetch_row($result)){
         }else{
             echo "<td>PAID</td>
             <td>";
-            echo date( "h:i:s A F d, Y", strtotime($row[7]));
+            echo date( "h:i:s a F d, Y", strtotime($row[7]));
             echo "</td>";
         }
             echo "</tr>";

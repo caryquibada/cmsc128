@@ -33,8 +33,8 @@ while($row=mysqli_fetch_row($result)){
                 $name=mysqli_fetch_row($nameresult);
             echo "
             <td>$name[0]</td>
-            <td>$row[2]</td>
-            <td>$row[3]</td>
+            <td>".date( "h:i:s a F d, Y", strtotime($row[2]))."</td>
+            <td>".date( "h:i:s a F d, Y", strtotime($row[3]))."</td>
             <td>$row[4]</td>
             <td>$row[5]</td>
             <td>$row[6]</td>

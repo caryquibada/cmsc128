@@ -401,10 +401,10 @@ $(document).ready(function(){
                 method:'POST',
                 data:{'tranNum':data, 'tag':tag},
                 success: function(response){
+                    load();
                     $("#result").html(response);
                 }
              });
-             load();
         });
         $("#tableHolder1").on('click','.btnSelect',function(){
              // get the current row

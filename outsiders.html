@@ -57,7 +57,7 @@ color:#FFFFFF;
             <li class="nav-item">
                     <a class="nav-link" href="report.php" style="color:white;"> Report <span class="sr-only">(current)</span></a>
                 </li>
-        </ul>
+        </ul><div style="margin-right:20px;margin-top:5px"><b id="currTime" style="color:white"></b></div>
         <div style="color:white">
             <a style="color:white" href="settings.php"><i class="fas fa-cog fa-2x"></i></a>
         </div>
@@ -71,23 +71,21 @@ color:#FFFFFF;
             <div class="col-sm-12">
                 <form action="ajax/inputPaidVis.php" method="post" class="ajax1" id="chargingform" onsubmit="Alert();load();">
                     <div class="form-inline well">
-                        <label><pre class="tab">Tag        :</pre></label>
+                        <label><b>Tag:</b></label>
                        <div id="tags"></div>
-                        
-                        <select name="type" class="custom-select" id="types">
+                        <select name="type" class="custom-select " id="types">
                                 <option value="Computer_Usage">Computer Usage</option>
                                 <option value="iPad">iPad Usage</option>
                                 <option value="Charging">Charging</option>
                         </select>
-                        
                         <div class="input-group">
-                            <input type="text"   name="visName" id="visname1" maxlength='100' class="form-control sn" required placeholder="Name" pattern="[A-Za-z\s]{2,}">
+                            <input type="text"   name="visName" id="visname1" maxlength='100' class="col-lg-2 form-control sn" required placeholder="Name" pattern="[A-Za-z\s]{2,}">
                             </input>
-							<input type="text"  name="visOccu" id="visoccu1" maxlength='100' class="form-control sn" required placeholder="Occupation" pattern="[A-Za-z\s]{2,}">
+							<input type="text"  name="visOccu" id="visoccu1" maxlength='100' class="col-lg-2 form-control sn" required placeholder="Occupation" pattern="[A-Za-z\s]{2,}">
                             </input>
-							<input type="text"  name="visOrg" id="visorg1" maxlength='100' class="form-control sn" required placeholder="Organization" pattern="[A-Za-z\s]{2,}">
+							<input type="text"  name="visOrg" id="visorg1" maxlength='100' class="col-lg-2 form-control sn" required placeholder="Organization" pattern="[A-Za-z\s]{2,}">
                             </input>
-                            <label><pre class="tab">Part of UP Staff?:</pre></label>
+                            <label><b>Part of UP Staff?:</b></label>
                             <select name="visAlum" class="custom-select">
                                 <optgroup label="Yes"></optgroup>
                                     <option value="Alumni">Alumni</option>
@@ -217,6 +215,8 @@ function Alert() {
     </script>
 <script>
 $(document).ready(function(){
+    var d = new Date();
+        document.getElementById("currTime").innerHTML = d.toDateString();
         $("#tableHolder").on('click','.btnSelect',function(){
                 var that=$(this);
                 var tn=that.attr('id');

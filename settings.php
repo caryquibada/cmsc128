@@ -57,7 +57,7 @@ color:#FFFFFF;
             <li class="nav-item">
                     <a class="nav-link" href="report.php" style="color:white;"> Report <span class="sr-only">(current)</span></a>
                 </li>
-        </ul>
+        </ul><div style="margin-right:20px;margin-top:5px"><b id="currTime" style="color:white"></b></div>
         <div style="color:white">
             <a style="color:white" href="settings.php"><i class="fas fa-cog fa-2x"></i></a>
         </div>
@@ -185,6 +185,8 @@ color:#FFFFFF;
 <script>
 $(document).ready(function(){
     var data={};
+        var d = new Date();
+        document.getElementById("currTime").innerHTML = d.toDateString();
     setTimeout(function(){
         $('#items').load('ajax/settingitems.php',function(){
              

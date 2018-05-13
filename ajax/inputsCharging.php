@@ -1,7 +1,12 @@
 <?php 
 include 'conn.php';
     echo '<select class="form-control-lg  custom-select" name="tagnumber" form="chargingform" id="chargingselect">';
-    $computer= array("1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20");
+    $sql="SELECT tag_number from tag where type='power' AND status='enabled'";
+    $result=mysqli_query($connect,$sql);
+    $computer=[];
+    while($row=mysqli_fetch_row($result)){
+        $computer[]=$row[0];
+    }
     $query="SELECT tag_no from transaction WHERE YEAR(time_out)='0000' AND type='Power_Usage'";
     $result=mysqli_query($connect,$query);
     $usedcomputer=[];

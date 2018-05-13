@@ -31,7 +31,7 @@
                 
                     <td>";
 
-        echo date( "h:i:s A F d, Y", strtotime($row[4]));
+        echo date( "h:i:s a F d, Y", strtotime($row[4]));
         echo "</td>";
         $timeoutyear=mysqli_fetch_row(mysqli_query($connect,"SELECT YEAR(time_out) from vistransaction where transaction_number='$row[0]'"));
         $timediff=mysqli_fetch_row(mysqli_query($connect,"SELECT TIMESTAMPDIFF(minute,'$row[4]','$row[3]')"));
@@ -44,19 +44,29 @@
                 <td>NOT TIMED OUT</td>
                 </tr>";
         }else{
-            $time=(int)$timediff;
-            $time=$time/15;
-            $time=floor($time);
-            $time=$time+1;
-            $time=floatval($time*5.00);
-            mysqli_query($connect,"UPDATE vistransaction SET amount_due=$time where transaction_number='$row[0]'");
-            $timeout=date( "h:i:s A F d, Y", strtotime($row[3]));
+            if($row[5]=='Charging'){
+                $time=(int)$timediff;
+                $time=$time/60;
+                $time=floor($time);
+                $time=$time+1;
+                $time=floatval($time*50.00);
+                mysqli_query($connect,"UPDATE vistransaction SET amount_due=$time where transaction_number='$row[0]'");
+            }else{
+                $time=(int)$timediff;
+                $time=$time/30;
+                $time=floor($time);
+                $time=$time+1;
+                $time=floatval($time*10.00);
+                mysqli_query($connect,"UPDATE vistransaction SET amount_due=$time where transaction_number='$row[0]'");
+            }
+            
+            $timeout=date( "h:i:s a F d, Y", strtotime($row[3]));
             echo "<td>$timeout</td>";
             
             echo "<td>$time</td>";
                     if($row[10]=='UNPAID'){
                         echo "
-                        <td><input type='text' class='$row[0]' minlength='7' maxlength='7' pattern='[1-9]{7}' required></input></td>
+                        <td><input type='text' class='$row[0]' minlength='7' maxlength='7' pattern='[0-9]{7}' required></input></td>
                         <td><button class='btn btn-group btn-primary OR' name='$row[0]' >UNPAID</button></td>
                         </tr>";
                     }else{

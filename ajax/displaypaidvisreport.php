@@ -22,7 +22,7 @@ echo "<thead>
     <th>Name</th>
     <th>Occupation</th>
     <th>Organization</th>
-    <th>Alumni?</th>
+    <th>UP Staff?</th>
     <th>Time-in</th>
     <th>Time-out</th>
     <th>Amount Due</th>

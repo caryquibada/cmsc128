@@ -77,7 +77,7 @@ color:#FFFFFF;
             <li class="nav-item active">
                 <a class="nav-link" href="report.php" style="color:white;"> Report <span class="sr-only">(current)</span></a>
             </li>
-        </ul>
+        </ul><div style="margin-right:20px;margin-top:5px"><b id="currTime" style="color:white"></b></div>
         <div style="color:white">
             <a style="color:white" href="settings.php"><i class="fas fa-cog fa-2x"></i></a>
         </div>
@@ -256,14 +256,15 @@ color:#FFFFFF;
     
     <div id="password"></div>
     
-    <input type="button" id="test" class="btn btn-primary"></button>
+    <input type="button" id="test" class="btn btn-unique" value="DELETE TRANSACTIONS"></input>
     </body>
 </html>
 
 
 <script>
     $(document).ready(function(){
-        
+        var d = new Date();
+        document.getElementById("currTime").innerHTML = d.toDateString();
         $('#password').load('ajax/loadpassword.php',function(){
              
         });
@@ -326,6 +327,10 @@ color:#FFFFFF;
                     {
                         extend: 'pdfHtml5',
                         title: 'Per Hour ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    },
+                    {
+                        extend: 'print',
+                        title: 'Per Hour ' + $('#fromtime').val()+"/" + $('#totime').val()
                     }
                     ],
                     "columnDefs": [
@@ -343,11 +348,15 @@ color:#FFFFFF;
                     buttons: [
                     {
                         extend: 'excelHtml5',
-                        title: 'Per Month ' + $('#fromtime').val()+"/" + $('#totime').val()
+                        title: 'Per Month Paid' + $('#fromtime').val()+"/" + $('#totime').val()
                     },
                     {
                         extend: 'pdfHtml5',
-                        title: 'Per Month ' + $('#fromtime').val()+"/" + $('#totime').val()
+                        title: 'Per Month Paid' + $('#fromtime').val()+"/" + $('#totime').val()
+                    },
+                    {
+                        extend: 'print',
+                        title: 'Per Month Paid' + $('#fromtime').val()+"/" + $('#totime').val()
                     }
                     ],
                     "columnDefs": [
@@ -370,6 +379,10 @@ color:#FFFFFF;
                     {
                         extend: 'pdfHtml5',
                         title: 'Per Day ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    },
+                    {
+                        extend: 'print',
+                        title: 'Per Day' + $('#fromtime').val()+"/" + $('#totime').val()
                     }
                     ],
                     "columnDefs": [
@@ -391,6 +404,10 @@ color:#FFFFFF;
                     },
                     {
                         extend: 'pdfHtml5',
+                        title: 'Transactions ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    },
+                    {
+                        extend: 'print',
                         title: 'Transactions ' + $('#fromtime').val()+"/" + $('#totime').val()
                     }
                     ],
@@ -414,6 +431,10 @@ color:#FFFFFF;
                     {
                         extend: 'pdfHtml5',
                         title: 'Per Week ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    },
+                    {
+                        extend: 'print',
+                        title: 'Per Week ' + $('#fromtime').val()+"/" + $('#totime').val()
                     }
                     ]
                 });
@@ -428,11 +449,15 @@ color:#FFFFFF;
                     buttons: [
                     {
                         extend: 'excelHtml5',
-                        title: 'Per Month Paid'
+                        title: 'Per Month' + $('#fromtime').val()+"/" + $('#totime').val()
                     },
                     {
                         extend: 'pdfHtml5',
-                        title: 'Per Month Paid' + $('#fromtime').val()+"/" + $('#totime').val()
+                        title: 'Per Month' + $('#fromtime').val()+"/" + $('#totime').val()
+                    },
+                    {
+                        extend: 'print',
+                        title: 'Per Month' + $('#fromtime').val()+"/" + $('#totime').val()
                     }
                     ]
                 });
@@ -453,6 +478,10 @@ color:#FFFFFF;
                     {
                         extend: 'pdfHtml5',
                         title: 'By Course ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    },
+                    {
+                        extend: 'print',
+                        title: 'By Course ' + $('#fromtime').val()+"/" + $('#totime').val()
                     }
                     ]
                 });
@@ -470,6 +499,10 @@ color:#FFFFFF;
                     },
                     {
                         extend: 'pdfHtml5',
+                        title: 'Paid Services ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    },
+                    {
+                        extend: 'print',
                         title: 'Paid Services ' + $('#fromtime').val()+"/" + $('#totime').val()
                     }
                     ]
@@ -489,6 +522,10 @@ color:#FFFFFF;
                     {
                         extend: 'pdfHtml5',
                         title: 'Paid Visitor ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    },
+                    {
+                        extend: 'print',
+                        title: 'Paid Visitor ' + $('#fromtime').val()+"/" + $('#totime').val()
                     }
                     ]
                 });
@@ -507,6 +544,10 @@ color:#FFFFFF;
                     {
                         extend: 'pdfHtml5',
                         title: 'Per Month Visitor ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    },
+                    {
+                        extend: 'print',
+                        title: 'Per Month Vistor' + $('#fromtime').val()+"/" + $('#totime').val()
                     }
                     ]
                 });
@@ -520,11 +561,15 @@ color:#FFFFFF;
                     buttons: [
                     {
                         extend: 'excelHtml5',
-                        title: 'Per Week'
+                        title: 'Per College ' + $('#fromtime').val()+"/" + $('#totime').val()
                     },
                     {
                         extend: 'pdfHtml5',
-                        title: 'Per Week ' + $('#fromtime').val()+"/" + $('#totime').val()
+                        title: 'Per College ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    },
+                    {
+                        extend: 'print',
+                        title: 'Per College ' + $('#fromtime').val()+"/" + $('#totime').val()
                     }
                     ]
                 });
@@ -538,11 +583,15 @@ color:#FFFFFF;
                     buttons: [
                     {
                         extend: 'excelHtml5',
-                        title: 'Peak Hours' + $('#fromtime').val()+"/" + $('#totime').val()
+                        title: 'Peak Hour' + $('#fromtime').val()+"/" + $('#totime').val()
                     },
                     {
                         extend: 'pdfHtml5',
-                        title: 'Peak Hours' + $('#fromtime').val()+"/" + $('#totime').val()
+                        title: 'Peak Hour' + $('#fromtime').val()+"/" + $('#totime').val()
+                    },
+                    {
+                        extend: 'print',
+                        title: 'Per Hour' + $('#fromtime').val()+"/" + $('#totime').val()
                     }
                     ]
                 });
@@ -560,6 +609,10 @@ color:#FFFFFF;
                     },
                     {
                         extend: 'pdfHtml5',
+                        title: 'Lean Hours ' + $('#fromtime').val()+"/" + $('#totime').val()
+                    },
+                    {
+                        extend: 'print',
                         title: 'Lean Hours ' + $('#fromtime').val()+"/" + $('#totime').val()
                     }
                     ]
