@@ -273,10 +273,10 @@ color:#FFFFFF;
         $('.visitor').hide();
         $('#lock').hide();
     });
+    var table="";
     function load(){
             var data={};
              var from=$("#fromtime");
-             
              var to= new Date($('#totime').val());
             to.setDate(to.getDate()+1);
              var by=$("#by");
@@ -287,8 +287,8 @@ color:#FFFFFF;
              }else if(by.val()=='all'){
                  $('.transaction').show();
                  $('.payment').show();
-                 
                 $('.visitor').show();
+                table="all";
              }else if(by.val()=='pComputer_Usage'||by.val()=='Scanning'||by.val()=='Printing'){
                 if(by.val()=='pComputer_Usage'){
                     by.val('Computer_Usage');
@@ -296,6 +296,7 @@ color:#FFFFFF;
                 $('.transaction').hide();
                  $('.payment').show();
                 $('.visitor').hide();
+                table="payment";
              }else{
                 if(by.val()=='vComputer_Usage'){
                     by.val('Computer_Usage');
@@ -304,11 +305,12 @@ color:#FFFFFF;
                 }else if(by.val()=='viPad_Usage'){
                     by.val('iPad_Usage');
                 }
+                table="vistransaction";
                 $('.visitor').show();
                 $('.transaction').hide();
                  $('.payment').hide();
              }
-             
+             data["table"]=table;
              data["by"]=by.val();
              data["from"]=from.val();
              data["to"]=to.toISOString().substring(0, 10);
@@ -637,9 +639,9 @@ color:#FFFFFF;
                     var to= new Date($('#totime').val());
                     
                     to.setDate(to.getDate()+1);
+                    data['table']=table;
                     data['from']=$('#fromtime').val();
                     data['to']=to.toISOString().substring(0, 10);
-                    alert("test");
                     $.ajax({
                         url:'ajax/deleteyear.php',
                         type:'POST',

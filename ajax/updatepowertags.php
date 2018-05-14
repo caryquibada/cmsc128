@@ -4,7 +4,7 @@ include 'conn.php';
 $sql="";
 $checked=$_POST['checked'];
 foreach($checked as $check){
-    $sql="UPDATE tag SET status='enabled' where tag_number=$check AND type='power';";
+    $sql="UPDATE tag SET status='enabled' where tag_number=$check AND type='power'";
     mysqli_query($connect,$sql);
 }
 $unchecked=$_POST['unchecked'];

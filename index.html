@@ -27,7 +27,7 @@
 }
 .btn-danger,.btn-danger:active{
     background-color:#8E1538;
-    outline:#8E1538;
+    outline:black;
 }
 .btn-danger:hover{
     background-color:white;
@@ -109,7 +109,7 @@
                            
                     <div id="tagsComputer"></div>
                         <div class="input-group-lg">
-                            <input type="text" name="studentNumber" id="charging2" minlength='9' maxlength='10' class="form-control sn" placeholder="Computer Usage" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
+                            <input type="text" name="studentNumber" id="charging2" minlength='9' maxlength='10' class="sn form-control" placeholder="Computer Usage" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
                             </input>
                         </div>
                             <span class="input-group-btn">
@@ -127,7 +127,7 @@
                         <input type="hidden" name="type" class='type' value="iPad_Usage"></input>
                         <div id="inputsiPad"></div>
                         <div class="input-group-lg">
-                            <input type="text" name="studentNumber" id="charging1" minlength='9' maxlength='10' class="form-control sn" placeholder="iPad Usage" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
+                            <input type="text" name="studentNumber" id="charging1" minlength='9' maxlength='10' class="sn form-control" placeholder="iPad Usage" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
                             </input>
                         </div>
                             <span class="input-group-btn">
@@ -146,7 +146,7 @@
                         <input type="hidden" name="type" class='type' value="Power_Usage"></input>
                         <div id="inputsCharging"></div>
                         <div class="input-group-lg">
-                            <input type="text" name="studentNumber" id="charging3" minlength='9' maxlength='10' class="form-control sn" placeholder="Charging" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
+                            <input type="text" name="studentNumber" id="charging3" minlength='9' maxlength='10' class="sn form-control sn" placeholder="Charging" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
                             </input>
                         </div>
                             <span class="input-group-btn">
@@ -164,7 +164,7 @@
                         <input type="hidden" name="type" class='type' value="E-Resources"></input>
                         <div id="inputsEResources"></div>
                         <div class="input-group-lg">
-                            <input type="text" name="studentNumber" id="charging4" minlength='9' maxlength='10' class="form-control sn" placeholder="E-Resources" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
+                            <input type="text" name="studentNumber" id="charging4" minlength='9' maxlength='10' class="sn form-control" placeholder="E-Resources" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
                             </input>
                         </div>
                             <span class="input-group-btn">
@@ -344,11 +344,16 @@
 <script>
  
         function Alert2(response) {
-        var d = new Date();
+            var print=response.split('\t');
+            var printing="";
+            for(var i=0;i<print.length;i++){
+                printing=printing+print[i]+'<br/>';
+            }
         swal({
             position: 'Middle',
             title: 'Time-out Info',
-            text: response
+            html: '<b>'+printing+'</b>',
+            width: 400
         
         });
         }
@@ -648,11 +653,11 @@ $(document).ready(function(){
         tags.splice(index,1);
     }
     $("form.ajax1").on("submit",function(){
-    var snvalue=$(".sn").val();
+    var snvalue=$(this).find('input.sn').val().trim();
         if(snvalue.length==9){
             first=snvalue.slice(0,4);
             second=snvalue.slice(4,9);
-            $(".sn").val(first+"-"+second);
+            $("input.sn").val(first+"-"+second);
         }
     var that= $(this),
         url=that.attr('action'),
@@ -689,6 +694,6 @@ $(document).ready(function(){
             }
         }
     });
-        return false;;
+    return false;
 
 });</script>

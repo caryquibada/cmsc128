@@ -1,4 +1,24 @@
 <?php
+
+function convertTime($dec)
+{
+    // start by converting to seconds
+    $seconds = ($dec * 3600);
+    // we're given hours, so let's get those the easy way
+    $hours = floor($dec);
+    // since we've "calculated" hours, let's remove them from the seconds variable
+    $seconds -= $hours * 3600;
+    // calculate minutes left
+    $minutes = floor($seconds / 60);
+    // remove those from seconds as well
+    $seconds -= $minutes * 60;
+    // return the time formatted HH:MM:SS
+    return lz($hours).":".lz($minutes);
+}
+function lz($num)
+{
+    return (strlen($num) < 2) ? "0{$num}" : $num;
+}
 include 'conn.php';
 
 $tranNum=$_POST['tranNum'];
@@ -45,10 +65,17 @@ mysqli_query($connect,$sql);
 $sqll="SELECT time_remaining FROM student where student_number='$resultsn1'";
 $resulttime=mysqli_fetch_assoc(mysqli_query($connect,$sqll));
 $timerem=(int)$resulttime['time_remaining'];
-echo "Time in: ".$timei." Time-out: ".$timeo."\nTime Consumed: ".$consumed;
 $timerem=$timerem-$timecon;
 $sql="UPDATE student SET time_remaining=$timerem WHERE student_number='$resultsn1'";
 mysqli_query($connect,$sql);
+$timebefore=$timerem/3600;
+$timebefore=convertTime($timebefore);
+$timedisplay=$timerem/3600;
+$timedisplay=convertTime($timedisplay);
+$timei=date( "h:i:s a F d, Y", strtotime($timei));
+$timeo=date( "h:i:s a F d, Y", strtotime($timeo));
+echo "Time in:".$timei."\tTime-out: ".$timeo."\tTime Consumed: ".$consumed."\tTime Before:".$timebefore."\tTime After: ".$timedisplay;
+
 }else{
     $timeinsql="SELECT time_in from transaction WHERE transaction_number=$tranNum[1]";
 $timeinresult=mysqli_query($connect,$timeinsql);
@@ -79,6 +106,8 @@ $resultsconsumed=mysqli_fetch_assoc(mysqli_query($connect,$timeconsquery));
 $consumed=$resultsconsumed['consumed'];
 $sql="UPDATE transaction SET time_consumed='$consumed' WHERE transaction_number=$tranNum[1]";
 mysqli_query($connect,$sql);
-echo "Time in: ".$timei."\nTime-out: ".$timeo."\nTime Consumed: ".$consumed;
+$timei=date( "h:i:s a F d, Y", strtotime($timei));
+$timeo=date( "h:i:s a F d, Y", strtotime($timeo));
+echo "Time in: ".$timei."\tTime-out: ".$timeo."\tTime Consumed: ".$consumed;
 }
 ?>

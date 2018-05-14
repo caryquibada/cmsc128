@@ -253,6 +253,13 @@ $(document).ready(function(){
             return false;
     });
     $("form.ajax3").on("submit",function(){
+        swal({
+            title: 'Processing',
+            showConfirmButton: false,
+            onOpen: () => {
+            swal.showLoading()
+            }
+        });
         var that= $(this),
             url=that.attr('action'),
             type=that.attr('method');
@@ -277,6 +284,13 @@ $(document).ready(function(){
         return false;
     });
     $("form.ajax4").on("submit",function(){
+        swal({
+            title: 'Processing',
+            showConfirmButton: false,
+            onOpen: () => {
+            swal.showLoading()
+            }
+        });
         var that= $(this),
             url=that.attr('action'),
             type=that.attr('method');

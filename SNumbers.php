@@ -252,7 +252,7 @@ function load(){
    ],
    'select': {
       'style': 'multi'
-   }
+   },'pageLength' : 100
                 
         });
         $("#tableHolder").on('click','.btn',function(){
@@ -301,6 +301,7 @@ function load(){
                 var that=$(this);
                 var data=that.attr('id');
                 $('#reset1').load("ajax/resetstudent.php",{student:data},function(){
+                    success();
                     load();        
                 });
             }
@@ -334,6 +335,7 @@ var tbl;
                     data: {IDS:selectedIds},
                     url: "ajax/deleteSelected.php",
                     success: function(msg){
+                        success();
                         load();
                     }
                 });
@@ -346,25 +348,26 @@ var tbl;
 <script type="text/javascript">
     function resetall(){
         swal({
-  title: 'Are you sure you want to reset all time remaining?',
-  text: "You won't be able to revert this!",
-  type: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, RESET ALL!'
-}).then((result) => {
-  if (result.value) {
-    swal(
-      'Reset Complete',
-      'Reloading page, please wait',
-      'success'
-    )
-    $('#reset').load("ajax/resetall.php",function(){
-        load();
-    });
-    }
-    })   
+            title: 'Are you sure you want to reset all time remaining?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, RESET ALL!'
+        }).then((result) => {
+        if (result.value) {
+            swal(
+            'Reset Complete',
+            'Reloading page, please wait',
+            'success'
+            )
+            $('#reset').load("ajax/resetall.php",function(){
+                success();
+                load();
+            });
+        }
+        })   
     } 
  
 </script>
@@ -375,6 +378,14 @@ var tbl;
             'Please wait, the page is reloading',
             'success'
         )
+    }
+    function success(){
+        swal({
+            type: 'success',
+            title: 'Changes Saved',
+            showConfirmButton: false,
+            timer: 500
+        })
     }
 </script>
 <script>
@@ -427,6 +438,7 @@ var tbl;
         type:type,
         data:data,
         success: function(data){
+            success();
             load();
         }
     });
