@@ -1,11 +1,12 @@
 <?php
     include 'conn.php';
-    $query="SELECT * FROM payment where type='Computer_Usage' AND status='UNPAID'";
+    $query="SELECT * FROM payment where (type='Computer_Usage' OR type='Power_Usage')  AND status='UNPAID'";
     $result=mysqli_query($connect,$query);
 
     echo "<thead>
 <tr>
     <th>Tag Number</th>
+    <th>Type</th>
     <th>Name</th>
     <th>Student Number</th>
     <th>Time-in</th>
@@ -18,7 +19,8 @@
 <tbody id="."'tableBody'".">";
     while($row=mysqli_fetch_row($result)){
         echo "<tr>
-                <td>$row[9]</td>";
+                <td>$row[9]</td>
+                <td>$row[1]</td>";
                 $namequery="SELECT name FROM student where student_number='$row[0]'";
                 $nameresult=mysqli_query($connect,$namequery);
                 $name=mysqli_fetch_row($nameresult);
@@ -37,10 +39,18 @@
                         </tr>";
                 }else{
                     $time=(int)$timediff;
-                    $time=$time/15;
-                    $time=floor($time);
-                    $time=$time+1;
-                    $time=floatval($time*5.00);
+                    
+                    if($row[1]=='Computer_Usage'){
+                        $time=$time/15;
+                        $time=floor($time);
+                        $time=$time+1;
+                        $time=floatval($time*5.00);
+                    }else{
+                        $time=$time/30;
+                        $time=floor($time);
+                        $time=$time+1;
+                        $time=floatval($time*10.00);
+                    }
                     mysqli_query($connect,"UPDATE payment SET amount_due=$time where transaction_number='$row[8]'");
                     $timeout=date( "h:i:s a F d, Y", strtotime($row[7]));
                     echo "<td>$timeout</td>";

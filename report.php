@@ -69,13 +69,13 @@ color:#FFFFFF;
                 <a class="nav-link" href="paidusage.html" style="color:white;"> Paid Services <span class="sr-only">(current)</span></a>
             </li>
 			<li class="nav-item">
-                <a class="nav-link" href="outsiders.html" style="color:white;"> Visitor Services <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="outsiders.html" style="color:white;"> Staff/Visitor Services <span class="sr-only">(current)</span></a>
             </li>		
             <li class="nav-item">
                 <a class="nav-link" href="SNumbers.php" style="color:white;"> Students <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="report.php" style="color:white;"> Report <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#" style="color:white;"><b> Report </b><span class="sr-only">(current)</span></a>
             </li>
         </ul><div style="margin-right:20px;margin-top:5px"><b id="currTime" style="color:white"></b></div>
         <div style="color:white">
@@ -114,7 +114,7 @@ color:#FFFFFF;
                     <option value="Scanning">Scanning</option>
                     <option value="pComputer_Usage">Paid Computer Usage</option>
                     </optgroup>
-                    <optgroup label="Visitor Services">
+                    <optgroup label="Staff/Visitor Services">
                     <option value="vComputer_Usage">Computer Usage</option>
                     <option value="vPower_Usage">Charging</option>
                     <option value="viPad_Usage">iPad Usage</option>

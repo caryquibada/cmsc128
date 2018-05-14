@@ -41,10 +41,10 @@
                 <a class="nav-link" href="paidusage.html" style="color:white;"> Paid Services <span class="sr-only">(current)</span></a>
             </li>
 			<li class="nav-item">
-                <a class="nav-link" href="outsiders.html" style="color:white;"> Visitor Services <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="outsiders.html" style="color:white;"> Staff/Visitor Services <span class="sr-only">(current)</span></a>
             </li>		
             <li class="nav-item active">
-                <a class="nav-link" href="SNumbers.php" style="color:white;"> Students <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#" style="color:white;"><b> Students </b><span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="report.php" style="color:white;"> Report <span class="sr-only">(current)</span></a>

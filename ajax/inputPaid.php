@@ -32,7 +32,7 @@ if($type=='Printing'){
     
     $amount=floatval($copies)*0.50;
     $insertQuery="INSERT into payment(student_number,type,no_copies,amount_due) values ('$studentNumber','$type','$copies',$amount)";
-}else if($type=='Computer_Usage'){
+}else if($type=='Computer_Usage'||$type=='Power_Usage'){
     $tag=$_POST['tagnumber'];
     $insertQuery="INSERT into payment(student_number,type,tag) values ('$studentNumber','$type','$tag')";
 }

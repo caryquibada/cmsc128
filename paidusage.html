@@ -46,10 +46,10 @@
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="paidusage.html" style="color:white;"> Paid Services <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#" style="color:white;"><b> Paid Services </b><span class="sr-only">(current)</span></a>
             </li>
 			<li class="nav-item">
-                <a class="nav-link" href="outsiders.html" style="color:white;"> Visitor Services <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="outsiders.html" style="color:white;"> Staff/Visitor Services <span class="sr-only">(current)</span></a>
             </li>				
             <li class="nav-item">
                 <a class="nav-link" href="SNumbers.php" style="color:white;"> Students  <span class="sr-only">(current)</span></a>
@@ -123,11 +123,23 @@
                     </div>
                 </form>
             </div>
-        </div>
-    </div>
-<div class="col-sm-12">
-        <div class="row">
-            
+            <div class="col-sm-6">
+                <form action="ajax/inputPaid.php" method="post" class="ajax1" id="chargingform">
+                    <div class="form-inline well">
+                        <label><pre class="tab">Tag         :</pre></label>
+                        <div id="tagsPower"></div>
+                        <input type="hidden" name="type" value="Power_Usage"></input>
+                        <div class="input-group">
+                            <input type="text" name="studentNumber" id="power_usage" class="form-control sn" placeholder="Charging" pattern="[1-2](0|9)([1-9]{2,2})(-)?[0-9]{5,5}">
+                            </input>
+                            <span class="input-group-btn">
+                                <button class="btn btn-danger" type="submit">Go!</button>
+                            </span>
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     <br/>
@@ -138,7 +150,7 @@
                   <a class="nav-link" data-toggle="tab" href="#home" role="tab" aria-controls="home">Printing/Scanning</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Computer</a>
+                  <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Computer/Charging</a>
                 </li>
               </ul>
               
@@ -202,6 +214,11 @@
         },500);
         setTimeout(function(){
             $('#tags').load('ajax/inputs.php',function(){
+                $('.form-control-lg').removeClass('form-control-lg').addClass('form-control');
+            });
+        },500);
+        setTimeout(function(){
+            $('#tagsPower').load('ajax/inputsCharging.php',function(){
                 $('.form-control-lg').removeClass('form-control-lg').addClass('form-control');
             });
         },500);
@@ -433,7 +450,7 @@ $(document).ready(function(){
     <script>
 
     $("form.ajax1").on("submit",function(){
-    var snvalue=$("#scanning").val()+$("#printing").val()+$("#computer").val();
+    var snvalue=$("#scanning").val()+$("#printing").val()+$("#computer").val()+$("#power_usage").val();
         if(snvalue.length===9){
             first=snvalue.slice(0,4);
             second=snvalue.slice(4,9);

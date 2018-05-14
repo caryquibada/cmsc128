@@ -49,7 +49,7 @@ color:#FFFFFF;
                 <a class="nav-link" href="paidusage.html" style="color:white;"> Paid Services <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="outsiders.html" style="color:white;"> Visitor Services <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="outsiders.html" style="color:white;"> Staff/Visitor Services <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="SNumbers.php" style="color:white;"> Students <span class="sr-only">(current)</span></a>
@@ -105,13 +105,13 @@ color:#FFFFFF;
       <div class="modal-body">
       <form class="ajax2" action="ajax/changepassword.php" method="POST">
       <label> Old Password: </label>
-        <input type="password"  class="offset-sm-2" id="oldpassword" required></input>
+        <input type="password"  class="form-control-lg" id="oldpassword" required></input>
         <br/>
         <label > New Password: </label>
-        <input type="password" class="offset-md-2" name='password' id="newpassword" required></input>
+        <input type="password" class="form-control-lg" name='password' id="newpassword" required></input>
         <br/>
         <label> Confirm New Password: </label>
-        <input type="password" id="confirmpassword" required></input>
+        <input type="password" class="form-control-lg" id="confirmpassword" required></input>
         <br/>
       </div>
       <div class="modal-footer">
@@ -129,7 +129,7 @@ color:#FFFFFF;
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
+        <h4 class="modal-title">PC Tags</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
@@ -157,7 +157,7 @@ color:#FFFFFF;
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
+        <h4 class="modal-title">Power Usage Tags</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
