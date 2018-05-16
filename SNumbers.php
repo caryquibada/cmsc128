@@ -226,11 +226,8 @@
         setTimeout(function(){
         $('#password').load('ajax/loadpassword.php',function(){
              
-        });
-    });
-        
-        
-        
+            });
+        });  
     });
     
 </script>

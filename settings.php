@@ -77,14 +77,18 @@ color:#FFFFFF;
 
         </div>
     </form>
-    <br>
-    <button type="button" class="btn btn-danger offset-md-2" data-toggle="modal" data-target="#PCModal">
+    <br/>
+    <br/>
+    <div class="container">
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#PCModal">
         Enable PC Tags
     </button>
-    <button type="button" class="btn btn-danger offset-md-1" data-toggle="modal" data-target="#PowerModal">
+    <br/>
+    <br/>
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#PowerModal">
         Enable Power Tags
     </button>
-
+    </div>
 
     <br/>
     <br/>

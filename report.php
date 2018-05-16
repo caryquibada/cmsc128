@@ -113,6 +113,7 @@ color:#FFFFFF;
                     <option value="Printing">Printing</option>
                     <option value="Scanning">Scanning</option>
                     <option value="pComputer_Usage">Paid Computer Usage</option>
+                    <option value="pPower_Usage">Power Usage</option>
                     </optgroup>
                     <optgroup label="Staff/Visitor Services">
                     <option value="vComputer_Usage">Computer Usage</option>
@@ -289,12 +290,14 @@ color:#FFFFFF;
                  $('.payment').show();
                 $('.visitor').show();
                 table="all";
-             }else if(by.val()=='pComputer_Usage'||by.val()=='Scanning'||by.val()=='Printing'){
+             }else if(by.val()=='pComputer_Usage'||by.val()=='Scanning'||by.val()=='Printing'||by.val()=='pPower_Usage'){
                 if(by.val()=='pComputer_Usage'){
                     by.val('Computer_Usage');
+                }else if(by.val()=='pPower_Usage'){
+                    by.val('Power_Usage');
                 }
                 $('.transaction').hide();
-                 $('.payment').show();
+                $('.payment').show();
                 $('.visitor').hide();
                 table="payment";
              }else{

@@ -5,11 +5,12 @@
     $totime=date("Y-m-d", strtotime($_POST['to']));
     
     //Sql query
-        $sql="SELECT * from payment where (date between '$fromtime' and '$totime') and type = 'Computer_Usage'";
+        $sql="SELECT * from payment where (date between '$fromtime' and '$totime') and type = 'Computer_Usage' OR type='Power_Usage'";
                 $result=mysqli_query($connect,$sql);
                 echo "  
                 <thead>
                 <tr>
+                <th></th>
                 <th>Tag</th>
                 <th>Student Number</th>
                 <th>Name</th>
@@ -23,6 +24,7 @@
                 <tbody>";  
                 while($row=mysqli_fetch_row($result)){
                 echo "<tr>
+                  <td>$row[1]</td>
                   <td>$row[9]</td>
                   <td>$row[0]</td>";
                   $namequery="SELECT name from student where student_number='$row[0]'";

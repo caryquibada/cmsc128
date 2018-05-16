@@ -30,7 +30,7 @@ while($row=mysqli_fetch_row($result)){
         $name=mysqli_fetch_row($nameresult);
     echo  "<td>$name[0]</td>
             <td>$row[1]</td>
-            <td>$row[2]</td>
+            <td>₱$row[2]</td>
             <td>$row[3]</td>";
         if($row[5]==""){
             echo "<td><input type='text' id='$row[8]' class='form-group' minlength='7' maxlength='7' pattern='[0-9]{7}' required></input></td>";

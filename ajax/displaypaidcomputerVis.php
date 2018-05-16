@@ -63,7 +63,7 @@
             $timeout=date( "h:i:s a F d, Y", strtotime($row[3]));
             echo "<td>$timeout</td>";
             
-            echo "<td>$time</td>";
+            echo "<td>₱$time</td>";
                     if($row[10]=='UNPAID'){
                         echo "
                         <td><input type='text' class='$row[0]' minlength='7' maxlength='7' pattern='[0-9]{7}' required></input></td>
